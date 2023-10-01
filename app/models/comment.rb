@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
 
-  belongs_to :chatter
+  validates :body, presence: true, length: {maximum: 400}
+
   belongs_to :work
 
 end
