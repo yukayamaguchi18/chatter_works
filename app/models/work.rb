@@ -3,6 +3,8 @@ class Work < ApplicationRecord
   validates :title, presence: true, length: {maximum: 50}
   validates :caption, presence: true, length: {maximum: 3000}
 
+  has_one_attached :work_image
+
   belongs_to :user
 
   has_many :work_favorites
