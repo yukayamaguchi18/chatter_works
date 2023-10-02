@@ -9,6 +9,15 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  def get_profile_image(width, height)
+    unless profile_image.attached?
+      # 商品画像がない場合はimages/no-image.jpgを参照
+      file_path = Rails.root.join('app/assets/images/no_profile_image.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
   has_many :chatters
   has_many :chatter_favorites
   has_many :rechatters

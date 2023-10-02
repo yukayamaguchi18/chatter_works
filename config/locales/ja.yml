@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        introduction: "自己紹介"
+        is_public: "公開ステータス"
+        is_active: "会員ステータス"
+      admin:
+        email: "メールアドレス"
+        password: "パスワード"
+      chatter:
+        body: "本文"
+      work:
+        title: "タイトル"
+        caption: "キャプション"
+      work_tag:
+        name: "タグ名"
+      comment:
+        body: "本文"
+
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"

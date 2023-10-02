@@ -1,2 +1,27 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="container">
+  <div class="row mx-auto">
+    <div class="col-12">
+      <h1>ユーザー一覧</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ユーザー</th>
+            <th>名前</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image(50, 50) %></td>
+              <td><%= user.name %></td>
+              <td><%= link_to "Detail" ,admin_user_path(user), class: "btn btn-primary" %></td>
+              <td><%= link_to "Edit" ,edit_admin_user_path(user), class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
