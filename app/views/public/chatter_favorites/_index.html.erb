@@ -1,0 +1,21 @@
+<% if chatter_favorites.blank? %>
+  <p>データはありません</p>
+<% else %>
+  <%= chatter_favorites.each do |favorite| %>
+    <div class="row">
+      <%= link_to user_path(favorite.chatter.user) do %>
+        <%= image_tag favorite.chatter.user.get_profile_image(50, 50) %>
+      <% end %>
+      <div class="col-10">
+        <%= favorite.chatter.user.name %>
+        <%= favorite.chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+        <%= favorite.chatter.body %>
+        <div class="row">
+          <i class="fa-solid fa-reply"></i><%= favorite.chatter.replies.count %>
+          <i class="fa-solid fa-bullhorn"></i><%= favorite.chatter.rechatters.count %>
+          <i class="fa-solid fa-star"></i><%= favorite.chatter.chatter_favorites.count %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

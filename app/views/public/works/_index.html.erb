@@ -1,0 +1,22 @@
+<% if works.blank? %>
+  <p>データはありません</p>
+<% else %>
+  <%= works.each do |work| %>
+    <div class="row">
+      <%= link_to work_path(work) do %>
+        <%= image_tag work.get_work_image(200, 200) %>
+      <% end %>
+      <div class="col-8">
+        <%= work.title %>
+        <%= link_to user_path(work.user) do %>
+          <%= work.user.name %>
+        <% end %>
+        <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
+        <div class="row">
+          <i class="fa-solid fa-comment"></i><%= work.comment.count %>
+          <i class="fa-solid fa-star"></i><%= work.work_favorites.count %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
