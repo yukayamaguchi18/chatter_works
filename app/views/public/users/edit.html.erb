@@ -1,2 +1,43 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container p-3">
+  <div class="row mx-auto">
+    <div class="col-12">
+
+      <h1>ユーザー情報編集</h1>
+      <%= render 'layouts/error', obj: @user %>
+      <%= form_with model: @user, method: :patch do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <td><%= f.label :ユーザー名 %></td>
+            <td><%= f.text_field :name, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :メールアドレス %></td>
+            <td><%= f.email_field :email, class: 'form-control' %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :プロフィール画像 %></td>
+            <td>
+              <%= image_tag @user.get_profile_image(150, 150) %>
+              <%= f.file_field :profile_image, accept: "image/*" %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label :自己紹介文 %></td>
+            <td><%= f.text_area :introduction, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>公開ステータス</td>
+            <td>
+              <%= f.radio_button :is_public, true %>
+              <%= f.label :is_public_true, "公開" %>
+              <%= f.radio_button :is_public, false %>
+              <%= f.label :is_public_false, "非公開" %>
+            </td>
+          </tr>
+        </table>
+        <%= f.submit "Update",class: "btn btn-primary" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,2 +1,125 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container p-3">
+  <div class="row d-flex justify-content-center">
+    <div class="col-2">
+      <%= image_tag @user.get_profile_image(150, 150) %>
+    </div>
+    <div class="col-4">
+      <h3><%= @user.name %></h3>
+      <p>公開ステータス：<%= @user.is_public %></p>
+      <p>
+        <%= link_to followings_user_relationships_path(@user) do %>
+          <%= @user.following_user.count %>フォロー
+        <% end %>
+        <%= link_to followers_user_relationships_path(@user) do %>
+          <%= @user.follower_user.count %>フォロワー
+        <% end %>
+        <% if @user == current_user %>
+          <%= link_to "Edit" ,edit_user_path(@user), class: "btn btn-primary ml-3" %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="col-6 mx-auto">
+    <p><%= @user.introduction %></p>
+  </div>
+  <div class="col-12">
+    <!-- タブ -->
+    <ul class="nav nav-tabs nav-fill">
+      <li class="nav-item">
+        <a href="#chatters" class="nav-link active" data-toggle="tab">Chatters</a>
+      </li>
+      <li class="nav-item">
+        <a href="#works" class="nav-link" data-toggle="tab">Works</a>
+      </li>
+      <li class="nav-item">
+        <a href="#chatter-favorites" class="nav-link" data-toggle="tab">Chatter Favorites</a>
+      </li>
+      <li class="nav-item">
+        <a href="#work-favorites" class="nav-link" data-toggle="tab">Works Favorites</a>
+      </li>
+    </ul>
+
+    <!-- タブの中身 -->
+    <div class="tab-content">
+      <div id="chatters" class="tab-pane active">
+        <%= @user.chatters.each do |chatter| %>
+          <div class="row">
+            <%= link_to user_path(chatter.user) do %>
+              <%= image_tag chatter.user.get_profile_image(50, 50) %>
+            <% end %>
+            <div class="col-10">
+              <%= chatter.user.name %>
+              <%= chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <%= chatter.body %>
+              <div class="row">
+                <i class="fa-solid fa-reply"></i><%= chatter.replies.count %>
+                <i class="fa-solid fa-bullhorn"></i><%= chatter.rechatters.count %>
+                <i class="fa-solid fa-star"></i><%= chatter.chatter_favorites.count %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="works" class="tab-pane">
+        <%= @user.works.each do |work| %>
+          <div class="row">
+            <%= link_to work_path(work) do %>
+              <%= image_tag work.get_work_image(200, 200) %>
+            <% end %>
+            <div class="col-8">
+              <%= work.title %>
+              <%= link_to user_path(work.user) do %>
+                <%= work.user.name %>
+              <% end %>
+              <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <div class="row">
+                <i class="fa-solid fa-comment"></i><%= work.comment.count %>
+                <i class="fa-solid fa-star"></i><%= work.work_favorites.count %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="chatter-favorites" class="tab-pane">
+        <%= @user.chatter_favorites.each do |favorite| %>
+          <div class="row">
+            <%= link_to user_path(favorite.chatter.user) do %>
+              <%= image_tag favorite.chatter.user.get_profile_image(50, 50) %>
+            <% end %>
+            <div class="col-10">
+              <%= favorite.chatter.user.name %>
+              <%= favorite.chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <%= favorite.chatter.body %>
+              <div class="row">
+                <i class="fa-solid fa-reply"></i><%= favorite.chatter.replies.count %>
+                <i class="fa-solid fa-bullhorn"></i><%= favorite.chatter.rechatters.count %>
+                <i class="fa-solid fa-star"></i><%= favorite.chatter.chatter_favorites.count %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="work-favorites" class="tab-pane">
+        <%= @user.work_favorites.each do |favorite| %>
+          <div class="row">
+            <%= link_to work_path(favorite.work) do %>
+              <%= image_tag favorite.work.get_work_image(200, 200) %>
+            <% end %>
+            <div class="col-8">
+              <%= favorite.work.title %>
+              <%= link_to user_path(favorite.work.user) do %>
+                <%= favorite.work.user.name %>
+              <% end %>
+              <%= favorite.work.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <div class="row">
+                <i class="fa-solid fa-comment"></i><%= favorite.work.comment.count %>
+                <i class="fa-solid fa-star"></i><%= favorite.work.work_favorites.count %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

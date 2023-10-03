@@ -8,19 +8,26 @@
       </div>
       <div class="col-9">
         <ul class="row justify-content-end my-2 list-unstyled">
-          <% if user_signed_in? && admin_signed_in? %>
-            <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-users"></i>
-              <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
-            </li>
-            <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-right-from-bracket"></i>
-              <%= link_to "会員ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
-            </li>
-            <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-right-from-bracket"></i>
-              <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
-            </li>
+          <% if user_signed_in? %>
+            <% if admin_signed_in? %>
+              <li class="nav-item mx-2 mt-2">
+                <i class="fa-solid fa-users"></i>
+                <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              </li>
+              <li class="nav-item mx-2 mt-2">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <%= link_to "会員ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              </li>
+              <li class="nav-item mx-2 mt-2">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              </li>
+            <% else %>
+              <li class="nav-item mx-2 mt-2">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              </li>
+            <% end %>
           <% elsif admin_signed_in? %>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-solid fa-users"></i>
@@ -29,11 +36,6 @@
             <li class="nav-item mx-2 mt-2">
               <i class="fa-solid fa-right-from-bracket"></i>
               <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
-            </li>
-          <% elsif user_signed_in? %>
-            <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-right-from-bracket"></i>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
             </li>
           <% else %>
             <li class="nav-item mx-2 mt-2">

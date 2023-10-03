@@ -4,7 +4,7 @@
 
       <h2>管理者ログイン</h2>
 
-      <%= form_with model: @user, url: user_session_path do |f| %>
+      <%= form_with(model: resource, scope: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
