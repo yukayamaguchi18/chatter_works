@@ -1,0 +1,3 @@
+$(".chatters").html("<%= escape_javascript(render 'public/chatters/index', chatters: @chatters) %>");
+$(".chatter-body").val("");
+$(".flash-message").html("<%= j(render 'layouts/flash') %>");

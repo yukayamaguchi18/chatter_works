@@ -1,7 +1,7 @@
 <% if work_favorites.blank? %>
   <p>データはありません</p>
 <% else %>
-  <%= work_favorites.each do |favorite| %>
+  <% work_favorites.each do |favorite| %>
     <div class="row">
       <%= link_to work_path(favorite.work) do %>
         <%= image_tag favorite.work.get_work_image(200, 200) %>

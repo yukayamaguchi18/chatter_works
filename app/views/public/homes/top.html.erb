@@ -1,2 +1,55 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container-fluid">
+  <div class="d-flex">
+    <div style="overflow: scroll; width: 100vw; height: 95vh">
+      <%= link_to "更新", root_path, class: "btn btn-primary btn-block" %>
+      <div class="chatters">
+        <%= render 'public/chatters/index', chatters: @chatters %>
+      </div>
+    </div>
+    <div style="overflow: scroll; width: 100vw; height: 95vh">
+      <%= link_to "更新", root_path, class: "btn btn-primary btn-block" %>
+      <%= render 'public/works/index', works: @works %>
+    </div>
+
+    <div class="row fixed-bottom">
+      <div id="chatter-btn">
+        <button type="button" class="btn btn-primary rounded-circle m-5" data-toggle="modal" data-target="#chatter-modal">
+          <i class="fa-regular fa-comment-dots"></i>
+        </button>
+      </div>
+      <div class="ml-auto">
+        <%= link_to new_work_path, remote: true, class: "btn btn-primary rounded-circle m-5 mr-2" do %>
+          <i class="fa-solid fa-pen-fancy"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--chatter modal-->
+<div class="modal fade" id="chatter-modal" tabindex="-1"
+      role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <%= form_with model: @chatter, local: false do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title">New Chatter</h5>
+        <div id ="chatters-error"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group field">
+          <%= f.text_area :body, placeholder: "今を話そう。", rows: '5', class: 'form-control chatter-body' %>
+        </div>
+      </div>
+      <div class="modal-footer actions">
+        <%= f.submit "Chatter",class: "btn btn-primary"%>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

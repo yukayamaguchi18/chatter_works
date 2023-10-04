@@ -1,17 +1,17 @@
 <% if chatters.blank? %>
   <p>データはありません</p>
 <% else %>
-  <%= chatters.each do |chatter| %>
+  <% chatters.each do |chatter| %>
     <div class="row">
       <%= link_to user_path(chatter.user) do %>
         <%= image_tag chatter.user.get_profile_image(50, 50) %>
       <% end %>
       <div class="col-10">
-        <%= chatter.user.name %>
-        <%= chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
-        <%= chatter.body %>
+        <p><%= chatter.user.name %></p>
+        <p><%= chatter.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+        <p><%= chatter.body %></p>
         <div class="row">
-          <i class="fa-solid fa-reply"></i><%= chatter.replies.count %>
+          <i class="fa-solid fa-reply"></i><%#= chatter.replies.count %>
           <i class="fa-solid fa-bullhorn"></i><%= chatter.rechatters.count %>
           <i class="fa-solid fa-star"></i><%= chatter.chatter_favorites.count %>
         </div>

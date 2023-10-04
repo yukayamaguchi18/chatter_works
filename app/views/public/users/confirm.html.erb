@@ -1,0 +1,17 @@
+<div class="container p-3">
+  <div class="row mx-auto">
+    <div class="col-12">
+
+      <h1>本当に退会しますか？</h1>
+      <p>
+        退会すると、ユーザー登録情報や<br>
+        これまでの投稿履歴、お気に入り履歴が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </p>
+
+      <%= link_to "退会しない", user_path(current_user), :class => "btn btn-primary" %>
+      <%= link_to "退会する", withdraw_users_path, method: :patch, :class => "btn btn-danger", data: { confirm: "本当に退会しますか？" }  %>
+
+    </div>
+  </div>
+</div>

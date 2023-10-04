@@ -1,7 +1,7 @@
 <% if chatter_favorites.blank? %>
   <p>データはありません</p>
 <% else %>
-  <%= chatter_favorites.each do |favorite| %>
+  <% chatter_favorites.each do |favorite| %>
     <div class="row">
       <%= link_to user_path(favorite.chatter.user) do %>
         <%= image_tag favorite.chatter.user.get_profile_image(50, 50) %>

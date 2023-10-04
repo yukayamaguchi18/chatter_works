@@ -8,10 +8,10 @@
       <p>公開ステータス：<%= @user.is_public %></p>
       <p>
         <%= link_to followings_user_relationships_path(@user) do %>
-          <%= @user.following_user.count %>フォロー
+          <%= @user.followings.count %>フォロー
         <% end %>
         <%= link_to followers_user_relationships_path(@user) do %>
-          <%= @user.follower_user.count %>フォロワー
+          <%= @user.followers.count %>フォロワー
         <% end %>
         <% if @user == current_user %>
           <%= link_to "Edit" ,edit_user_path(@user), class: "btn btn-primary ml-3" %>

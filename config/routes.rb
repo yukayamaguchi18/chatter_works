@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :chatters, only: [:show, :destroy, :create] do
+    resources :chatters, only: [:show, :new, :destroy, :create] do
       resource :chatter_favorites, only: [:index, :create, :destroy]
       resource :rechatters, only: [:index, :create, :destroy]
       resources :replies, only: [:create, :destroy]

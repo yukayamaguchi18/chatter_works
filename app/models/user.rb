@@ -25,24 +25,40 @@ class User < ApplicationRecord
   has_many :work_favorites
   has_many :work_tags
 
-  has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
-  has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
-  has_many :following_user, through: :follower, source: :followed
-  has_many :follower_user, through: :followed, source: :follower
+  # 自分がフォローする（与フォロー）側の関係性
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # 自分がフォローされる（被フォロー）側の関係性
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+  # 与フォロー関係を通じて参照→自分がフォローしている人
+  has_many :followings, through: :relationships, source: :followed
+  # 被フォロー関係を通じて参照→自分をフォローしている人
+  has_many :followers, through: :reverse_of_relationships, source: :follower
 
   # ユーザーをフォローする
   def follow(user_id)
-    follower.create(followed_id: user_id)
+    relationships.create(followed_id: user_id)
   end
 
   # ユーザーをアンフォローする
   def unfollow(user_id)
-    follower.find_by(followed_id: user_id).destroy
+    relationships.find_by(followed_id: user_id).destroy
   end
 
   # フォローしているかを確認する
   def following?(user)
-    following_user.include?(user)
+    followings.include?(user)
+  end
+
+    # フォローされているか判定
+  def followed?(user)
+    followers.include?(user)
+  end
+
+  # ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないようにする
+  # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (is_active == true)
   end
 
 end
