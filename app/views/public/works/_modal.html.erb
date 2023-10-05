@@ -1,0 +1,40 @@
+<div class="modal fade" id="work-modal" tabindex="-1"
+      role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <%= form_with model: work, local: false do |f| %>
+      <div class="modal-header">
+        <% if work.new_record? %>
+          <h5 class="modal-title">New Work</h5>
+        <% else %>
+          <h5 class="modal-title">Edit Work</h5>
+        <% end %>
+        <div id ="works-error"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group field">
+          <%= f.label "Title" %>
+          <%= f.text_field :title, placeholder: "作品タイトル", class: 'form-control work-body mb-3' %>
+          <% if work.new_record? %>
+            <%= f.file_field :work_image, accept: "image/*", class: "mb-3" %>
+          <% end %>
+          <%= f.label "Caption" %>
+          <%= f.text_area :caption, placeholder: "作品説明", rows: '5', class: 'form-control work-body mb-3' %>
+          <% if work.new_record? %>
+            <%= f.label "Tag" %>
+            <%= f.text_field :name, placeholder: "タグを複数つけるには' , 'で区切ってください", class: 'form-control work-body' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer actions">
+        <%= f.submit "Post",class: "btn btn-primary"%>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

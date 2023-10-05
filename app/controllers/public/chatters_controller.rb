@@ -19,6 +19,14 @@ class Public::ChattersController < ApplicationController
     # create.js.erbを参照する
   end
 
+  def destroy
+    @chatter = Chatter.find(params[:id])
+    @chatter.delete
+    @chatters = Chatter.where(user_id: [current_user.id, *current_user.followings])
+    flash.now[:notice] = "Chatterを削除しました"
+    # destroy.js.erbを参照する
+  end
+
   private
 
   def chatter_params

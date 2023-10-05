@@ -1,8 +1,8 @@
 class WorkTag < ApplicationRecord
 
-  validates :name, presence: true, length: {maximum: 30}
-
-  belongs_to :user
+  validates :work_id, presence: true
+  validates :tag_id, presence: true
+  belongs_to :tag
   belongs_to :work
 
 end

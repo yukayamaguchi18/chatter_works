@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="col-6 mx-auto">
-    <p><%= @user.introduction %></p>
+    <p><%= raw Rinku.auto_link(h(safe_join(@user.introduction.split("\n"),tag(:br)))) %></p>
   </div>
   <div class="col-12">
     <!-- タブ -->

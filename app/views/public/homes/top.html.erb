@@ -8,48 +8,25 @@
     </div>
     <div style="overflow: scroll; width: 100vw; height: 95vh">
       <%= link_to "更新", root_path, class: "btn btn-primary btn-block" %>
-      <%= render 'public/works/index', works: @works %>
+      <div class="works">
+        <%= render 'public/works/index', works: @works %>
+      </div>
     </div>
-
-    <div class="row fixed-bottom">
-      <div id="chatter-btn">
-        <button type="button" class="btn btn-primary rounded-circle m-5" data-toggle="modal" data-target="#chatter-modal">
+  </div>
+      <div style="position: absolute; bottom: 0; left: 46%;" id="chatter-btn">
+        <button type="button" class="btn btn-primary rounded-circle mb-4" data-toggle="modal" data-target="#chatter-modal">
           <i class="fa-regular fa-comment-dots"></i>
         </button>
       </div>
-      <div class="ml-auto">
-        <%= link_to new_work_path, remote: true, class: "btn btn-primary rounded-circle m-5 mr-2" do %>
+      <div style="position: absolute; bottom: 0; right: 0;" id="work-btn">
+        <button type="button" class="btn btn-primary rounded-circle mb-4 mr-4" data-toggle="modal" data-target="#work-modal">
           <i class="fa-solid fa-pen-fancy"></i>
-        <% end %>
+        </button>
       </div>
-    </div>
-  </div>
 </div>
 
 <!--chatter modal-->
-<div class="modal fade" id="chatter-modal" tabindex="-1"
-      role="dialog" aria-labelledby="label1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <%= form_with model: @chatter, local: false do |f| %>
-      <div class="modal-header">
-        <h5 class="modal-title">New Chatter</h5>
-        <div id ="chatters-error"></div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+<%= render 'public/chatters/modal', chatter: @chatter %>
 
-        <div class="form-group field">
-          <%= f.text_area :body, placeholder: "今を話そう。", rows: '5', class: 'form-control chatter-body' %>
-        </div>
-      </div>
-      <div class="modal-footer actions">
-        <%= f.submit "Chatter",class: "btn btn-primary"%>
-      </div>
-
-      <% end %>
-    </div>
-  </div>
-</div>
+<!--work modal-->
+<%= render 'public/chatters/modal', work: @work %>

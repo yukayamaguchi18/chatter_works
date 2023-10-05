@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       resource :rechatters, only: [:index, :create, :destroy]
       resources :replies, only: [:create, :destroy]
     end
-    resources :works, only: [:new, :create, :show] do
+    resources :works, only: [:new, :create, :show, :destroy, :edit, :update] do
       resource :work_favorites, only: [:create, :destroy, :index]
       resources :work_tags, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

@@ -1,3 +1,2 @@
 $(".chatters").html("<%= escape_javascript(render 'public/chatters/index', chatters: @chatters) %>");
-$("#chatter-modal").modal("hide");
 $(".flash-message").html("<%= j(render 'layouts/flash') %>");
