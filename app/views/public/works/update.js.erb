@@ -1,0 +1,4 @@
+$("#work-show").html("<%= escape_javascript(render 'public/works/show', work: @work, tags: @tags) %>");
+$(".flash-message").html("<%= j(render 'layouts/flash') %>");
+$("#work-modal").modal("hide");
+$("#tag-modal").modal("hide");

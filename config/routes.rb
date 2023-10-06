@@ -34,6 +34,10 @@ Rails.application.routes.draw do
       resources :replies, only: [:create, :destroy]
     end
     resources :works, only: [:new, :create, :show, :destroy, :edit, :update] do
+        # member do
+        #   patch :update_tags
+        # end
+        # タグ編集用route 使用保留 現行はworks#update流用
       resource :work_favorites, only: [:create, :destroy, :index]
       resources :work_tags, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

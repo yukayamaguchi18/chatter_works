@@ -14,7 +14,7 @@ class Public::ChattersController < ApplicationController
       unless @chatter.save
         render 'error'  # error.js.erbを参照する
       end
-    @chatters = Chatter.where(user_id: [current_user.id, *current_user.followings])
+    @chatters = Chatter.where(user_id: [current_user.id, *current_user.followings]).order(created_at: :desc)
     flash.now[:notice] = "Chatterを投稿しました"
     # create.js.erbを参照する
   end
@@ -22,7 +22,7 @@ class Public::ChattersController < ApplicationController
   def destroy
     @chatter = Chatter.find(params[:id])
     @chatter.delete
-    @chatters = Chatter.where(user_id: [current_user.id, *current_user.followings])
+    @chatters = Chatter.where(user_id: [current_user.id, *current_user.followings]).order(created_at: :desc)
     flash.now[:notice] = "Chatterを削除しました"
     # destroy.js.erbを参照する
   end

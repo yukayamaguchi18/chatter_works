@@ -1,13 +1,16 @@
-<header style="background-color: #0d2e4f;">
+<header class="sticky-top border-bottom border-secondary" style="background-color: #373737;">
   <div class="container-fluid">
     <div class="row mx-auto">
-      <div class="col-3">
+      <div class="col-3 d-flex align-items-center">
         <%= link_to root_path do %>
-          <%#= image_tag 'logo_c.jpg', style: "object-fit: cover; width: 150px; height: 80px;" %>
+          <%= image_tag 'Logo.png', style: "object-fit: cover; height: 40px;" %>
         <% end %>
       </div>
       <div class="col-9">
         <ul class="row justify-content-end my-2 list-unstyled">
+          <li class="nav-item mx-2 mt-2">
+            <%= render 'public/searches/form' %>
+          </li>
           <% if user_signed_in? %>
             <% if admin_signed_in? %>
               <li class="nav-item mx-2 mt-2">
@@ -17,15 +20,15 @@
               </li>
               <li class="nav-item mx-2 mt-2">
                 <i class="fa-solid fa-users"></i>
-                <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+                <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none align-middle text-white" %>
               </li>
               <li class="nav-item mx-2 mt-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "会員ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+                <%= link_to "会員ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle text-white" %>
               </li>
               <li class="nav-item mx-2 mt-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+                <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle text-white" %>
               </li>
             <% else %>
               <li class="nav-item mx-2 mt-2">
@@ -35,30 +38,31 @@
               </li>
               <li class="nav-item mx-2 mt-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle text-white" %>
               </li>
             <% end %>
           <% elsif admin_signed_in? %>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-solid fa-users"></i>
-              <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none align-middle text-white" %>
             </li>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-solid fa-right-from-bracket"></i>
-              <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle text-white" %>
             </li>
           <% else %>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-solid fa-right-to-bracket"></i>
-              <%= link_to "ログイン", new_user_session_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <%= link_to "ログイン", new_user_session_path, class: "text-decoration-none align-middle text-white" %>
             </li>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-solid fa-right-to-bracket"></i>
-              <%= link_to "サインイン", new_user_registration_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <%= link_to "サインイン", new_user_registration_path, class: "text-decoration-none align-middle text-white" %>
             </li>
           <% end %>
         </ul>
       </div>
     </div>
   </div>
+  <div class="mb-1" style="height: 2px; background-color: #7ED957"></div>
 </header>

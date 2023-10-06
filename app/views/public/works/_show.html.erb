@@ -1,0 +1,30 @@
+<h1><%= work.title%></h1>
+<%= image_tag work.work_image, style: "width: 100%;" %>
+<p><%= work.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+  <%= link_to user_path(work.user) do %>
+    <%= image_tag work.user.get_profile_image(50, 50) %>
+    <%= work.user.name %>
+  <% end %>
+<p id="tags">
+  <%= render 'public/work_tags/tags', work: @work, tags: @tags %>
+</p>
+<div id="tag-btn">
+  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tag-modal">
+    <i class="fa-solid fa-tags"></i>
+  </button>
+</div>
+<div class="row">
+  <i class="fa-solid fa-reply"></i><%#= @work.comments.comment_to_id.count %>
+  <i class="fa-solid fa-star"></i><%= work.work_favorites.count %>
+</div>
+<p><%= raw Rinku.auto_link(h(safe_join(work.caption.split("\n"),tag(:br)))) %></p>
+<% if work.user == current_user %>
+  <%= link_to work_path(work), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "削除しますか？" } do %>
+    <i class="fa-solid fa-trash-can"></i>
+  <% end %>
+  <div id="work-btn">
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#work-modal">
+      Edit
+    </button>
+  </div>
+<% end %>
