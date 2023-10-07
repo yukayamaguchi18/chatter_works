@@ -1,3 +1,7 @@
 <% tags.each do |tag| %>
-  <i class="fa-solid fa-tag"></i><%= tag.name %><%="(#{tag.works.count})" %>
+  <i class="fa-solid fa-tag"></i>
+  <span>
+    <%= link_to tag.name, tag_link_search_path(tag_id: tag.id) %>
+    <%="(#{tag.works.count})" %>
+  </span>
 <% end %>

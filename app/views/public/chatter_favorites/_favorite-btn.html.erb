@@ -1,0 +1,13 @@
+<% if chatter.favorited_by?(current_user) %>
+  <p>
+    <%= link_to chatter_chatter_favorites_path(chatter), method: :delete, class: "text-warning", remote: true do %>
+      <i class="fa-solid fa-star"></i><%= chatter.chatter_favorites.count %>
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to chatter_chatter_favorites_path(chatter), method: :post, class: "text-secondary", remote: true do %>
+      <i class="fa-regular fa-star"></i><%= chatter.chatter_favorites.count %>
+    <% end %>
+  </p>
+<% end %>

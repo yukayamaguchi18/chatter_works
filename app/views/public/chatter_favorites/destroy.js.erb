@@ -1,0 +1,1 @@
+$(".chatter-favorite-btn_<%= @chatter.id %>").html("<%= escape_javascript(render partial: 'public/chatter_favorites/favorite-btn', locals: {chatter: @chatter}) %>");

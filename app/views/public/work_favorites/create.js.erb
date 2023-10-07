@@ -1,0 +1,1 @@
+$(".work-favorite-btn_<%= @work.id %>").html("<%= escape_javascript(render partial: 'public/work_favorites/favorite-btn', locals: {work: @work}) %>");

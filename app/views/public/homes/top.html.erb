@@ -1,12 +1,12 @@
-<div class="container-fluid">
+<div class="container-fluid p-3">
   <div class="d-flex">
-    <div style="overflow: scroll; width: 100vw; height: 95vh">
+    <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 95vh">
       <%= link_to "更新", root_path, class: "btn btn-primary btn-block" %>
       <div class="chatters">
         <%= render 'public/chatters/index', chatters: @chatters %>
       </div>
     </div>
-    <div style="overflow: scroll; width: 100vw; height: 95vh">
+    <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 95vh">
       <%= link_to "更新", root_path, class: "btn btn-primary btn-block" %>
       <div class="works">
         <%= render 'public/works/index', works: @works %>

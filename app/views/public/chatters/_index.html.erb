@@ -22,7 +22,9 @@
           <div class="row">
             <i class="fa-solid fa-reply"></i><%#= chatter.replies.count %>
             <i class="fa-solid fa-bullhorn"></i><%= chatter.rechatters.count %>
-            <i class="fa-solid fa-star"></i><%= chatter.chatter_favorites.count %>
+            <div class="chatter-favorite-btn_<%= chatter.id %>">
+              <%= render 'public/chatter_favorites/favorite-btn', chatter: chatter %>
+            </div>
           </div>
         </div>
       </div>

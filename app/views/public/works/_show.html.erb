@@ -15,7 +15,9 @@
 </div>
 <div class="row">
   <i class="fa-solid fa-reply"></i><%#= @work.comments.comment_to_id.count %>
-  <i class="fa-solid fa-star"></i><%= work.work_favorites.count %>
+  <div class="work-favorite-btn_<%= work.id %>">
+    <%= render 'public/work_favorites/favorite-btn', work: work %>
+  </div>
 </div>
 <p><%= raw Rinku.auto_link(h(safe_join(work.caption.split("\n"),tag(:br)))) %></p>
 <% if work.user == current_user %>

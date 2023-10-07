@@ -36,9 +36,21 @@ class Work < ApplicationRecord
 
       # 新しいタグを保存
       new_tags.each do |new|
-        new_post_tag = Tag.find_or_create_by(name: new)
-        self.tags << new_post_tag
+        new_post_tag = Tag.find_or_create_by(name: new.strip) # stripで空白削除
+        self.tags << new_post_tag # タグの配列に新たなタグを追加
      end
+  end
+
+  def favorited_by?(user)
+    work_favorites.exists?(user_id: user.id)
+  end
+
+  def self.search(word)
+    # あいまい検索
+    #   "?"に対してwordが順番に入る
+    #   LIKEは、あいまい検索の意味で、"%"は、前後のあいまいという意味
+    #   "#{word}"は、Rubyの式展開
+    where('title LIKE ? OR caption LIKE ?', "%#{word}%", "%#{word}%")
   end
 
 end

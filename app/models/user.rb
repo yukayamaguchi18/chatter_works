@@ -61,4 +61,12 @@ class User < ApplicationRecord
     super && (is_active == true)
   end
 
+  def self.search(word)
+    # あいまい検索
+    #   "?"に対してwordが順番に入る
+    #   LIKEは、あいまい検索の意味で、"%"は、前後のあいまいという意味
+    #   "#{word}"は、Rubyの式展開
+    where('name LIKE ? OR introduction LIKE ?', "%#{word}%", "%#{word}%")
+  end
+
 end

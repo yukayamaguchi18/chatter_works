@@ -1,2 +1,9 @@
-<h1>Public::Searches#index</h1>
-<p>Find me in app/views/public/searches/index.html.erb</p>
+<div class="container p-3">
+  <% if @model == "Keyword" %>
+    <%= render 'public/searches/keyword-result', users: @users, chatters: @chatters, works: @works %>
+  <% elsif @model == "WorkTag" %>
+    <%= render 'public/searches/tag-result', works: @works %>
+  <% else %>
+    <p>No results found. Please search again.</p>
+  <% end %>
+</div>
