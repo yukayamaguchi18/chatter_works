@@ -7,57 +7,57 @@
         <% end %>
       </div>
       <div class="col-9">
-        <ul class="row justify-content-end my-2 list-unstyled">
-          <li class="nav-item mx-2 mt-2">
+        <ul class="d-flex align-items-center justify-content-end my-2 list-unstyled">
+          <li class="nav-item mx-2 mt-3">
             <%= render 'public/searches/form' %>
           </li>
           <% if user_signed_in? %>
             <% if admin_signed_in? %>
-              <li class="nav-item mx-2 mt-2">
+              <li class="nav-item mx-2">
                 <%= link_to user_path(current_user) do %>
                   <%= image_tag current_user.get_profile_image(30, 30), class: "rounded" %>
                 <% end %>
               </li>
-              <li class="nav-item mx-2 mt-2">
+              <li class="nav-item mx-2">
                 <i class="fa-solid fa-users"></i>
-                <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none align-middle text-white" %>
+                <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none text-white" %>
               </li>
-              <li class="nav-item mx-2 mt-2">
+              <li class="nav-item mx-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "会員ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle text-white" %>
+                <%= link_to "会員ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
-              <li class="nav-item mx-2 mt-2">
+              <li class="nav-item mx-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle text-white" %>
+                <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
             <% else %>
-              <li class="nav-item mx-2 mt-2">
+              <li class="nav-item mx-2">
                 <%= link_to user_path(current_user) do %>
                   <%= image_tag current_user.get_profile_image(30, 30), class: "rounded" %>
                 <% end %>
               </li>
-              <li class="nav-item mx-2 mt-2">
+              <li class="nav-item mx-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none align-middle text-white" %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
             <% end %>
           <% elsif admin_signed_in? %>
-            <li class="nav-item mx-2 mt-2">
+            <li class="nav-item mx-2">
               <i class="fa-solid fa-users"></i>
-              <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none align-middle text-white" %>
+              <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none text-white" %>
             </li>
-            <li class="nav-item mx-2 mt-2">
+            <li class="nav-item mx-2">
               <i class="fa-solid fa-right-from-bracket"></i>
-              <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle text-white" %>
+              <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
             </li>
           <% else %>
-            <li class="nav-item mx-2 mt-2">
+            <li class="nav-item mx-2">
               <i class="fa-solid fa-right-to-bracket"></i>
-              <%= link_to "ログイン", new_user_session_path, class: "text-decoration-none align-middle text-white" %>
+              <%= link_to "ログイン", new_user_session_path, class: "text-decoration-none text-white" %>
             </li>
-            <li class="nav-item mx-2 mt-2">
+            <li class="nav-item mx-2">
               <i class="fa-solid fa-right-to-bracket"></i>
-              <%= link_to "サインイン", new_user_registration_path, class: "text-decoration-none align-middle text-white" %>
+              <%= link_to "サインイン", new_user_registration_path, class: "text-decoration-none text-white" %>
             </li>
           <% end %>
         </ul>

@@ -18,12 +18,11 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  has_many :chatters
-  has_many :chatter_favorites
-  has_many :rechatters
-  has_many :works
-  has_many :work_favorites
-  has_many :work_tags
+  has_many :chatters, dependent: :destroy
+  has_many :chatter_favorites, dependent: :destroy
+  has_many :rechatters, dependent: :destroy
+  has_many :works, dependent: :destroy
+  has_many :work_favorites, dependent: :destroy
 
   # 自分がフォローする（与フォロー）側の関係性
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

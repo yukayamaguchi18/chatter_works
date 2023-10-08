@@ -4,8 +4,8 @@ class Chatter < ApplicationRecord
 
   belongs_to :user
 
-  has_many :chatter_favorites
-  has_many :rechatters
+  has_many :chatter_favorites, dependent: :destroy
+  has_many :rechatters, dependent: :destroy
 
   has_many :replying, class_name: 'Reply', foreign_key: 'chatter_id', dependent: :destroy
   has_many :replying_to, class_name: 'Reply', foreign_key: 'reply_to_id', dependent: :destroy

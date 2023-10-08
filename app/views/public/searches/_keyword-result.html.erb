@@ -6,7 +6,11 @@
         <p><%= user.name %></p>
       </div>
     <% end %>
-    <%#= "フォローする（未実装）", class: "btn btn-sm btn-primary" %>
+    <% unless user == current_user %>
+      <div class="follow-btn_<%= user.id %>">
+        <%= render "public/relationships/follow", user: user %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 <div class="d-flex">

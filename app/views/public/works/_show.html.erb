@@ -5,6 +5,11 @@
     <%= image_tag work.user.get_profile_image(50, 50) %>
     <%= work.user.name %>
   <% end %>
+  <% unless work.user == current_user %>
+    <div class="follow-btn_<%= work.user.id %>">
+      <%= render "public/relationships/follow", user: work.user %>
+    </div>
+  <% end %>
 <p id="tags">
   <%= render 'public/work_tags/tags', work: @work, tags: @tags %>
 </p>

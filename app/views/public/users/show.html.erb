@@ -6,12 +6,21 @@
     <div class="col-4">
       <h3><%= @user.name %></h3>
       <p>公開ステータス：<%= @user.is_public %></p>
+      <% unless @user == current_user %>
+        <div class="follow-btn_<%= @user.id %>">
+          <%= render "public/relationships/follow", user: @user %>
+        </div>
+      <% end %>
       <p>
         <%= link_to followings_user_relationships_path(@user) do %>
-          <%= @user.followings.count %>フォロー
+          <span class="followings-count_<%= @user.id %>">
+            <%= render "public/relationships/followings-count", user: @user %>
+          </span>
         <% end %>
         <%= link_to followers_user_relationships_path(@user) do %>
-          <%= @user.followers.count %>フォロワー
+          <span class="followers-count_<%= @user.id %>">
+            <%= render "public/relationships/followers-count", user: @user %>
+          </span>
         <% end %>
         <% if @user == current_user %>
           <%= link_to "Edit" ,edit_user_path(@user), class: "btn btn-primary ml-3" %>
