@@ -1,0 +1,26 @@
+<% if favorites.exists? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ユーザー</th>
+        <th>名前</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% favorites.each do |favorite| %>
+        <tr>
+          <td>
+            <%= link_to user_path(favorite.user) do %>
+              <%= image_tag favorite.user.get_profile_image(50, 50) %>
+            <% end %>
+          </td>
+          <td><%= favorite.user.name %></td>
+          <td><%#= "フォローする（未実装）", class: "btn btn-sm btn-primary" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

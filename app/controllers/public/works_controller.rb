@@ -75,6 +75,10 @@ class Public::WorksController < ApplicationController
   #   end
   # end
 
+  def favorite_users
+    @work = Work.find(params[:id])
+  end
+
   def tag_link_search
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])

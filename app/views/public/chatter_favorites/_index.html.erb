@@ -9,11 +9,13 @@
       <div class="col-10">
         <%= favorite.chatter.user.name %>
         <%= favorite.chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
-        <%= favorite.chatter.body %>
+        <%= raw Rinku.auto_link(h(safe_join(favorite.chatter.body.split("\n"),tag(:br)))) %>
         <div class="row">
-          <i class="fa-solid fa-reply"></i><%= favorite.chatter.replies.count %>
+          <i class="fa-solid fa-reply"></i><%#= favorite.chatter.replies.count %>
           <i class="fa-solid fa-bullhorn"></i><%= favorite.chatter.rechatters.count %>
-          <i class="fa-solid fa-star"></i><%= favorite.chatter.chatter_favorites.count %>
+          <div class="chatter-favorite-btn_<%= favorite.chatter.id %>">
+            <%= render 'public/chatter_favorites/favorite-btn', chatter: favorite.chatter %>
+          </div>
         </div>
       </div>
     </div>

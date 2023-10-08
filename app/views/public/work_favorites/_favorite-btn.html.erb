@@ -1,13 +1,19 @@
 <% if work.favorited_by?(current_user) %>
   <p>
-    <%= link_to work_work_favorites_path(work), method: :delete, class: "text-warning", remote: true do %>
-      <i class="fa-solid fa-star"></i><%= work.work_favorites.count %>
+    <%= link_to work_work_favorites_path(work), method: :delete, remote: true, class: "text-warning" do %>
+      <i class="fa-solid fa-star"></i>
+    <% end %>
+    <%= link_to favorite_users_work_path(work), class: "text-warning" do %>
+      <%= work.work_favorites.count %>
     <% end %>
   </p>
   <% else %>
   <p>
-    <%= link_to work_work_favorites_path(work), method: :post, class: "text-secondary", remote: true do %>
-      <i class="fa-regular fa-star"></i><%= work.work_favorites.count %>
+    <%= link_to work_work_favorites_path(work), method: :post, remote: true, class: "text-secondary" do %>
+      <i class="fa-regular fa-star"></i>
+    <% end %>
+    <%= link_to favorite_users_work_path(work), class: "text-secondary" do %>
+      <%= work.work_favorites.count %>
     <% end %>
   </p>
 <% end %>

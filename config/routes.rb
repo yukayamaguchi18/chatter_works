@@ -30,15 +30,19 @@ Rails.application.routes.draw do
     end
     resources :chatters, only: [:show, :new, :destroy, :create] do
       resource :chatter_favorites, only: [:index, :create, :destroy]
+      member do
+        get :favorite_users
+      end
       resource :rechatters, only: [:index, :create, :destroy]
       resources :replies, only: [:create, :destroy]
     end
     resources :works, only: [:new, :create, :show, :destroy, :edit, :update] do
-        # member do
-        #   patch :update_tags
-        # end
-        # タグ編集用route 使用保留 現行はworks#update流用
       resource :work_favorites, only: [:create, :destroy, :index]
+      member do
+        get :favorite_users
+        # patch :update_tags
+        # タグのみ編集用route 使用保留 現行はworks#update流用
+      end
       resources :work_tags, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end

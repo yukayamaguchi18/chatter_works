@@ -27,6 +27,10 @@ class Public::ChattersController < ApplicationController
     # destroy.js.erbを参照する
   end
 
+  def favorite_users
+    @chatter = Chatter.find(params[:id])
+  end
+
   private
 
   def chatter_params

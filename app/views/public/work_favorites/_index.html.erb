@@ -13,8 +13,10 @@
         <% end %>
         <%= favorite.work.created_at.strftime('%Y/%m/%d %H:%M') %>
         <div class="row">
-          <i class="fa-solid fa-comment"></i><%= favorite.work.comment.count %>
-          <i class="fa-solid fa-star"></i><%= favorite.work.work_favorites.count %>
+          <i class="fa-solid fa-comment"></i><%#= favorite.work.comments.count %>
+          <div class="work-favorite-btn_<%= favorite.work.id %>">
+            <%= render 'public/work_favorites/favorite-btn', work: favorite.work %>
+          </div>
         </div>
       </div>
     </div>
