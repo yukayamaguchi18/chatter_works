@@ -1,0 +1,17 @@
+<table>
+  <% work.comments.each do |comment| %>
+    <tr>
+      <td><%= link_to(comment.user) do %>
+        <%= image_tag comment.user.get_profile_image(50, 50) %> <br>
+        <%= comment.user.name %>
+        <% end %>
+      </td>
+      <td><%= comment.body %></td>
+      <td>
+        <% if comment.user == current_user %>
+          <%= link_to 'Destroy', work_comment_path(work, comment), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: { confirm: "削除しますか？" } %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

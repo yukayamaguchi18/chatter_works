@@ -1,0 +1,6 @@
+$(".comments-count").html("<%= @work.comments.count %>");
+$(".comments").html("<%= escape_javascript(render 'public/comments/comment', work: @work) %>");
+$("#comment-modal").modal("hide");
+$(".flash-message").html("<%= j(render 'layouts/flash') %>");
+$("#chatter-modal").modal("show");
+$(".chatter-body").val("コメントしました。\n「<%= @comment.body.slice(0, 50) %>...」\n<%= @work.title %> / by <%= @work.user.name %>\n<%= @host %>/works/<%= @work.id %>");

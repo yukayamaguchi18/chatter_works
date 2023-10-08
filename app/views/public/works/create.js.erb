@@ -2,4 +2,4 @@ $(".works").html("<%= escape_javascript(render 'public/works/index', works: @wor
 $(".flash-message").html("<%= j(render 'layouts/flash') %>");
 $("#work-modal").modal("hide");
 $("#chatter-modal").modal("show");
-$(".chatter-body").val("投稿しました。\n「<%= @work.title %> / by <%= @work.user.name %>」\n<%= @host %>/works/<%= @work.id %>");
+$(".chatter-body").val("投稿しました。\n<%= @work.title %> / by <%= @work.user.name %>\n<%= @host %>/works/<%= @work.id %>");

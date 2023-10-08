@@ -1,15 +1,12 @@
 class Public::WorksController < ApplicationController
 
-
-  def new
-  end
-
   def show
     @work = Work.find(params[:id])
     @tags = @work.tags
     # タグ編集欄の初期値設定用に定義
     # @workについているタグのnameをpluckで配列にし、','で区切る
     @tag_list = @work.tags.pluck(:name).join(',')
+    @comment = Comment.new
   end
 
   def create
@@ -24,7 +21,7 @@ class Public::WorksController < ApplicationController
       flash.now[:notice] = "Workを投稿しました"
       # create.js.erbを参照する
     else
-      render 'error'  # error.js.erbを参照する
+      render 'error' # error.js.erbを参照する
     end
   end
 
