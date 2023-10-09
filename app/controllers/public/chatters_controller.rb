@@ -1,4 +1,5 @@
 class Public::ChattersController < ApplicationController
+
   def show
     @chatter = Chatter.find(params[:id])
   end

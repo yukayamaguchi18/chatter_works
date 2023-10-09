@@ -23,7 +23,9 @@
           </span>
         <% end %>
         <% if @user == current_user %>
-          <%= link_to "Edit" ,edit_user_path(@user), class: "btn btn-primary ml-3" %>
+          <% unless @user.guest_user? %>
+            <%= link_to "Edit" ,edit_user_path(@user), class: "btn btn-primary ml-3" %>
+          <% end %>
         <% end %>
       </p>
     </div>

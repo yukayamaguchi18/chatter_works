@@ -34,6 +34,25 @@ class User < ApplicationRecord
   # 被フォロー関係を通じて参照→自分をフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  # ゲストログイン用メールアドレス
+  GUEST_USER_EMAIL = "guest@example.com"
+
+  # ゲストログイン用メソッド
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+      user.introduction = "guestuser"
+      user.is_public = true
+      user.is_active = true
+    end
+  end
+
+  # ゲストログインユーザー判別
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
+
   # ユーザーをフォローする
   def follow(user_id)
     relationships.create(followed_id: user_id)
