@@ -18,7 +18,8 @@ class Public::SearchesController < ApplicationController
       end
       # chatter検索結果
       @words.each_with_index do |word, i|
-        @chatters = Chatter.search(word) if i == 0
+        #search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
+        @chatters = Chatter.search(word).search_range(current_user) if i == 0
         @chatters = @chatters.merge(@chatters.search(word)).order(created_at: :desc)
       end
       # work検索結果

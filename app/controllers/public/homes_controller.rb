@@ -2,8 +2,8 @@ class Public::HomesController < ApplicationController
   before_action :before_login_redirect
 
   def top
-    @chatters = Chatter.where(user_id: [current_user.id, *current_user.followings]).order(created_at: :desc)
-    @works = Work.where(user_id: [current_user.id, *current_user.followings]).order(created_at: :desc)
+    @chatters = Chatter.timeline(current_user)
+    @works = Work.timeline(current_user)
     @chatter = Chatter.new
     @work = Work.new
   end

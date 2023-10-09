@@ -6,10 +6,10 @@ class Work < ApplicationRecord
   has_one_attached :work_image
 
   def get_work_image(width, height)
-    unless work_image.attached?
-      # 商品画像がない場合はimages/no-image.jpgを参照
+    if self.user.is_public = false
+      # 投稿者が非公開アカウントの場合はimages/no_work_image.jpgを参照
       file_path = Rails.root.join('app/assets/images/no_work_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      work_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     work_image.variant(resize_to_limit: [width, height]).processed
   end
@@ -43,6 +43,13 @@ class Work < ApplicationRecord
 
   def favorited_by?(user)
     work_favorites.exists?(user_id: user.id)
+  end
+
+  # homes#top TL用メソッド ログインユーザーとそのフォロワーの投稿のみに絞り込み
+  # model内ではcurrent_userメソッドが使えないため、
+  # controller内でcurrent_userを引数に渡してメソッドを使う
+  def self.timeline(user)
+    where(user_id: [user.id, *user.followings]).order(created_at: :desc)
   end
 
   def self.search(word)

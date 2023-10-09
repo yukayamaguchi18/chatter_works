@@ -1,5 +1,10 @@
 <h1><%= work.title%></h1>
-<%= image_tag work.work_image, style: "width: 100%;" %>
+<% unless work.user.is_public == true || current_user.following?(@user) %>
+  <p>非公開ユーザーによる投稿です。<br>
+  閲覧するには投稿ユーザーをフォローしてください。</p>
+<% else %>
+  <%= image_tag work.work_image, style: "width: 100%;" %>
+<% end %>
 <p><%= work.created_at.strftime('%Y/%m/%d %H:%M') %></p>
   <%= link_to user_path(work.user) do %>
     <%= image_tag work.user.get_profile_image(50, 50) %>

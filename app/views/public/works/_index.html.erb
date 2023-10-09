@@ -4,7 +4,7 @@
   <% works.each do |work| %>
     <div class="row">
       <%= link_to work_path(work) do %>
-        <%= image_tag work.get_work_image(200, 200) %>
+          <%= image_tag work.get_work_image(200, 200) %>
       <% end %>
       <div class="col-8">
         <%= work.title %>

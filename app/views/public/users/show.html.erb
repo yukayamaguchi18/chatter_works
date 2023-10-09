@@ -33,38 +33,42 @@
   <div class="col-6 mx-auto">
     <p><%= raw Rinku.auto_link(h(safe_join(@user.introduction.split("\n"),tag(:br)))) %></p>
   </div>
+
   <div class="col-12">
-    <!-- タブ -->
-    <ul class="nav nav-tabs nav-fill">
-      <li class="nav-item">
-        <a href="#chatters" class="nav-link active" data-toggle="tab">Chatters</a>
-      </li>
-      <li class="nav-item">
-        <a href="#works" class="nav-link" data-toggle="tab">Works</a>
-      </li>
-      <li class="nav-item">
-        <a href="#chatter-favorites" class="nav-link" data-toggle="tab">Chatter Favorites</a>
-      </li>
-      <li class="nav-item">
-        <a href="#work-favorites" class="nav-link" data-toggle="tab">Works Favorites</a>
-      </li>
-    </ul>
-
-    <!-- タブの中身 -->
-    <div class="tab-content">
-      <div id="chatters" class="tab-pane active">
-        <%= render 'public/chatters/index', chatters: @user.chatters %>
+    <% unless @user.is_public == true || current_user.following?(@user) %>
+      <p>このユーザーの情報は非公開です</p>
+    <% else %>
+      <!-- タブ -->
+      <ul class="nav nav-tabs nav-fill">
+        <li class="nav-item">
+          <a href="#chatters" class="nav-link active" data-toggle="tab">Chatters</a>
+        </li>
+        <li class="nav-item">
+          <a href="#works" class="nav-link" data-toggle="tab">Works</a>
+        </li>
+        <li class="nav-item">
+          <a href="#chatter-favorites" class="nav-link" data-toggle="tab">Chatter Favorites</a>
+        </li>
+        <li class="nav-item">
+          <a href="#work-favorites" class="nav-link" data-toggle="tab">Works Favorites</a>
+        </li>
+      </ul>
+      <!-- タブの中身 -->
+      <div class="tab-content">
+        <div id="chatters" class="tab-pane active">
+          <%= render 'public/chatters/index', chatters: @user.chatters %>
+        </div>
+        <div id="works" class="tab-pane">
+          <%= render 'public/works/index', works: @user.works %>
+        </div>
+        <div id="chatter-favorites" class="tab-pane">
+          <%= render 'public/chatter_favorites/index', chatter_favorites: @user.chatter_favorites %>
+        </div>
+        <div id="work-favorites" class="tab-pane">
+          <%= render 'public/work_favorites/index', work_favorites: @user.work_favorites %>
+        </div>
       </div>
-      <div id="works" class="tab-pane">
-        <%= render 'public/works/index', works: @user.works %>
-      </div>
-      <div id="chatter-favorites" class="tab-pane">
-        <%= render 'public/chatter_favorites/index', chatter_favorites: @user.chatter_favorites %>
-      </div>
-      <div id="work-favorites" class="tab-pane">
-        <%= render 'public/work_favorites/index', work_favorites: @user.work_favorites %>
-      </div>
-    </div>
-
+    <% end %>
   </div>
+
 </div>
