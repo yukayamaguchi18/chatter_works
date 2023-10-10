@@ -28,7 +28,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group field">
-          <%= f.text_area :body, placeholder: "声をかけてみよう！", rows: '5', class: 'form-control chatter-body' %>
+          <%= f.text_area :body, placeholder: "声をかけてみよう！", rows: '5', class: 'form-control' %>
         </div>
         <%= f.fields_for :reply do |i| %>
           <% i.hidden_field :reply_to_id, value: reply_to.id %>

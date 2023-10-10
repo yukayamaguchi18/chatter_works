@@ -1,3 +1,5 @@
 $(".chatters").html("<%= escape_javascript(render 'public/chatters/index', chatters: @chatters) %>");
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
 $("#reply-modal_<%= @reply.reply_to_id %>").modal("hide");
 $(".flash-message").html("<%= j(render 'layouts/flash') %>");
