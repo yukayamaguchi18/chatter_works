@@ -16,6 +16,9 @@
         <i class="fa-solid fa-bullhorn"></i><%= @chatter.rechatters.count %>
         <i class="fa-solid fa-star"></i><%= @chatter.chatter_favorites.count %>
       </div>
+      <h3>Replies</h3>
+      <%= render 'public/chatters/index', chatters: @chatter.reply_to_chatters %>
+
     </div>
   </div>
 </div>

@@ -3,6 +3,13 @@
 <% else %>
   <% chatters.each do |chatter| %>
       <div class="row">
+        <div class="row">
+          <% if chatter.replying.exists? %>
+            <%= link_to chatter_path(chatter.replied_chatter(chatter)) do %>
+              <p>Reply to <%= chatter.replied_chatter(chatter).user.name %></p>
+            <% end %>
+          <% end %>
+        </div>
         <div class="col-2">
           <%= link_to user_path(chatter.user) do %>
             <%= image_tag chatter.user.get_profile_image(50, 50) %>

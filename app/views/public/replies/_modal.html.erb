@@ -37,8 +37,15 @@
       <div class="modal-footer actions">
         <%= f.submit "Reply",class: "btn btn-primary"%>
       </div>
-
       <% end %>
+
+      <div class="modal-header">
+        <h5 class="modal-title">Other Replies</h5>
+      </div>
+      <div class="modal-body">
+        <%= render 'public/chatters/index', chatters: reply_to.reply_to_chatters %>
+      </div>
+
     </div>
   </div>
 </div>

@@ -23,6 +23,11 @@ class Chatter < ApplicationRecord
     where(user_id: [user.id, *user.followings]).order(created_at: :desc)
   end
 
+  def replied_chatter(chatter)
+    @reply = Reply.find_by(reply_id: chatter.id)
+    Chatter.find(@reply.reply_to_id)
+  end
+
   def self.search(word)
     # あいまい検索
     #   "?"に対してwordが順番に入る
