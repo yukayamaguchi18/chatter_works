@@ -6,6 +6,7 @@ class Public::HomesController < ApplicationController
     @works = Work.timeline(current_user)
     @chatter = Chatter.new
     @work = Work.new
+    @reply = Reply.new
   end
 
   private

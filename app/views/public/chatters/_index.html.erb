@@ -20,7 +20,9 @@
           </p>
           <p><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"),tag(:br)))) %></p>
           <div class="row">
-            <i class="fa-solid fa-reply"></i><%#= chatter.replies.count %>
+            <div class="text-muted" style="cursor: pointer;" data-toggle="modal" data-target="#reply-modal_<%= chatter.id %>">
+              <i class="fa-solid fa-reply"></i><%= chatter.reply_to_chatters.count %>
+            </div>
             <i class="fa-solid fa-bullhorn"></i><%= chatter.rechatters.count %>
             <div class="chatter-favorite-btn_<%= chatter.id %>">
               <%= render 'public/chatter_favorites/favorite-btn', chatter: chatter %>
@@ -28,5 +30,8 @@
           </div>
         </div>
       </div>
+
+      <!--reply modal-->
+      <%= render 'public/replies/modal', reply_to: chatter %>
   <% end %>
 <% end %>

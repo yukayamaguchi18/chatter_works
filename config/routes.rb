@@ -39,6 +39,9 @@ Rails.application.routes.draw do
       end
       resource :rechatters, only: [:index, :create, :destroy]
       resources :replies, only: [:create, :destroy]
+      collection do
+        post :reply
+      end
     end
     resources :works, only: [:create, :show, :destroy, :edit, :update] do
       resource :work_favorites, only: [:create, :destroy, :index]

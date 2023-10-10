@@ -1,0 +1,44 @@
+<div class="modal fade" id="reply-modal_<%= reply_to.id %>" tabindex="-1"
+      role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <%= form_with model: @chatter, url: reply_chatters_path, local: false do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title">New Reply</h5>
+        <div id ="chatters-error"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-2">
+            <%= link_to user_path(reply_to.user) do %>
+              <%= image_tag reply_to.user.get_profile_image(50, 50) %>
+            <% end %>
+          </div>
+          <div class="col-9">
+            <p>
+              <%= reply_to.user.name %>
+              <%= reply_to.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </p>
+            <p><%= raw Rinku.auto_link(h(safe_join(reply_to.body.split("\n"),tag(:br)))) %></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="form-group field">
+          <%= f.text_area :body, placeholder: "声をかけてみよう！", rows: '5', class: 'form-control chatter-body' %>
+        </div>
+        <%= f.fields_for :reply do |i| %>
+          <% i.hidden_field :reply_to_id, value: reply_to.id %>
+        <% end %>
+      </div>
+      <div class="modal-footer actions">
+        <%= f.submit "Reply",class: "btn btn-primary"%>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

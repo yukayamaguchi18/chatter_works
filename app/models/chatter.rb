@@ -7,10 +7,10 @@ class Chatter < ApplicationRecord
   has_many :chatter_favorites, dependent: :destroy
   has_many :rechatters, dependent: :destroy
 
-  has_many :replying, class_name: 'Reply', foreign_key: 'chatter_id', dependent: :destroy
+  has_many :replying, class_name: 'Reply', foreign_key: 'reply_id', dependent: :destroy
   has_many :replying_to, class_name: 'Reply', foreign_key: 'reply_to_id', dependent: :destroy
-  has_many :reply_chatter, through: :replying, source: :reply
-  has_many :reply_to_chatter, through: :replying_to, source: :reply_to
+  has_many :reply_chatters, through: :replying, source: :reply_to
+  has_many :reply_to_chatters, through: :replying_to, source: :reply
 
   def favorited_by?(user)
     chatter_favorites.exists?(user_id: user.id)
