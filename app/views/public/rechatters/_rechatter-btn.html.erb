@@ -1,0 +1,24 @@
+<% if chatter.user.is_public == true || chatter.user.id == current_user.id %>
+  <% if current_user.rechattered?(chatter.id) %>
+    <%= link_to chatter_rechatters_path(chatter), method: :delete, remote: true, data: { confirm: "Rechatterを取り消しますか？"}, class: "text-info" do %>
+      <i class="fa-solid fa-bullhorn"></i>
+    <% end %>
+    <%= link_to rechatter_users_chatter_path(chatter), class: "text-info" do %>
+      <%= chatter.rechatters.count %>
+    <% end %>
+  <% else %>
+    <%= link_to chatter_rechatters_path(chatter), method: :post, remote: true, data: { confirm: "Rechatterしますか？"}, class: "text-secondary" do %>
+      <i class="fa-solid fa-bullhorn"></i>
+    <% end %>
+    <%= link_to rechatter_users_chatter_path(chatter), class: "text-secondary" do %>
+      <%= chatter.rechatters.count %>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="text-muted">
+    <i class="fa-solid fa-bullhorn"></i>
+    <%= link_to rechatter_users_chatter_path(chatter), class: "text-muted" do %>
+      <%= chatter.rechatters.count %>
+    <% end %>
+  </div>
+<% end %>

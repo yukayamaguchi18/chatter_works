@@ -1,12 +1,23 @@
 <% if chatters.blank? %>
   <p>データはありません</p>
 <% else %>
-  <% chatters.each do |chatter| %>
+  <% chatters.each_with_index.reverse_each do |chatter, i| %>
       <div class="row">
         <div class="row">
           <% if chatter.replying.exists? %>
             <%= link_to chatter_path(chatter.replied_chatter(chatter)) do %>
               <p>Reply to <%= chatter.replied_chatter(chatter).user.name %></p>
+            <% end %>
+          <% end %>
+          <%# ↓リポストを取得しない投稿一覧ページ（お気に入り一覧など）でも
+          同じ部分テンプレートを利用しているため、この判定を入れている %>
+          <% if chatter.has_attribute?(:rechatter_user_id) %>
+            <% if chatter.rechatter_user_id.present? %>
+              <i class="fa-solid fa-bullhorn text-info"></i>
+              <p class="text-muted">
+                Rechattered by
+                <%= link_to chatter.rechatter_user_name, user_path(chatter.rechatter_user_id), class: "text-muted" %>
+              </p>
             <% end %>
           <% end %>
         </div>
@@ -30,7 +41,9 @@
             <div class="text-muted" style="cursor: pointer;" data-toggle="modal" data-target="#reply-modal_<%= chatter.id %>">
               <i class="fa-solid fa-reply"></i><%= chatter.reply_to_chatters.count %>
             </div>
-            <i class="fa-solid fa-bullhorn"></i><%= chatter.rechatters.count %>
+            <div class="rechatter-btn_<%= chatter.id %>">
+              <%= render 'public/rechatters/rechatter-btn', chatter: chatter %>
+            </div>
             <div class="chatter-favorite-btn_<%= chatter.id %>">
               <%= render 'public/chatter_favorites/favorite-btn', chatter: chatter %>
             </div>

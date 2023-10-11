@@ -36,8 +36,9 @@ Rails.application.routes.draw do
       resource :chatter_favorites, only: [:index, :create, :destroy]
       member do
         get :favorite_users
+        get :rechatter_users
       end
-      resource :rechatters, only: [:index, :create, :destroy]
+      resource :rechatters, only: [:create, :destroy]
       resources :replies, only: [:create, :destroy]
       collection do
         post :reply

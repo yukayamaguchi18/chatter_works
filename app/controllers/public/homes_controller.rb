@@ -2,7 +2,8 @@ class Public::HomesController < ApplicationController
   before_action :before_login_redirect
 
   def top
-    @chatters = Chatter.timeline(current_user)
+    @user = User.find(current_user.id)
+    @chatters = @user.followings_chatters_with_rechatters
     @works = Work.timeline(current_user)
     @chatter = Chatter.new
     @work = Work.new

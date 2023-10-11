@@ -5,6 +5,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @chatters = @user.chatters_with_rechatters
   end
 
   def edit
@@ -50,5 +51,9 @@ class Public::UsersController < ApplicationController
         redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
       end
     end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
 end

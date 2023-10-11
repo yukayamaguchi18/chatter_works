@@ -73,6 +73,36 @@ class User < ApplicationRecord
     followers.include?(user)
   end
 
+  def rechattered?(chatter_id)
+      self.rechatters.where(chatter_id: chatter_id).exists?
+  end
+
+  # users#show ユーザーのchatterとrechatter取得メソッド
+  def chatters_with_rechatters
+    relation = Chatter.joins("LEFT OUTER JOIN rechatters ON chatters.id = rechatters.chatter_id AND rechatters.user_id = #{self.id}")
+                   .select("chatters.*, rechatters.user_id AS rechatter_user_id, (SELECT name FROM users WHERE id = rechatters.user_id) AS rechatter_user_name")
+    relation.where(user_id: self.id)
+            .or(relation.where("rechatters.user_id = ?", self.id))
+            .preload(:user, :replying, :chatter_favorites, :rechatters)
+            .order(Arel.sql("CASE WHEN rechatters.created_at IS NULL THEN chatters.created_at ELSE rechatters.created_at END"))
+  end
+
+  # homes#top TLのchatterとrechatter取得メソッド内で利用するメソッド
+  def followings_with_userself
+    User.where(id: self.followings.pluck(:id)).or(User.where(id: self.id))
+  end
+
+  # homes#top TLのchatterとrechatter取得メソッド
+  def followings_chatters_with_rechatters
+    relation = Chatter.joins("LEFT OUTER JOIN rechatters ON chatters.id = rechatters.chatter_id AND (rechatters.user_id = #{self.id} OR rechatters.user_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{self.id}))")
+                   .select("chatters.*, rechatters.user_id AS rechatter_user_id, (SELECT name FROM users WHERE id = rechatters.user_id) AS rechatter_user_name")
+    relation.where(user_id: self.followings_with_userself.pluck(:id))
+            .or(relation.where(id: Rechatter.where(user_id: self.followings_with_userself.pluck(:id)).distinct.pluck(:chatter_id)))
+            .where("NOT EXISTS(SELECT 1 FROM rechatters sub WHERE rechatters.chatter_id = sub.chatter_id AND rechatters.created_at < sub.created_at)")
+            .preload(:user, :replying, :chatter_favorites, :rechatters)
+            .order(Arel.sql("CASE WHEN rechatters.created_at IS NULL THEN chatters.created_at ELSE rechatters.created_at END"))
+  end
+
   # ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないようにする
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?

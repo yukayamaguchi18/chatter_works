@@ -29,13 +29,15 @@ class Public::ChattersController < ApplicationController
   end
 
   def reply
+    # chatterを作成する
     @chatter = Chatter.new(chatter_params)
     @chatter.user_id = current_user.id
       unless @chatter.save
         render 'error'  # error.js.erbを参照する
       end
-    @reply = Reply.new(reply_params[:reply])
-    @reply.reply_id = Chatter.last.id
+    # replyデータを作成する
+    @reply = Reply.new(reply_params[:reply]) # reply_to_idをhidden fieldから受け取る
+    @reply.reply_id = Chatter.last.id # 最新のchatter.idをreply_idに格納
       unless @reply.save
         render 'error'  # error.js.erbを参照する
       end
@@ -47,6 +49,12 @@ class Public::ChattersController < ApplicationController
   def favorite_users
     @chatter = Chatter.find(params[:id])
   end
+
+  def rechatter_users
+    @chatter = Chatter.find(params[:id])
+  end
+
+
 
   private
 

@@ -1,0 +1,26 @@
+<% if rechatters.exists? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ユーザー</th>
+        <th>名前</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rechatters.each do |rechatter| %>
+        <tr>
+          <td>
+            <%= link_to user_path(rechatter.user) do %>
+              <%= image_tag rechatter.user.get_profile_image(50, 50) %>
+            <% end %>
+          </td>
+          <td><%= rechatter.user.name %></td>
+          <td><%#= "フォローする（未実装）", class: "btn btn-sm btn-primary" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

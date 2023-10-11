@@ -1,0 +1,2 @@
+$(".rechatter-btn_<%= @chatter.id %>").html("<%= escape_javascript(render partial: 'public/rechatters/rechatter-btn', locals: {chatter: @chatter}) %>");
+$(".flash-message").html("<%= j(render 'layouts/flash') %>");
