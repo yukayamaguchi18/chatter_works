@@ -2,25 +2,29 @@
   <p>データはありません</p>
 <% else %>
   <% chatters.each_with_index.reverse_each do |chatter, i| %>
-      <div class="row">
-        <div class="row">
-          <% if chatter.replying.exists? %>
-            <%= link_to chatter_path(chatter.replied_chatter(chatter)) do %>
-              <p>Reply to <%= chatter.replied_chatter(chatter).user.name %></p>
-            <% end %>
-          <% end %>
-          <%# ↓リポストを取得しない投稿一覧ページ（お気に入り一覧など）でも
-          同じ部分テンプレートを利用しているため、この判定を入れている %>
-          <% if chatter.has_attribute?(:rechatter_user_id) %>
-            <% if chatter.rechatter_user_id.present? %>
-              <i class="fa-solid fa-bullhorn text-info"></i>
-              <p class="text-muted">
-                Rechattered by
-                <%= link_to chatter.rechatter_user_name, user_path(chatter.rechatter_user_id), class: "text-muted" %>
-              </p>
-            <% end %>
+    <div class="py-2 px-4">
+      <%# ↓リポストを取得しない投稿一覧ページ（お気に入り一覧など）でも
+      同じ部分テンプレートを利用しているため、この判定を入れている %>
+      <% if chatter.has_attribute?(:rechatter_user_id) %>
+        <% if chatter.rechatter_user_id.present? %>
+          <div class="row ml-1 mb-1">
+            <i class="fa-solid fa-bullhorn text-info"></i>
+            <span class="text-muted">
+              Rechattered by
+              <%= link_to chatter.rechatter_user_name, user_path(chatter.rechatter_user_id), class: "text-muted" %>
+            </span>
+          </div>
+        <% end %>
+      <% end %>
+      <% if chatter.replying.exists? %>
+        <div class="ml-1 mb-1">
+          <%= link_to chatter_path(chatter.replied_chatter(chatter)), class: "text-decoration-none" do %>
+            <i class="fa-solid fa-reply text-muted"></i>
+            <span class="text-muted">Reply to <%= chatter.replied_chatter(chatter).user.name %></span>
           <% end %>
         </div>
+      <% end %>
+      <div class="row">
         <div class="col-2">
           <%= link_to user_path(chatter.user) do %>
             <%= image_tag chatter.user.get_profile_image(50, 50) %>
@@ -50,6 +54,8 @@
           </div>
         </div>
       </div>
+    <hr color="#6c757d">
+    </div>
 
       <!--reply modal-->
       <%= render 'public/replies/modal', reply_to: chatter %>

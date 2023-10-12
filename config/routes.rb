@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       resources :replies, only: [:create, :destroy]
       collection do
         post :reply
+        get :tl_update
       end
     end
     resources :works, only: [:create, :show, :destroy, :edit, :update] do
@@ -50,6 +51,9 @@ Rails.application.routes.draw do
         get :favorite_users
         # patch :update_tags
         # タグのみ編集用route 使用保留 現行はworks#update流用
+      end
+      collection do
+        get :tl_update
       end
       resources :work_tags, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

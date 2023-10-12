@@ -16,7 +16,13 @@
             <% end %>
           </td>
           <td><%= favorite.user.name %></td>
-          <td><%#= "フォローする（未実装）", class: "btn btn-sm btn-primary" %></td>
+          <td>
+            <% unless favorite.user == current_user %>
+              <div class="follow-btn_<%= favorite.user.id %>">
+                <%= render "public/relationships/follow", user: favorite.user %>
+              </div>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

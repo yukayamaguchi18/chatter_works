@@ -16,7 +16,13 @@
             <% end %>
           </td>
           <td><%= rechatter.user.name %></td>
-          <td><%#= "フォローする（未実装）", class: "btn btn-sm btn-primary" %></td>
+          <td>
+            <% unless rechatter.user == current_user %>
+              <div class="follow-btn_<%= rechatter.user.id %>">
+                <%= render "public/relationships/follow", user: rechatter.user %>
+              </div>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

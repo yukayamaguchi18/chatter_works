@@ -72,6 +72,10 @@ class Public::WorksController < ApplicationController
   #   end
   # end
 
+  def tl_update
+    @works = Work.timeline(current_user)
+  end
+
   def favorite_users
     @work = Work.find(params[:id])
   end

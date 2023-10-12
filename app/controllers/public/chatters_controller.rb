@@ -46,6 +46,11 @@ class Public::ChattersController < ApplicationController
     # reply.js.erbを参照する
   end
 
+  def tl_update
+    @user = User.find(current_user.id)
+    @chatters = @user.followings_chatters_with_rechatters
+  end
+
   def favorite_users
     @chatter = Chatter.find(params[:id])
   end
@@ -53,8 +58,6 @@ class Public::ChattersController < ApplicationController
   def rechatter_users
     @chatter = Chatter.find(params[:id])
   end
-
-
 
   private
 

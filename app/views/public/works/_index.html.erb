@@ -14,7 +14,7 @@
         <% end %>
         <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
         <div class="row">
-          <i class="fa-solid fa-comment"></i><%#= work.comments.count %>
+          <i class="fa-solid fa-comment"></i><%= work.comments.count %>
           <div class="work-favorite-btn_<%= work.id %>">
             <%= render 'public/work_favorites/favorite-btn', work: work %>
           </div>
