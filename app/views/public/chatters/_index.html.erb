@@ -8,8 +8,8 @@
       <% if chatter.has_attribute?(:rechatter_user_id) %>
         <% if chatter.rechatter_user_id.present? %>
           <div class="row ml-1 mb-1">
-            <i class="fa-solid fa-bullhorn text-info"></i>
-            <span class="text-muted">
+            <span class="text-muted d-inline-block text-truncate">
+              <i class="fa-solid fa-bullhorn text-info"></i>
               Rechattered by
               <%= link_to chatter.rechatter_user_name, user_path(chatter.rechatter_user_id), class: "text-muted" %>
             </span>
@@ -17,35 +17,43 @@
         <% end %>
       <% end %>
       <% if chatter.replying.exists? %>
-        <div class="ml-1 mb-1">
-          <%= link_to chatter_path(chatter.replied_chatter(chatter)), class: "text-decoration-none" do %>
-            <i class="fa-solid fa-reply text-muted"></i>
-            <span class="text-muted">Reply to <%= chatter.replied_chatter(chatter).user.name %></span>
-          <% end %>
+        <div class="row ml-1 mb-1">
+          <span class="d-inline-block text-truncate text-muted">
+            <%= link_to chatter_path(chatter.replied_chatter(chatter)), class: "text-decoration-none" do %>
+              <i class="fa-solid fa-reply text-muted"></i>
+              <span class="text-muted">
+                Reply to <%= chatter.replied_chatter(chatter).user.name %>
+              </span>
+            <% end %>
+          </span>
         </div>
       <% end %>
       <div class="row">
-        <div class="col-2">
+        <div class="col-2 mx-auto">
           <%= link_to user_path(chatter.user) do %>
-            <%= image_tag chatter.user.get_profile_image(50, 50) %>
+            <%= image_tag chatter.user.get_profile_image(50, 50),class: "m-1" %>
           <% end %>
           <% if chatter.user == current_user %>
-            <%= link_to chatter_path(chatter), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: { confirm: "削除しますか？" } do %>
+          <div>
+            <%= link_to chatter_path(chatter), method: :delete, remote: true, class: "btn btn-sm btn-danger m-1", data: { confirm: "削除しますか？" } do %>
               <i class="fa-solid fa-trash-can"></i>
             <% end %>
+          </div>
           <% end %>
         </div>
         <div class="col-9">
-          <p>
-            <%= chatter.user.name %>
-            <%= chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <p class="d-flex justify-content-between">
+            <span class="text-truncate mr-1"><%= chatter.user.name %></span>
+            <span class="text-nowrap">
+              <%= chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </span>
           </p>
           <p><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"),tag(:br)))) %></p>
-          <div class="row">
-            <div class="text-muted" style="cursor: pointer;" data-toggle="modal" data-target="#reply-modal_<%= chatter.id %>">
+          <div class="d-flex justify-content-around">
+            <div class="text-muted mr-1" style="cursor: pointer;" data-toggle="modal" data-target="#reply-modal_<%= chatter.id %>">
               <i class="fa-solid fa-reply"></i><%= chatter.reply_to_chatters.count %>
             </div>
-            <div class="rechatter-btn_<%= chatter.id %>">
+            <div class="rechatter-btn_<%= chatter.id %> mr-1">
               <%= render 'public/rechatters/rechatter-btn', chatter: chatter %>
             </div>
             <div class="chatter-favorite-btn_<%= chatter.id %>">
