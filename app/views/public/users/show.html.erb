@@ -1,36 +1,51 @@
 <div class="container p-3">
   <div class="row d-flex justify-content-center">
-    <div class="col-2">
-      <%= image_tag @user.get_profile_image(150, 150) %>
+    <div class="col-3 d-flex justify-content-center">
+      <%= image_tag @user.get_profile_image(150, 150), style: "object-fit: contain; width: 150px; height: 150px;" %>
     </div>
-    <div class="col-4">
-      <h3><%= @user.name %></h3>
-      <p>公開ステータス：<%= @user.is_public %></p>
-      <% unless @user == current_user %>
-        <div class="follow-btn_<%= @user.id %>">
-          <%= render "public/relationships/follow", user: @user %>
-        </div>
+    <div class="col-9">
+      <div class="d-flex justify-content-around">
+        <h3><%= @user.name %></h3>
+        <% unless @user == current_user %>
+          <div class="follow-btn_<%= @user.id %>">
+            <%= render "public/relationships/follow", user: @user %>
+          </div>
+        <% end %>
+      </div>
+      <% if @user.is_public == true %>
+        <p class="text-muted">
+          public <i class="fa-solid fa-lock-open"></i>
+        </p>
+      <% else %>
+        <p class="text-muted">
+          private <i class="fa-solid fa-lock"></i>
+        </p>
       <% end %>
-      <p>
-        <%= link_to followings_user_relationships_path(@user) do %>
-          <span class="followings-count_<%= @user.id %>">
-            <%= render "public/relationships/followings-count", user: @user %>
-          </span>
-        <% end %>
-        <%= link_to followers_user_relationships_path(@user) do %>
-          <span class="followers-count_<%= @user.id %>">
-            <%= render "public/relationships/followers-count", user: @user %>
-          </span>
-        <% end %>
+
+      <div class="d-flex justify-content-between">
+        <div>
+          <%= link_to followings_user_relationships_path(@user) do %>
+            <span class="followings-count_<%= @user.id %>">
+              <%= render "public/relationships/followings-count", user: @user %>
+            </span>
+          <% end %>
+          <%= link_to followers_user_relationships_path(@user) do %>
+            <span class="followers-count_<%= @user.id %>">
+              <%= render "public/relationships/followers-count", user: @user %>
+            </span>
+          <% end %>
+        </div>
         <% if @user == current_user %>
           <% unless @user.guest_user? %>
             <%= link_to "Edit" ,edit_user_path(@user), class: "btn btn-primary ml-3" %>
           <% end %>
         <% end %>
-      </p>
+      </div>
+
     </div>
   </div>
-  <div class="col-6 mx-auto">
+
+  <div class="col-12 mx-auto my-3">
     <p><%= raw Rinku.auto_link(h(safe_join(@user.introduction.split("\n"),tag(:br)))) %></p>
   </div>
 

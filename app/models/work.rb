@@ -49,7 +49,7 @@ class Work < ApplicationRecord
   # model内ではcurrent_userメソッドが使えないため、
   # controller内でcurrent_userを引数に渡してメソッドを使う
   def self.timeline(user)
-    where(user_id: [user.id, *user.followings]).order(created_at: :desc)
+    where(user_id: [user.id, *user.followings])
   end
 
   def self.search(word)

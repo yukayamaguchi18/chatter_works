@@ -1,24 +1,51 @@
 <% if work_favorites.blank? %>
-  <p>データはありません</p>
+  <p class="m-3">データはありません</p>
 <% else %>
-  <% work_favorites.each do |favorite| %>
-    <div class="row">
-      <%= link_to work_path(favorite.work) do %>
-        <%= image_tag favorite.work.get_work_image(200, 200) %>
-      <% end %>
-      <div class="col-8">
-        <%= favorite.work.title %>
-        <%= link_to user_path(favorite.work.user) do %>
-          <%= favorite.work.user.name %>
-        <% end %>
-        <%= favorite.work.created_at.strftime('%Y/%m/%d %H:%M') %>
-        <div class="row">
-          <i class="fa-solid fa-comment"></i><%#= favorite.work.comments.count %>
-          <div class="work-favorite-btn_<%= favorite.work.id %>">
-            <%= render 'public/work_favorites/favorite-btn', work: favorite.work %>
+
+  <% work_favorites.each_with_index.reverse_each do |favorite, i| %>
+    <div class="py-2 px-4">
+      <div class="row">
+        <div class="col-4 d-flex align-items-center">
+          <%= link_to work_path(favorite.work) do %>
+            <%= image_tag favorite.work.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+          <% end %>
+        </div>
+        <div class="col-8">
+          <h3 class="mt-1">
+            <span class="d-inline-block text-truncate">
+              <%= link_to favorite.work.title, work_path(favorite.work), class: "text-light" %>
+            </span>
+          </h3>
+          <div class="d-flex align-items-center mt-1">
+            <%= link_to user_path(favorite.work.user), class: "text-decoration-none" do %>
+              <%= image_tag favorite.work.user.get_profile_image(50, 50) %>
+            <% end %>
+            <p class="ml-2 mt-1 text-truncate">
+              <%= link_to user_path(favorite.work.user), class: "text-light" do %>
+                <%= favorite.work.user.name %>
+              <% end %>
+            </p>
+          </div>
+          <p class="text-muted text-nowrap text-right mt-1">
+            <%= favorite.work.created_at.strftime('%Y/%m/%d %H:%M') %>
+          </p>
+          <div class="d-flex justify-content-around text-muted">
+            <div>
+              <i class="fa-solid fa-comment"></i><%= favorite.work.comments.count %>
+            </div>
+            <div class="work-favorite-btn_<%= favorite.work.id %>">
+              <%= render 'public/work_favorites/favorite-btn', work: favorite.work %>
+            </div>
           </div>
         </div>
       </div>
+    <hr color="#6c757d">
     </div>
+
+
+
+
+
+
   <% end %>
 <% end %>

@@ -20,7 +20,7 @@ class Public::SearchesController < ApplicationController
       @words.each_with_index do |word, i|
         #search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
         @chatters = Chatter.search(word).search_range(current_user) if i == 0
-        @chatters = @chatters.merge(@chatters.search(word)).order(created_at: :desc)
+        @chatters = @chatters.merge(@chatters.search(word))
       end
       # work検索結果
       @words.each_with_index do |word, i|

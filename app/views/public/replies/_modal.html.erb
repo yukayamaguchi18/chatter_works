@@ -5,12 +5,12 @@
       <%= form_with model: @chatter, url: reply_chatters_path, local: false do |f| %>
       <div class="modal-header">
         <h5 class="modal-title">New Reply</h5>
-        <div id ="chatters-error"></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <div id="chatters-error"></div>
         <div class="row">
           <div class="col-2">
             <%= link_to user_path(reply_to.user) do %>

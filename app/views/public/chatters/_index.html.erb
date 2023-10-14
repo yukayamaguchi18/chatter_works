@@ -1,5 +1,5 @@
 <% if chatters.blank? %>
-  <p>データはありません</p>
+  <p class="m-3">データはありません</p>
 <% else %>
   <% chatters.each_with_index.reverse_each do |chatter, i| %>
     <div class="py-2 px-4">
@@ -19,7 +19,7 @@
       <% if chatter.replying.exists? %>
         <div class="row ml-1 mb-1">
           <span class="d-inline-block text-truncate text-muted">
-            <%= link_to chatter_path(chatter.replied_chatter(chatter)), class: "text-decoration-none" do %>
+            <%= link_to chatter_path(chatter.replied_chatter(chatter)), class: "text-muted" do %>
               <i class="fa-solid fa-reply text-muted"></i>
               <span class="text-muted">
                 Reply to <%= chatter.replied_chatter(chatter).user.name %>
@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col-2 mx-auto">
           <%= link_to user_path(chatter.user) do %>
-            <%= image_tag chatter.user.get_profile_image(50, 50),class: "m-1" %>
+            <%= image_tag chatter.user.get_profile_image(50, 50), class: "m-1" %>
           <% end %>
           <% if chatter.user == current_user %>
           <div>
@@ -43,12 +43,12 @@
         </div>
         <div class="col-9">
           <p class="d-flex justify-content-between">
-            <span class="text-truncate mr-1"><%= chatter.user.name %></span>
-            <span class="text-nowrap">
+            <%= link_to chatter.user.name, user_path(chatter.user), class: "text-light text-truncate mr-1" %>
+            <span class="text-nowrap text-muted">
               <%= chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
             </span>
           </p>
-          <p><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"),tag(:br)))) %></p>
+          <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"),tag(:br)))) %></p>
           <div class="d-flex justify-content-around">
             <div class="text-muted mr-1" style="cursor: pointer;" data-toggle="modal" data-target="#reply-modal_<%= chatter.id %>">
               <i class="fa-solid fa-reply"></i><%= chatter.reply_to_chatters.count %>

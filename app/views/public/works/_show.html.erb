@@ -5,49 +5,77 @@
 <% else %>
   <%= image_tag work.work_image, style: "width: 100%;" %>
 <% end %>
-<p><%= work.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-  <%= link_to user_path(work.user) do %>
-    <%= image_tag work.user.get_profile_image(50, 50) %>
-    <%= work.user.name %>
-  <% end %>
-  <% unless work.user == current_user %>
-    <div class="follow-btn_<%= work.user.id %>">
-      <%= render "public/relationships/follow", user: work.user %>
+<div class="d-flex justify-content-between m-2">
+  <div>
+    <div class="d-flex align-items-center m-1">
+      <%= link_to user_path(work.user) do %>
+        <%= image_tag work.user.get_profile_image(50, 50) %>
+      <% end %>
+      <p class="ml-2 mt-1 text-truncate">
+        <%= link_to user_path(work.user), class: "text-light" do %>
+          <%= work.user.name %>
+        <% end %>
+      </p>
     </div>
-  <% end %>
-<p id="tags">
-  <%= render 'public/work_tags/tags', work: @work, tags: @tags %>
+    <% unless work.user == current_user %>
+      <div class="follow-btn_<%= work.user.id %> m-1">
+        <%= render "public/relationships/follow", user: work.user %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <div class="d-flex text-muted text-nowrap text-right mt-1">
+      <div class="d-flex mx-2">
+        <i class="fa-solid fa-comment mt-1"></i>
+        <div class="comments-count">
+          <%= @work.comments.count %>
+        </div>
+      </div>
+      <div class="work-favorite-btn_<%= work.id %> mx-2">
+        <%= render 'public/work_favorites/favorite-btn', work: work %>
+      </div>
+      <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+    <% if work.user == current_user %>
+      <div class="d-flex justify-content-end">
+        <%= link_to 'Destroy Work', work_path(work), method: :delete, class: "btn btn-sm btn-danger mx-1", data: { confirm: "削除しますか？" } %>
+        <div id="work-btn">
+          <button type="button" class="btn btn-primary btn-sm mx-2" data-toggle="modal" data-target="#work-modal">
+            Edit
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<p class="text-break m-4">
+  <%= raw Rinku.auto_link(h(safe_join(work.caption.split("\n"),tag(:br)))) %>
 </p>
-<div id="tag-btn">
-  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tag-modal">
-    <i class="fa-solid fa-tags"></i>
-  </button>
-</div>
-<div class="row">
-  <i class="fa-solid fa-comment"></i>
-  <div class="comments-count">
-    <%= @work.comments.count %>
-  </div>
-  <div class="work-favorite-btn_<%= work.id %>">
-    <%= render 'public/work_favorites/favorite-btn', work: work %>
-  </div>
-</div>
-<p><%= raw Rinku.auto_link(h(safe_join(work.caption.split("\n"),tag(:br)))) %></p>
-<% if work.user == current_user %>
-  <%= link_to work_path(work), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "削除しますか？" } do %>
-    <i class="fa-solid fa-trash-can"></i>
-  <% end %>
-  <div id="work-btn">
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#work-modal">
-      Edit
+
+<div class="d-flex justify-content-start m-2">
+  <h4 class="mr-2">Tags</h4>
+  <div id="tag-btn">
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tag-modal">
+      <i class="fa-solid fa-tags"></i>
     </button>
   </div>
-<% end %>
+</div>
+<div class="m-2">
+  <p id="tags">
+    <%= render 'public/work_tags/tags', work: @work, tags: @tags %>
+  </p>
+</div>
+
+<div class="d-flex justify-content-between m-2">
+  <h4>Comments</h4>
+  <div id="comment-btn" data-toggle="modal" data-target="#comment-modal">
+    <button type="button" class="btn btn-primary">
+      <i class="fa-solid fa-comment"></i>
+    </button>
+  </div>
+</div>
 <div class="comments">
   <%= render 'public/comments/comment', work: @work %>
-</div>
-<div id="comment-btn" data-toggle="modal" data-target="#comment-modal">
-  <button type="button" class="btn btn-primary btn-sm">
-    <i class="fa-solid fa-comment"></i>
-  </button>
 </div>
