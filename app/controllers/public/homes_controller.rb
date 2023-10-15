@@ -3,11 +3,16 @@ class Public::HomesController < ApplicationController
 
   def top
     @user = User.find(current_user.id)
-    @chatters = @user.followings_chatters_with_rechatters
-    @works = Work.timeline(current_user)
+    @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
+    @works = Work.includes([:user]).with_attached_work_image.timeline(current_user).page(params[:page]).per(10)
     @chatter = Chatter.new
     @work = Work.new
     @reply = Reply.new
+    return unless request.xhr?
+    case params[:type]
+    when 'chatter', 'work'
+      render "public/#{params[:type]}s/page"
+    end
   end
 
   private

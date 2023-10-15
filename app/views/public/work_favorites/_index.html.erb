@@ -2,12 +2,12 @@
   <p class="m-3">データはありません</p>
 <% else %>
 
-  <% work_favorites.each_with_index.reverse_each do |favorite, i| %>
+  <% work_favorites.each do |favorite| %>
     <div class="py-2 px-4">
       <div class="row">
         <div class="col-4 d-flex align-items-center">
           <%= link_to work_path(favorite.work) do %>
-            <%= image_tag favorite.work.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+            <%= image_tag favorite.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
           <% end %>
         </div>
         <div class="col-8">
@@ -17,12 +17,12 @@
             </span>
           </h3>
           <div class="d-flex align-items-center mt-1">
-            <%= link_to user_path(favorite.work.user), class: "text-decoration-none" do %>
-              <%= image_tag favorite.work.user.get_profile_image(50, 50) %>
+            <%= link_to user_path(favorite.work_user), class: "text-decoration-none" do %>
+              <%= image_tag favorite.work_user.get_profile_image(50, 50) %>
             <% end %>
             <p class="ml-2 mt-1 text-truncate">
-              <%= link_to user_path(favorite.work.user), class: "text-light" do %>
-                <%= favorite.work.user.name %>
+              <%= link_to user_path(favorite.work_user), class: "text-light" do %>
+                <%= favorite.work_user.name %>
               <% end %>
             </p>
           </div>

@@ -22,10 +22,17 @@ class Public::SearchesController < ApplicationController
         @chatters = Chatter.search(word).search_range(current_user) if i == 0
         @chatters = @chatters.merge(@chatters.search(word))
       end
+      @chatters = @chatters.order(created_at: :desc).page(params[:page]).per(20)
       # work検索結果
       @words.each_with_index do |word, i|
         @works = Work.search(word) if i == 0
-        @works = @works.merge(@works.search(word)).order(created_at: :desc)
+        @works = @works.merge(@works.search(word))
+      end
+      @works = @works.order(created_at: :desc).page(params[:page]).per(10)
+      return unless request.xhr?
+      case params[:type]
+      when 'chatter', 'work'
+        render "public/#{params[:type]}s/page"
       end
     elsif @model == 'WorkTag' # Work Tag検索（完全一致）
       # @tag = Tag.find_by('name LIKE ?', "%#{@word}%")
@@ -33,7 +40,13 @@ class Public::SearchesController < ApplicationController
       @words.each_with_index do |word, i|
         @tag = Tag.find_by('name LIKE ?', "#{word}")
         @works = @tag.works if i == 0
-        @works = @works.merge(@tag.works).order(created_at: :desc)
+        @works = @works.merge(@tag.works)
+      end
+       @works = @works.order(created_at: :desc).page(params[:page]).per(10)
+      return unless request.xhr?
+      case params[:type]
+      when 'chatter', 'work'
+        render "public/#{params[:type]}s/page"
       end
     end
   end

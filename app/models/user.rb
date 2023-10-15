@@ -83,8 +83,8 @@ class User < ApplicationRecord
                    .select("chatters.*, rechatters.user_id AS rechatter_user_id, (SELECT name FROM users WHERE id = rechatters.user_id) AS rechatter_user_name")
     relation.where(user_id: self.id)
             .or(relation.where("rechatters.user_id = ?", self.id))
-            .preload(:user, :replying, :chatter_favorites, :rechatters)
-            .order(Arel.sql("CASE WHEN rechatters.created_at IS NULL THEN chatters.created_at ELSE rechatters.created_at END"))
+            .includes(:user, :reply_to_chatters)
+            .order(Arel.sql("CASE WHEN rechatters.created_at IS NULL THEN chatters.created_at ELSE rechatters.created_at END DESC"))
   end
 
   # homes#top TLのchatterとrechatter取得メソッド内で利用するメソッド
@@ -99,8 +99,8 @@ class User < ApplicationRecord
     relation.where(user_id: self.followings_with_userself.pluck(:id))
             .or(relation.where(id: Rechatter.where(user_id: self.followings_with_userself.pluck(:id)).distinct.pluck(:chatter_id)))
             .where("NOT EXISTS(SELECT 1 FROM rechatters sub WHERE rechatters.chatter_id = sub.chatter_id AND rechatters.created_at < sub.created_at)")
-            .preload(:user, :replying, :chatter_favorites, :rechatters)
-            .order(Arel.sql("CASE WHEN rechatters.created_at IS NULL THEN chatters.created_at ELSE rechatters.created_at END"))
+            .includes(:user, :reply_to_chatters)
+            .order(Arel.sql("CASE WHEN rechatters.created_at IS NULL THEN chatters.created_at ELSE rechatters.created_at END DESC"))
   end
 
   # ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないようにする

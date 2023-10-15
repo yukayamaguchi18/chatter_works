@@ -36,17 +36,19 @@ class Public::ChattersController < ApplicationController
     @chatter.user_id = current_user.id
       unless @chatter.save
         render 'error'  # error.js.erbを参照する
+      else
+      # replyデータを作成する
+      @reply = Reply.new(reply_params[:reply]) # reply_to_idをhidden fieldから受け取る
+      @reply.reply_id = Chatter.last.id # 最新のchatter.idをreply_idに格納
+        unless @reply.save
+          render 'error'  # error.js.erbを参照する
+        else
+          @user = User.find(current_user.id)
+          @chatters = @user.followings_chatters_with_rechatters
+          flash.now[:notice] = "Replyを投稿しました"
+          # reply.js.erbを参照する
+        end
       end
-    # replyデータを作成する
-    @reply = Reply.new(reply_params[:reply]) # reply_to_idをhidden fieldから受け取る
-    @reply.reply_id = Chatter.last.id # 最新のchatter.idをreply_idに格納
-      unless @reply.save
-        render 'error'  # error.js.erbを参照する
-      end
-    @user = User.find(current_user.id)
-    @chatters = @user.followings_chatters_with_rechatters
-    flash.now[:notice] = "Replyを投稿しました"
-    # reply.js.erbを参照する
   end
 
   def tl_update

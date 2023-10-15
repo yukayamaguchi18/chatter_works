@@ -1,7 +1,7 @@
 <% if chatters.blank? %>
   <p class="m-3">データはありません</p>
 <% else %>
-  <% chatters.each_with_index.reverse_each do |chatter, i| %>
+  <% chatters.each do |chatter| %>
     <div class="py-2 px-4">
       <%# ↓リポストを取得しない投稿一覧ページ（お気に入り一覧など）でも
       同じ部分テンプレートを利用しているため、この判定を入れている %>

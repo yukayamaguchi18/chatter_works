@@ -1,7 +1,7 @@
 <% if works.blank? %>
   <p class="m-3">データはありません</p>
 <% else %>
-  <% works.each_with_index.reverse_each do |work, i| %>
+  <% works.each do |work| %>
     <div class="py-2 px-4">
       <div class="row">
         <div class="col-4 d-flex align-items-center">

@@ -1,0 +1,16 @@
+  <% users.each do |user| %>
+    <div class="col-3 d-flex">
+      <%= link_to user_path(user) do %>
+        <%= image_tag user.get_profile_image(60, 60), style: "object-fit: cover; width: 60px; height: 60px;" %>
+      <% end %>
+      <div class="d-inline-block text-truncate mx-1">
+        <%= link_to user.name, user_path(user), class: "text-light" %>
+        <% unless user == current_user %>
+          <div class="follow-btn_<%= user.id %>">
+            <%= render "public/relationships/follow", user: user %>
+          </div>
+        <% end %>
+      </div>
+      <div class="bg-secondary py-1 ml-2" style="width: 1px; height: 80%;"></div>
+    </div>
+  <% end %>
