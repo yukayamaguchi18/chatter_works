@@ -1,5 +1,6 @@
 $(".comments-count").html("<%= @work.comments.count %>");
 $(".comments").html("<%= escape_javascript(render 'public/comments/comment', work: @work) %>");
+$(".comment-body").val("");
 $("#comment-modal").modal("hide");
 $(".flash-message").html("<%= j(render 'layouts/flash') %>");
 $("#chatter-modal").modal("show");

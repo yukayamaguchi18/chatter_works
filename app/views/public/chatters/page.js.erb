@@ -1,4 +1,4 @@
 $('.chatters').append("<%= j(render 'public/chatters/index', chatters: @chatters) %>")
 $("#more-chatter").replaceWith("<%= j(
-  link_to_next_page(@chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-primary btn-block more-link', id: 'more-chatter')
+  link_to_next_page(@chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter')
 ) %>");

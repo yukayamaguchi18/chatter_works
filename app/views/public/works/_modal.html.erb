@@ -19,16 +19,21 @@
           <%= f.label "Title" %>
           <%= f.text_field :title, placeholder: "作品タイトル", class: 'form-control work-body mb-3' %>
           <% if work.new_record? %>
-            <%= f.file_field :work_image, accept: "image/*", class: "mb-3" %>
+            <div class="d-flex flex-column">
+              <%= f.label "Work Image" %>
+              <%= f.file_field :work_image, accept: "image/*", class: "mb-3" %>
+            </div>
           <% end %>
-          <%= f.label "Caption" %>
-          <%= f.text_area :caption, placeholder: "作品説明", rows: '5', class: 'form-control work-body mb-3' %>
+          <div>
+            <%= f.label "Caption" %>
+            <%= f.text_area :caption, placeholder: "作品説明", rows: '5', class: 'form-control work-body mb-3' %>
+          </div>
           <%= f.label "Tag（タグを複数つけるには' , 'で区切ってください）" %>
           <%= f.text_field :name, placeholder: "' , 'でタグを区切る", value: @tag_list, class: 'form-control work-body' %>
         </div>
       </div>
       <div class="modal-footer actions">
-        <%= f.submit "Post",class: "btn btn-primary"%>
+        <%= f.submit "Post",class: "btn btn-outline-success"%>
       </div>
 
       <% end %>

@@ -1,4 +1,5 @@
 $(".chatters").html("<%= escape_javascript(render 'public/chatters/index', chatters: @chatters) %>");
+$(".reply-body").val("");
 $('body').removeClass('modal-open');
 $('.modal-backdrop').remove();
 $("#reply-modal_<%= @reply.reply_to_id %>").modal("hide");

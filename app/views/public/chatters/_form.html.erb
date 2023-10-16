@@ -12,11 +12,11 @@
       <div class="modal-body">
 
         <div class="form-group field">
-          <%= f.text_area :body, placeholder: "今を話そう。" %>
+          <%= f.text_area :body, placeholder: "今を話そう。", class: "chatter_body" %>
         </div>
       </div>
       <div class="modal-footer actions">
-        <%= f.submit "Chatter",class: "btn btn-primary"%>
+        <%= f.submit "Chatter",class: "btn btn-outline-success"%>
       </div>
 
       <% end %>

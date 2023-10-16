@@ -2,7 +2,7 @@
   <div class="row mx-auto">
     <div class="col-12">
       <h1>ユーザー一覧</h1>
-      <table class="table">
+      <table class="table text-light m-2">
         <thead>
           <tr>
             <th>ユーザー</th>
@@ -19,7 +19,7 @@
                 <% end %>
               </td>
               <td><%= user.name %></td>
-              <td><%= link_to "Edit" ,edit_admin_user_path(user), class: "btn btn-primary" %></td>
+              <td><%= link_to "Edit" ,edit_admin_user_path(user), class: "btn btn-outline-success" %></td>
             </tr>
           <% end %>
         </tbody>

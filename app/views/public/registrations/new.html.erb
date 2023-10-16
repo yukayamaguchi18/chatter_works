@@ -5,53 +5,53 @@
 
     <%= render 'layouts/error', obj: @user %>
     <%= form_with model: @user, url: user_registration_path do |f| %>
-      <table class="table table-borderless">
+      <table class="table table-borderless text-light">
         <tr>
-          <td><%= f.label :ユーザー名 %></td>
-          <td class="text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td><%= f.text_field :name, autofocus: true, placeholder:"山田太郎", class: "form-control" %></td>
+          <td class="align-middle"><%= f.label :ユーザー名 %></td>
+          <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
+          <td class="align-middle"><%= f.text_field :name, autofocus: true, placeholder:"山田太郎", class: "form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :メールアドレス %></td>
-          <td class="text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td><%= f.email_field :email, placeholder: "sample@example.com", class: 'form-control' %></td>
+          <td class="align-middle"><%= f.label :メールアドレス %></td>
+          <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
+          <td class="align-middle"><%= f.email_field :email, placeholder: "sample@example.com", class: 'form-control' %></td>
         </tr>
         <tr>
-          <td>
+          <td class="align-middle">
             <%= f.label :パスワード %>
             <% if @minimum_password_length %>
               (<%= @minimum_password_length %> 文字以上)
             <% end %>
           </td>
-          <td class="text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td><%= f.password_field :password, class: 'form-control' %></td>
+          <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
+          <td class="align-middle"><%= f.password_field :password, class: 'form-control' %></td>
         </tr>
         <tr>
-          <td>
+          <td class="align-middle">
             <%= f.label :パスワード（確認用） %>
           </td>
-          <td class="text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td><%= f.password_field :password_confirmation, class: 'form-control' %></td>
+          <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
+          <td class="align-middle"><%= f.password_field :password_confirmation, class: 'form-control' %></td>
         </tr>
         <tr>
-          <td><%= f.label :プロフィール画像 %></td>
+          <td class="align-middle"><%= f.label :プロフィール画像 %></td>
           <td></td>
-          <td>
+          <td class="align-middle">
             <%= f.file_field :profile_image, accept: "image/*" %>
           </td>
         </tr>
         <tr>
-          <td><%= f.label :自己紹介文 %></td>
-          <td class="text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td><%= f.text_area :introduction, placeholder: "Hello World!", class: "form-control" %></td>
+          <td class="align-middle"><%= f.label :自己紹介文 %></td>
+          <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
+          <td class="align-middle"><%= f.text_area :introduction, placeholder: "Hello World!", class: "form-control" %></td>
         </tr>
       </table>
-      <%= f.submit "Sign up",class: "btn btn-primary" %>
+      <%= f.submit "Sign up",class: "btn btn-outline-success" %>
     <% end %>
 
     <h4 class="mt-5">既に登録済みの方</h4>
     <div>
-      <%= link_to "こちら", new_user_session_path, class: "text-muted rounded-pill necessary-field px-4 mb-5", 'data-turbolinks': false %>からログインを行ってください。
+      <%= link_to "こちら", new_user_session_path, class: "text-light rounded-pill necessary-field px-4 mb-5", 'data-turbolinks': false %>からログインを行ってください。
     </div>
 
   </div>

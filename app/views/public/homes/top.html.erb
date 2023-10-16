@@ -1,31 +1,31 @@
 <div class="container-fluid p-3">
   <div class="d-flex">
     <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 95vh">
-      <%= link_to tl_update_chatters_path, remote: true, class: "btn btn-primary btn-block" do %>
+      <%= link_to tl_update_chatters_path, remote: true, class: "btn btn-outline-success btn-block" do %>
         <i class="fa-solid fa-rotate-left"></i>
       <% end %>
       <div class="chatters">
         <%= render 'public/chatters/index', chatters: @chatters %>
       </div>
-      <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-primary btn-block more-link', id: 'more-chatter' %>
+      <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
     </div>
     <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 95vh">
-      <%= link_to tl_update_works_path, remote: true, class: "btn btn-primary btn-block" do %>
+      <%= link_to tl_update_works_path, remote: true, class: "btn btn-outline-success btn-block" do %>
         <i class="fa-solid fa-rotate-left"></i>
       <% end %>
       <div class="works">
         <%= render 'public/works/index', works: @works %>
       </div>
-      <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-primary btn-block more-link', id: 'more-work' %>
+      <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
     </div>
   </div>
       <div style="position: absolute; bottom: 0; left: 46%;" id="chatter-btn">
-        <button type="button" class="btn btn-primary rounded-circle mb-4" data-toggle="modal" data-target="#chatter-modal">
+        <button type="button" class="btn btn-outline-success rounded-circle mb-4" data-toggle="modal" data-target="#chatter-modal">
           <i class="fa-regular fa-comment-dots"></i>
         </button>
       </div>
       <div style="position: absolute; bottom: 0; right: 0;" id="work-btn">
-        <button type="button" class="btn btn-primary rounded-circle mb-4 mr-4" data-toggle="modal" data-target="#work-modal">
+        <button type="button" class="btn btn-outline-success rounded-circle mb-4 mr-4" data-toggle="modal" data-target="#work-modal">
           <i class="fa-solid fa-pen-fancy"></i>
         </button>
       </div>

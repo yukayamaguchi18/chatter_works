@@ -1,4 +1,4 @@
 $('#chatter-favorites-paginate').append("<%= escape_javascript(render 'public/chatter_favorites/index', chatter_favorites: @chatter_favorites) %>")
 $("#more-chatter_favorite").replaceWith("<%= escape_javascript(
-  link_to_next_page(@chatter_favorites, 'もっと見る', params: { type: :chatter_favorite }, remote: true, class: 'btn btn-primary btn-block more-link', id: 'more-chatter_favorite')
+  link_to_next_page(@chatter_favorites, 'もっと見る', params: { type: :chatter_favorite }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter_favorite')
 ) %>");

@@ -2,31 +2,24 @@
   <div class="row mx-auto">
     <div class="col-12">
 
-      <h1>ユーザー情報編集</h1>
+      <h1>User Edit</h1>
       <%= render 'layouts/error', obj: @user %>
       <%= form_with model: @user, method: :patch do |f| %>
-        <table class="table table-borderless">
+        <table class="table table-borderless text-light">
           <tr>
-            <td><%= f.label :ユーザー名 %></td>
+            <td>Name</td>
             <td><%= f.text_field :name, class: "form-control" %></td>
           </tr>
           <tr>
-            <td><%= f.label :メールアドレス %></td>
+            <td>Email</td>
             <td><%= f.email_field :email, class: 'form-control' %></td>
           </tr>
           <tr>
-            <td><%= f.label :プロフィール画像 %></td>
-            <td>
-              <%= image_tag @user.get_profile_image(150, 150) %>
-              <%= f.file_field :profile_image, accept: "image/*", value: @user.profile_image.blob %>
-            </td>
-          </tr>
-          <tr>
-            <td><%= f.label :自己紹介文 %></td>
+            <td>Introduction</td>
             <td><%= f.text_area :introduction, class: "form-control" %></td>
           </tr>
           <tr>
-            <td>公開ステータス</td>
+            <td>Public Status</td>
             <td>
               <%= f.radio_button :is_public, true %>
               <%= f.label :is_public_true, "公開" %>
@@ -35,10 +28,10 @@
             </td>
           </tr>
         </table>
-        <%= f.submit "Update", class: "btn btn-primary" %>
+        <%= f.submit "Update", class: "btn btn-outline-success" %>
       <% end %>
 
-      <h3 class="pt-5">アカウントを消去する</h3>
+      <h3 class="pt-5">Delete Account</h3>
       <%= link_to "手続きに進む", confirm_users_path, class: "btn btn-danger" %>
 
     </div>

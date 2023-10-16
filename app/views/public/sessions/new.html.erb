@@ -21,15 +21,15 @@
           <td><%= f.password_field :password,  class:"form-control w-75" %></td>
         </tr>
       </table>
-      <%= f.submit "Log in", class:"btn btn-primary" %>
+      <%= f.submit "Log in", class:"btn btn-outline-success" %>
     <% end %>
   </div>
 
 
     <h4>初めてご利用の方</h4>
     <div>
-      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary", 'data-turbolinks': false %>
-      <%= link_to "Guest log in", users_guest_sign_in_path, class: "btn btn-primary", method: :post, 'data-turbolinks': false %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-success", 'data-turbolinks': false %>
+      <%= link_to "Guest log in", users_guest_sign_in_path, class: "btn btn-outline-success", method: :post, 'data-turbolinks': false %>
     </div>
   </div>
 </div>
