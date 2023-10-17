@@ -1,0 +1,75 @@
+<% if chatter_favorites.blank? %>
+  <p class="m-3">データはありません</p>
+<% else %>
+  <% chatter_favorites.each do |favorite| %>
+    <div class="py-2 px-4">
+      <%# ↓リポストを取得しない投稿一覧ページ（お気に入り一覧など）でも
+      同じ部分テンプレートを利用しているため、この判定を入れている %>
+      <% if favorite.chatter.has_attribute?(:rechatter_user_id) %>
+        <% if favorite.chatter.rechatter_user_id.present? %>
+          <div class="row ml-1 mb-1">
+            <span class="text-muted d-inline-block text-truncate">
+              <i class="fa-solid fa-bullhorn text-info"></i>
+              Rechattered by
+              <%= link_to favorite.chatter.rechatter_user_name, admin_user_path(favorite.chatter.rechatter_user_id), class: "text-muted" %>
+            </span>
+          </div>
+        <% end %>
+      <% end %>
+      <% if favorite.chatter.replying.exists? %>
+        <div class="row ml-1 mb-1">
+          <span class="d-inline-block text-truncate text-muted">
+            <%= link_to chatter_path(favorite.chatter.replied_chatter(chatter)), class: "text-muted" do %>
+              <i class="fa-solid fa-reply text-muted"></i>
+              <span class="text-muted">
+                Reply to <%= favorite.chatter.replied_chatter(favorite.chatter).user.name %>
+              </span>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-2 mx-auto">
+          <%= link_to admin_user_path(favorite.chatter_user) do %>
+            <%= image_tag favorite.chatter_user.get_profile_image(50, 50), class: "m-1" %>
+          <% end %>
+          <% if favorite.chatter_user == current_user %>
+          <div>
+            <%= link_to chatter_path(favorite.chatter), method: :delete, remote: true, class: "btn btn-sm btn-danger m-1", data: { confirm: "削除しますか？" } do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+        <div class="col-9">
+          <p class="d-flex justify-content-between">
+            <%= link_to favorite.chatter_user.name, admin_user_path(favorite.chatter_user), class: "text-light text-truncate mr-1" %>
+            <span class="text-nowrap text-muted">
+              <%= favorite.chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </span>
+          </p>
+          <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(favorite.chatter.body.split("\n"),tag(:br)))) %></p>
+          <div class="d-flex justify-content-around">
+            <div class="text-muted mr-1">
+              <i class="fa-solid fa-reply"></i><%= favorite.chatter.reply_to_chatters.count %>
+            </div>
+            <div class="d-flex text-muted mr-1">
+              <%= link_to rechatter_users_chatter_path(favorite.chatter), class: "text-muted" do %>
+                <i class="fa-solid fa-bullhorn"></i>
+                <%= favorite.chatter.rechatters.count %>
+              <% end %>
+            </div>
+            <div class="d-flex text-muted">
+              <%= link_to favorite_users_chatter_path(favorite.chatter), class: "text-muted" do %>
+                <i class="fa-regular fa-star"></i>
+                <%= favorite.chatter.chatter_favorites.count %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <hr color="#6c757d">
+    </div>
+
+  <% end %>
+<% end %>

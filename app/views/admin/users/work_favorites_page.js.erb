@@ -1,0 +1,4 @@
+$('#work-favorites-paginate').append("<%= escape_javascript(render 'admin/users/work_favorites', work_favorites: @work_favorites) %>")
+$("#more-work_favorite").replaceWith("<%= escape_javascript(
+  link_to_next_page(@work_favorites, 'もっと見る', params: { type: :work_favorite }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work_favorite')
+) %>");

@@ -1,0 +1,47 @@
+<% if works.blank? %>
+  <p class="m-3">データはありません</p>
+<% else %>
+  <% works.each do |work| %>
+    <div class="py-2 px-4">
+      <div class="row">
+        <div class="col-4 d-flex align-items-center">
+          <%= link_to work_path(work) do %>
+            <%= image_tag work.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+          <% end %>
+        </div>
+        <div class="col-8">
+          <h3 class="mt-1">
+            <span class="d-inline-block text-truncate">
+              <%= link_to work.title, work_path(work), class: "text-light" %>
+            </span>
+          </h3>
+          <div class="d-flex align-items-center mt-1">
+            <%= link_to admin_user_path(work.user), class: "text-decoration-none" do %>
+              <%= image_tag work.user.get_profile_image(50, 50) %>
+            <% end %>
+            <p class="ml-2 mt-1 text-truncate">
+              <%= link_to admin_user_path(work.user), class: "text-light" do %>
+                <%= work.user.name %>
+              <% end %>
+            </p>
+          </div>
+          <p class="text-muted text-nowrap text-right mt-1">
+            <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
+          </p>
+          <div class="d-flex justify-content-around text-muted">
+            <div>
+              <i class="fa-solid fa-comment"></i><%= work.comments.count %>
+            </div>
+            <div>
+              <%= link_to favorite_users_work_path(work), class: "text-muted" do %>
+                <i class="fa-regular fa-star"></i>
+                <%= work.work_favorites.count %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <hr color="#6c757d">
+    </div>
+  <% end %>
+<% end %>

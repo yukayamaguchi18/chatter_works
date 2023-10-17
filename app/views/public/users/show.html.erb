@@ -79,13 +79,13 @@
       </ul>
       <!-- タブの中身 -->
       <div class="tab-content">
-        <div class="tab-pane active">
+        <div id="chatters" class="tab-pane active">
           <div class="chatters">
             <%= render 'public/chatters/index', chatters: @chatters %>
           </div>
           <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
         </div>
-        <div class="tab-pane">
+        <div id="works" class="tab-pane">
           <div class="works">
             <%= render 'public/works/index', works: @works %>
           </div>

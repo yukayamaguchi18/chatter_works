@@ -1,0 +1,4 @@
+$('.works').append("<%= escape_javascript(render 'admin/users/works', works: @works) %>")
+$("#more-work").replaceWith("<%= escape_javascript(
+  link_to_next_page(@works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work')
+) %>");
