@@ -1,0 +1,2 @@
+$(".requests").html("<%= escape_javascript(render "public/follow_requests/index", requests: @requests ) %>");
+$(".flash-message").html("<%= j(render 'layouts/flash') %>");

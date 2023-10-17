@@ -1,0 +1,2 @@
+$(".follow-btn_<%= @user.id %>").html("<%= escape_javascript(render 'public/relationships/follow', user: @user ) %>");
+$(".flash-message").html("<%= j(render 'layouts/flash') %>");

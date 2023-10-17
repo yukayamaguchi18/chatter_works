@@ -34,6 +34,17 @@ class User < ApplicationRecord
   # 被フォロー関係を通じて参照→自分をフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  # 自分がフォローリクエストする側の関係性
+  has_many :requests, class_name: "FollowRequest", foreign_key: "sender_id", dependent: :destroy
+  # 自分がフォローリクエストされ側の関係性
+  has_many :reverse_of_requests, class_name: "FollowRequest", foreign_key: "receiver_id", dependent: :destroy
+
+  # 自分がフォローリクエストしている人
+  has_many :sending_requests, through: :requests, source: :receiver
+  # 自分にフォローリクエストしている人
+  has_many :receiving_requests, through: :reverse_of_requests, source: :sender
+
+
   # ゲストログイン用メールアドレス
   GUEST_USER_EMAIL = "guest@example.com"
 
@@ -71,6 +82,11 @@ class User < ApplicationRecord
     # フォローされているか判定
   def followed?(user)
     followers.include?(user)
+  end
+
+  # フォローリクエストを送っているかを確認する
+  def follow_requested?(user)
+    self.sending_requests.include?(user)
   end
 
   def rechattered?(chatter_id)

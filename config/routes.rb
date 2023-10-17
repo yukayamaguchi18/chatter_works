@@ -31,6 +31,13 @@ Rails.application.routes.draw do
           get :followers
         end
       end
+      resource :follow_requests, only:[:create, :destroy] do
+        member do
+          post :allow
+          delete :reject
+          get :index
+        end
+      end
     end
     resources :chatters, only: [:show, :new, :destroy, :create] do
       resource :chatter_favorites, only: [:index, :create, :destroy]

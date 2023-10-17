@@ -1,0 +1,37 @@
+<% unless current_user.receiving_requests.exists? %>
+  <p class="m-3">まだフォローリクエストはありません</p>
+<% else %>
+  <table class="table text-light m-3">
+    <thead>
+      <tr>
+        <th class="align-middle">User</th>
+        <th class="align-middle">Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% requests.each do |request| %>
+        <tr>
+          <td class="align-middle">
+            <%= link_to user_path(request.sender) do %>
+              <%= image_tag request.sender.get_profile_image(50, 50) %>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <%= link_to user_path(request.sender), class: "text-light" do %>
+              <%= request.sender.name %>
+            <% end %>
+          </td>
+          <td class="d-flex justify-content-center">
+            <%= link_to allow_user_follow_requests_path(id: request.id), method: :post, remote: true, class: "btn btn-outline-success btn-smb m-1" do %>
+              <i class="fa-solid fa-check"></i>
+            <% end %>
+            <%= link_to reject_user_follow_requests_path(id: request.id), method: :delete, remote: true, class: "btn btn-danger m-1" do %>
+              <i class="fa-solid fa-xmark"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
