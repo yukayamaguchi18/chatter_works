@@ -16,7 +16,7 @@
       <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(@chatter.body.split("\n"),tag(:br)))) %></p>
       <div class="d-flex justify-content-around">
         <div class="text-muted mr-1" style="cursor: pointer;" data-toggle="modal" data-target="#reply-modal_<%= @chatter.id %>">
-          <i class="fa-solid fa-reply"></i><%= @chatter.reply_to_chatters.count %>
+          <i class="fa-solid fa-reply"></i><%= @chatter.reply_to_chatters_count %>
         </div>
         <div class="rechatter-btn_<%= @chatter.id %> mr-1">
           <%= render 'public/rechatters/rechatter-btn', chatter: @chatter %>

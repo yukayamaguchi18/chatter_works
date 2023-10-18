@@ -7,10 +7,12 @@
       </button>
     </div>
     <div class="col-9">
-      <div class="d-flex justify-content-around">
-        <h3><%= @user.name %></h3>
+      <div class="d-flex justify-content-start">
+        <div>
+          <h3><%= @user.name %></h3>
+        </div>
         <% unless @user == current_user %>
-          <div class="follow-btn_<%= @user.id %>">
+          <div class="follow-btn_<%= @user.id %> mx-3">
             <%= render "public/relationships/follow", user: @user %>
           </div>
         <% end %>

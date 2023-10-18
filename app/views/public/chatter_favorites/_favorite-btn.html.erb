@@ -4,7 +4,7 @@
       <i class="fa-solid fa-star"></i>
     <% end %>
     <%= link_to favorite_users_chatter_path(chatter), class: "text-warning" do %>
-      <%= chatter.chatter_favorites.count %>
+      <%= chatter.chatter_favorites_count %>
     <% end %>
   </p>
   <% else %>
@@ -13,7 +13,7 @@
       <i class="fa-regular fa-star"></i>
     <% end %>
     <%= link_to favorite_users_chatter_path(chatter), class: "text-secondary" do %>
-      <%= chatter.chatter_favorites.count %>
+      <%= chatter.chatter_favorites_count %>
     <% end %>
   </p>
 <% end %>

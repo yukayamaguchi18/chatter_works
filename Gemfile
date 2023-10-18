@@ -72,3 +72,5 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+gem 'counter_culture'

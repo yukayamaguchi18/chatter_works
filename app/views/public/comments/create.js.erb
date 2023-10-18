@@ -1,4 +1,4 @@
-$(".comments-count").html("<%= @work.comments.count %>");
+$(".comments-count").html("<%= @work.comments_count %>");
 $(".comments").html("<%= escape_javascript(render 'public/comments/comment', work: @work) %>");
 $(".comment-body").val("");
 $("#comment-modal").modal("hide");

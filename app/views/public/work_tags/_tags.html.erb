@@ -2,6 +2,6 @@
   <i class="fa-solid fa-tag"></i>
   <span>
     <%= link_to tag.name, tag_link_search_path(tag_id: tag.id), class: "text-light" %>
-    <%="(#{tag.works.count})" %>
+    <%="(#{tag.work_tags_count})" %>
   </span>
 <% end %>

@@ -30,12 +30,12 @@
           </p>
           <div class="d-flex justify-content-around text-muted">
             <div>
-              <i class="fa-solid fa-comment"></i><%= work.comments.count %>
+              <i class="fa-solid fa-comment"></i><%= work.comments_count %>
             </div>
             <div>
               <%= link_to favorite_users_work_path(work), class: "text-muted" do %>
                 <i class="fa-regular fa-star"></i>
-                <%= work.work_favorites.count %>
+                <%= work.work_favorites_count %>
               <% end %>
             </div>
           </div>

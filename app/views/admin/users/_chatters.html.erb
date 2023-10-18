@@ -51,18 +51,18 @@
           <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"),tag(:br)))) %></p>
           <div class="d-flex justify-content-around">
             <div class="text-muted mr-1">
-              <i class="fa-solid fa-reply"></i><%= chatter.reply_to_chatters.count %>
+              <i class="fa-solid fa-reply"></i><%= chatter.reply_to_chatters_count %>
             </div>
             <div class="d-flex text-muted mr-1">
               <%= link_to rechatter_users_chatter_path(chatter), class: "text-muted" do %>
                 <i class="fa-solid fa-bullhorn"></i>
-                <%= chatter.rechatters.count %>
+                <%= chatter.rechatters_count %>
               <% end %>
             </div>
             <div class="d-flex text-muted">
               <%= link_to favorite_users_chatter_path(chatter), class: "text-muted" do %>
                 <i class="fa-regular fa-star"></i>
-                <%= chatter.chatter_favorites.count %>
+                <%= chatter.chatter_favorites_count %>
               <% end %>
             </div>
           </div>

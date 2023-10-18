@@ -84,9 +84,14 @@ class Public::WorksController < ApplicationController
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
     #検索されたタグに紐づく投稿を表示
-    @works = @tag.works.order(created_at: :desc)
+    @works = @tag.works.includes([:user, :work_image_attachment]).order(created_at: :desc).page(params[:page]).per(10)
     @model = "WorkTag"
     @word = @tag.name
+    return unless request.xhr?
+    case params[:type]
+    when 'chatter', 'work'
+      render "public/#{params[:type]}s/page"
+    end
   end
 
   private

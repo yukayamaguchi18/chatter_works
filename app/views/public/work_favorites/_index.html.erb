@@ -31,7 +31,7 @@
           </p>
           <div class="d-flex justify-content-around text-muted">
             <div>
-              <i class="fa-solid fa-comment"></i><%= favorite.work.comments.count %>
+              <i class="fa-solid fa-comment"></i><%= favorite.work.comments_count %>
             </div>
             <div class="work-favorite-btn_<%= favorite.work.id %>">
               <%= render 'public/work_favorites/favorite-btn', work: favorite.work %>

@@ -1,5 +1,5 @@
 <h1><%= work.title%></h1>
-<% unless work.user.is_public == true || current_user.following?(@user) %>
+<% unless work.user.is_public == true || current_user.following?(work.user) || work.user == current_user %>
   <p>非公開ユーザーによる投稿です。<br>
   閲覧するには投稿ユーザーをフォローしてください。</p>
 <% else %>
@@ -29,7 +29,7 @@
       <div class="d-flex mx-2">
         <i class="fa-solid fa-comment mt-1"></i>
         <div class="comments-count">
-          <%= @work.comments.count %>
+          <%= @work.comments_count %>
         </div>
       </div>
       <div class="work-favorite-btn_<%= work.id %> mx-2">

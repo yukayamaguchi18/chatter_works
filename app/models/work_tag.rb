@@ -4,5 +4,6 @@ class WorkTag < ApplicationRecord
   validates :tag_id, presence: true
   belongs_to :tag
   belongs_to :work
+  counter_culture :tag
 
 end

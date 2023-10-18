@@ -4,7 +4,7 @@
       <i class="fa-solid fa-star"></i>
     <% end %>
     <%= link_to favorite_users_work_path(work), class: "text-warning" do %>
-      <%= work.work_favorites.count %>
+      <%= work.work_favorites_count %>
     <% end %>
   </p>
   <% else %>
@@ -13,7 +13,7 @@
       <i class="fa-regular fa-star"></i>
     <% end %>
     <%= link_to favorite_users_work_path(work), class: "text-secondary" do %>
-      <%= work.work_favorites.count %>
+      <%= work.work_favorites_count %>
     <% end %>
   </p>
 <% end %>

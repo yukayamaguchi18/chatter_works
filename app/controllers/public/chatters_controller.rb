@@ -1,7 +1,7 @@
 class Public::ChattersController < ApplicationController
 
   def show
-    @chatter = Chatter.find(params[:id])
+    @chatter = Chatter.includes([:user]).find(params[:id])
   end
 
   def new

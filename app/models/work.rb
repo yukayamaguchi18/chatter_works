@@ -15,6 +15,7 @@ class Work < ApplicationRecord
   end
 
   belongs_to :user
+  counter_culture :user
 
   has_many :work_favorites, dependent: :destroy
   has_many :work_tags, dependent: :destroy

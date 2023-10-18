@@ -4,5 +4,6 @@ class Comment < ApplicationRecord
 
   belongs_to :work
   belongs_to :user
+  counter_culture :work
 
 end

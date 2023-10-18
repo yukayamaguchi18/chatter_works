@@ -3,6 +3,7 @@ class Chatter < ApplicationRecord
   validates :body, presence: true, length: {maximum: 200}
 
   belongs_to :user
+  counter_culture :user
 
   has_many :chatter_favorites, dependent: :destroy
   has_many :rechatters, dependent: :destroy
