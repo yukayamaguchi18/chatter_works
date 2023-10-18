@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :rechatters, dependent: :destroy
   has_many :works, dependent: :destroy
   has_many :work_favorites, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   # 自分がフォローする（与フォロー）側の関係性
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -118,6 +119,29 @@ class User < ApplicationRecord
             .includes(:user, :reply_to_chatters)
             .order(Arel.sql("CASE WHEN rechatters.created_at IS NULL THEN chatters.created_at ELSE rechatters.created_at END DESC"))
   end
+  
+  # お気に入りタグ登録用メソッド follow_tags#updateで
+  # selfにcurrent_userを指定
+  def self.save_tag(sent_tags)
+    # タグが存在していれば、タグの名前を配列として全て取得
+      current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+      # 現在取得したタグから送られてきたタグを除いてoldtagとする
+      old_tags = current_tags - sent_tags
+      # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
+      new_tags = sent_tags - current_tags
+
+      # 古いタグを消す
+      old_tags.each do |old|
+        self.tags.delete　Tag.find_by(name: old)
+      end
+
+      # 新しいタグを保存
+      new_tags.each do |new|
+        new_work_tag = Tag.find_or_create_by(name: new.strip) # stripで空白削除
+        self.tags << new_work_tag # タグの配列に新たなタグを追加
+     end
+  end
+  
 
   # ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないようにする
   # is_deletedがfalseならtrueを返すようにしている

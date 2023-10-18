@@ -14,8 +14,9 @@ class Public::SearchesController < ApplicationController
         @users = User.search(word) if i == 0
         # 2回目以降のループでは、1回目の結果を更にモデル定義の検索メソッドで絞り込みしていく
         #   結果を@usersに詰め込む
-        @users = @users.includes([:profile_image_attachment]).merge(@users.search(word))
+        @users = @users.merge(@users.search(word))
       end
+      @users = @users.with_attached_profile_image
       # chatter検索結果
       @words.each_with_index do |word, i|
         #search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
@@ -28,7 +29,7 @@ class Public::SearchesController < ApplicationController
         @works = Work.search(word) if i == 0
         @works = @works.merge(@works.search(word))
       end
-      @works = @works.includes([:user, :work_image_attachment]).order(created_at: :desc).page(params[:page]).per(10)
+      @works = @works.includes([:user]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
       return unless request.xhr?
       case params[:type]
       when 'chatter', 'work'
@@ -42,7 +43,7 @@ class Public::SearchesController < ApplicationController
         @works = @tag.works if i == 0
         @works = @works.merge(@tag.works)
       end
-       @works = @works.includes([:user, :work_image_attachment]).order(created_at: :desc).page(params[:page]).per(10)
+       @works = @works.includes([:user]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
       return unless request.xhr?
       case params[:type]
       when 'chatter', 'work'

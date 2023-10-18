@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_18_030836) do
+ActiveRecord::Schema.define(version: 2023_10_18_120900) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_030836) do
     t.integer "chatter_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "chatter_id"], name: "index_chatter_favorites_on_user_id_and_chatter_id", unique: true
   end
 
   create_table "chatters", force: :cascade do |t|
@@ -87,11 +88,20 @@ ActiveRecord::Schema.define(version: 2023_10_18_030836) do
     t.index ["sender_id"], name: "index_follow_requests_on_sender_id"
   end
 
+  create_table "follow_tags", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "tag_id"], name: "index_follow_tags_on_user_id_and_tag_id", unique: true
+  end
+
   create_table "rechatters", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "chatter_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "chatter_id"], name: "index_rechatters_on_user_id_and_chatter_id", unique: true
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -99,6 +109,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_030836) do
     t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id", "follower_id"], name: "index_relationships_on_followed_id_and_follower_id", unique: true
   end
 
   create_table "replies", force: :cascade do |t|
@@ -143,6 +154,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_030836) do
     t.integer "work_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "work_id"], name: "index_work_favorites_on_user_id_and_work_id", unique: true
   end
 
   create_table "work_tags", force: :cascade do |t|

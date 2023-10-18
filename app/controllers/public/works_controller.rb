@@ -1,4 +1,6 @@
 class Public::WorksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_deactivated_user, only: [:show, :favorite_users]
 
   def show
     @work = Work.find(params[:id])
@@ -16,7 +18,7 @@ class Public::WorksController < ApplicationController
     tag_list = params[:work][:name].split(',')
     if @work.save
       @work.save_tag(tag_list)
-      @works = Work.where(user_id: [current_user.id, *current_user.followings]).order(created_at: :desc)
+      @works = Work.includes([:user]).with_attached_work_image.timeline(current_user).page(params[:page]).per(10)
       @host = request.protocol + request.host # create.js.erbで投稿したWorkのURL生成に使用
       flash.now[:notice] = "Workを投稿しました"
       # create.js.erbを参照する
@@ -73,7 +75,7 @@ class Public::WorksController < ApplicationController
   # end
 
   def tl_update
-    @works = Work.timeline(current_user)
+    @works = Work.includes([:user]).with_attached_work_image.timeline(current_user).page(params[:page]).per(10)
   end
 
   def favorite_users
@@ -84,7 +86,7 @@ class Public::WorksController < ApplicationController
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
     #検索されたタグに紐づく投稿を表示
-    @works = @tag.works.includes([:user, :work_image_attachment]).order(created_at: :desc).page(params[:page]).per(10)
+    @works = @tag.works.includes([:user]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
     @model = "WorkTag"
     @word = @tag.name
     return unless request.xhr?
@@ -96,8 +98,17 @@ class Public::WorksController < ApplicationController
 
   private
 
-  def work_params
-    params.require(:work).permit(:title, :caption, :user_id, :work_image)
-  end
+    def work_params
+      params.require(:work).permit(:title, :caption, :user_id, :work_image)
+    end
+
+    def ensure_deactivated_user
+      @work = Work.find(params[:id])
+      @user = @work.user
+      unless @user.is_active == true
+        flash[:alert] = "退会済みユーザーのページです"
+        redirect_to request.referer
+      end
+    end
 
 end

@@ -46,7 +46,9 @@
           <td class="align-middle"><%= f.text_area :introduction, placeholder: "Hello World!", class: "form-control" %></td>
         </tr>
       </table>
-      <%= f.submit "Sign up",class: "btn btn-outline-success" %>
+      <div class="text-right">
+        <%= f.submit "Sign up",class: "btn btn-outline-success" %>
+      </div>
     <% end %>
 
     <h4 class="mt-5">既に登録済みの方</h4>

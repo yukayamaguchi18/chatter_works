@@ -1,4 +1,5 @@
 class Public::RechattersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_chatter
 
   def create  # メガホンボタンを押下すると、押したユーザと押した投稿のIDよりrechattersテーブルに登録する

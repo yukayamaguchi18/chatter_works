@@ -20,15 +20,15 @@
               </li>
               <li class="nav-item mx-2">
                 <i class="fa-solid fa-users"></i>
-                <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none text-white" %>
+                <%= link_to "Users", admin_root_path, class: "text-decoration-none text-white" %>
               </li>
               <li class="nav-item mx-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "会員ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
+                <%= link_to "User Log out", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
               <li class="nav-item mx-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
+                <%= link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
             <% else %>
               <li class="nav-item mx-2">
@@ -38,26 +38,26 @@
               </li>
               <li class="nav-item mx-2">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
             <% end %>
           <% elsif admin_signed_in? %>
             <li class="nav-item mx-2">
               <i class="fa-solid fa-users"></i>
-              <%= link_to "会員一覧", admin_root_path, class: "text-decoration-none text-white" %>
+              <%= link_to "Users", admin_root_path, class: "text-decoration-none text-white" %>
             </li>
             <li class="nav-item mx-2">
               <i class="fa-solid fa-right-from-bracket"></i>
-              <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
+              <%= link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
             </li>
           <% else %>
             <li class="nav-item mx-2">
               <i class="fa-solid fa-right-to-bracket"></i>
-              <%= link_to "ログイン", new_user_session_path, class: "text-decoration-none text-white" %>
+              <%= link_to "Log in", new_user_session_path, class: "text-decoration-none text-white" %>
             </li>
             <li class="nav-item mx-2">
-              <i class="fa-solid fa-right-to-bracket"></i>
-              <%= link_to "サインイン", new_user_registration_path, class: "text-decoration-none text-white" %>
+              <i class="fa-solid fa-user-pen"></i>
+              <%= link_to "Sign up", new_user_registration_path, class: "text-decoration-none text-white" %>
             </li>
           <% end %>
         </ul>

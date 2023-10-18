@@ -1,4 +1,6 @@
 class Public::ChattersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_deactivated_user, only: [:show, :favorite_users, :rechatter_users]
 
   def show
     @chatter = Chatter.includes([:user]).find(params[:id])
@@ -16,7 +18,7 @@ class Public::ChattersController < ApplicationController
         render 'error'  # error.js.erbを参照する
       end
     @user = User.find(current_user.id)
-    @chatters = @user.followings_chatters_with_rechatters
+    @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
     flash.now[:notice] = "Chatterを投稿しました"
     # create.js.erbを参照する
   end
@@ -25,7 +27,7 @@ class Public::ChattersController < ApplicationController
     @chatter = Chatter.find(params[:id])
     @chatter.delete
     @user = User.find(current_user.id)
-    @chatters = @user.followings_chatters_with_rechatters
+    @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
     flash.now[:notice] = "Chatterを削除しました"
     # destroy.js.erbを参照する
   end
@@ -44,7 +46,7 @@ class Public::ChattersController < ApplicationController
           render 'error'  # error.js.erbを参照する
         else
           @user = User.find(current_user.id)
-          @chatters = @user.followings_chatters_with_rechatters
+          @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
           flash.now[:notice] = "Replyを投稿しました"
           # reply.js.erbを参照する
         end
@@ -53,7 +55,7 @@ class Public::ChattersController < ApplicationController
 
   def tl_update
     @user = User.find(current_user.id)
-    @chatters = @user.followings_chatters_with_rechatters
+    @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
   end
 
   def favorite_users
@@ -66,12 +68,21 @@ class Public::ChattersController < ApplicationController
 
   private
 
-  def chatter_params
-    params.require(:chatter).permit(:user_id, :body)
-  end
+    def chatter_params
+      params.require(:chatter).permit(:user_id, :body)
+    end
 
-  def reply_params
-    params.require(:chatter).permit(reply:[:reply_id, :reply_to_id])
-  end
+    def reply_params
+      params.require(:chatter).permit(reply:[:reply_id, :reply_to_id])
+    end
+
+    def ensure_deactivated_user
+      @chatter = Chatter.find(params[:id])
+      @user = @chatter.user
+      unless @user.is_active == true
+        flash[:alert] = "退会済みユーザーのページです"
+        redirect_to request.referer
+      end
+    end
 
 end

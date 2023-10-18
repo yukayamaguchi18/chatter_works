@@ -37,8 +37,8 @@ class Work < ApplicationRecord
 
       # 新しいタグを保存
       new_tags.each do |new|
-        new_post_tag = Tag.find_or_create_by(name: new.strip) # stripで空白削除
-        self.tags << new_post_tag # タグの配列に新たなタグを追加
+        new_work_tag = Tag.find_or_create_by(name: new.strip) # stripで空白削除
+        self.tags << new_work_tag # タグの配列に新たなタグを追加
      end
   end
 

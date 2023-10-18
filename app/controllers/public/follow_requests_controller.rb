@@ -1,4 +1,7 @@
 class Public::FollowRequestsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_receiver, only: [:allow, :reject]
+  before_action :ensure_deactivated_user, only: [:create, :destroy]
 
   # フォローリクエストを送る
   def create
@@ -44,5 +47,24 @@ class Public::FollowRequestsController < ApplicationController
     flash.now[:notice] = "フォローリクエストを拒否しました"
     # reject.js.erbを参照する
   end
+
+  private
+
+    def ensure_correct_receiver
+      @request = FollowRequest.find(params[:id])
+      @user = User.find_by(id: @request.receiver_id)
+      unless @user == current_user
+        flash[:alert] = "アクセス権限がありません"
+        redirect_to request.referer
+      end
+    end
+
+    def ensure_deactivated_user
+      @user = User.find(params[:user_id])
+      unless @user.is_active == true
+        flash[:alert] = "退会済みユーザーのページです"
+        redirect_to request.referer
+      end
+    end
 
 end

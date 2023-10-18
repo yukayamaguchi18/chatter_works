@@ -1,4 +1,5 @@
 class Public::ChatterFavoritesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
   end
