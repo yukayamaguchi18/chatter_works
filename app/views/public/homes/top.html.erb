@@ -7,16 +7,25 @@
       <div class="chatters">
         <%= render 'public/chatters/index', chatters: @chatters %>
       </div>
-      <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+      <% unless @chatters.blank? %>
+        <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+      <% end %>
     </div>
     <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 95vh">
-      <%= link_to tl_update_works_path, remote: true, class: "btn btn-outline-success btn-block" do %>
-        <i class="fa-solid fa-rotate-left"></i>
-      <% end %>
+      <div class="d-flex">
+        <%= link_to tl_update_works_path, remote: true, class: "btn btn-outline-success btn-block" do %>
+          <i class="fa-solid fa-rotate-left"></i>
+        <% end %>
+        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#follow-tags-modal">
+          <i class="fa-solid fa-tags"></i>
+        </button>
+      </div>
       <div class="works">
         <%= render 'public/works/index', works: @works %>
       </div>
-      <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+      <% unless @works.blank? %>
+        <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+      <% end %>
     </div>
   </div>
       <div style="position: absolute; bottom: 0; left: 46%;" id="chatter-btn">
@@ -36,3 +45,6 @@
 
 <!--work modal-->
 <%= render 'public/works/modal', work: @work %>
+
+<!--follow tags modal-->
+<%= render 'public/follow_tags/modal' %>

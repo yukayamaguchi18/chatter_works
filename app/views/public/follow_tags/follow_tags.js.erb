@@ -1,0 +1,3 @@
+$(".works").html("<%= j(render 'public/works/index', works: @works) %>");
+$(".flash-message").html("<%= j(render 'layouts/flash') %>");
+$("#follow-tags-modal").modal("hide");

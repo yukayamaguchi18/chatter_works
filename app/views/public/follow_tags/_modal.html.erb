@@ -1,0 +1,30 @@
+<div class="modal fade" id="follow-tags-modal" tabindex="-1"
+      role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <%= form_with model: @user, url: follow_tags_path, local: false do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title">Follow Tag</h5>
+        <div id ="follow-tags-error"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group field">
+          <span>
+            登録したタグのついた作品がタイムラインに表示されます。</br>
+            タグを複数登録するには' , 'で区切ってください。
+          </span>
+          <%= f.text_field :tag_name, placeholder: "' , 'でタグを区切る", value: @tag_list, class: 'form-control tag-body mt-2' %>
+        </div>
+      </div>
+      <div class="modal-footer actions">
+        <%= f.submit "Follow", class: "btn btn-outline-success"%>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
