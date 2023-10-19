@@ -5,7 +5,7 @@
       <h1>User Edit</h1>
       <%= render 'layouts/error', obj: @user %>
       <%= form_with model: [ :admin, @user ], method: :patch do |f| %>
-        <table class="table table-borderless">
+        <table class="table table-borderless text-light">
           <tr>
             <td><%= f.label :ユーザー名 %></td>
             <td><%= f.text_field :name, class: "form-control" %></td>
