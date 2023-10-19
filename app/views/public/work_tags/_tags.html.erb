@@ -1,7 +1,16 @@
 <% tags.each do |tag| %>
-  <i class="fa-solid fa-tag"></i>
-  <span>
+  <span class="mx-1">
+    <i class="fa-solid fa-tag"></i>
     <%= link_to tag.name, tag_link_search_path(tag_id: tag.id), class: "text-light" %>
     <%="(#{tag.work_tags_count})" %>
+    <% if current_user.tags.include?(tag) %>
+      <%= link_to work_follow_tag_path(tag_id: tag.id, work_id: work.id), method: :delete, class: "text-light" do %>
+        <i class="fa-solid fa-square-minus"></i>
+      <% end %>
+    <% else %>
+      <%= link_to work_follow_tags_path(tag_id: tag.id, work_id: work.id), method: :post, class: "text-light" do %>
+        <i class="fa-solid fa-square-plus"></i>
+      <% end %>
+    <% end %>
   </span>
 <% end %>

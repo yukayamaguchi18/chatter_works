@@ -1,24 +1,28 @@
-<table class="table table-borderless text-light">
-  <% work.comments.each do |comment| %>
-    <tr>
-      <td class="align-middle">
-        <%= link_to user_path(comment.user) do %>
-          <%= image_tag comment.user.get_profile_image(50, 50) %>
-        <% end %>
-      </td>
-      <td class="align-middle">
-        <span class="d-inline-block text-truncate" style="max-width: 150px;">
-          <%= link_to comment.user.name, user_path(comment.user), class: "text-light" %>
-        </span>
-      </td>
-      <td class="align-middle" style="width: 80%;"><%= comment.body %></td>
-      <td class="align-middle">
-        <% if comment.user == current_user %>
-          <%= link_to work_comment_path(work, comment), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: { confirm: "削除しますか？" } do %>
-            <i class="fa-solid fa-trash-can"></i>
+<% if work.comments.blank? %>
+  <p class="m-3">まだコメントはありません</p>
+<% else %>
+  <table class="table table-borderless text-light">
+    <% work.comments.each do |comment| %>
+      <tr>
+        <td class="align-middle">
+          <%= link_to user_path(comment.user) do %>
+            <%= image_tag comment.user.get_profile_image(50, 50) %>
           <% end %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+        </td>
+        <td class="align-middle">
+          <span class="d-inline-block text-truncate" style="max-width: 150px;">
+            <%= link_to comment.user.name, user_path(comment.user), class: "text-light" %>
+          </span>
+        </td>
+        <td class="align-middle" style="width: 80%;"><%= comment.body %></td>
+        <td class="align-middle">
+          <% if comment.user == current_user %>
+            <%= link_to work_comment_path(work, comment), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: { confirm: "削除しますか？" } do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

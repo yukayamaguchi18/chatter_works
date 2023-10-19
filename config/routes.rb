@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       end
       resources :work_tags, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
+      resources :follow_tags, only: [:create, :destroy]
     end
     get 'search' => 'searches#search'
     get 'tag_link_search' => 'works#tag_link_search'

@@ -48,6 +48,34 @@ class Public::FollowTagsController < ApplicationController
     end
   end
 
+  def create
+    #追加するタグを受け取る
+    @tag = Tag.find(params[:tag_id])
+    @user = User.find(current_user.id)
+    @follow_tag = FollowTag.new(user_id: @user.id, tag_id: @tag.id)
+    if @follow_tag.save
+      flash[:notice] = "Follow Tagに「#{@tag.name}」を追加しました"
+      redirect_to request.referer
+    else
+      flash[:alert] = "すでにFollow Tagに追加済みです"
+      redirect_to request.referer
+    end
+  end
+
+  def destroy
+    #削除するタグを受け取る
+    @tag = Tag.find(params[:tag_id])
+    @user = User.find(current_user.id)
+    @follow_tag = FollowTag.find_by(user_id: @user.id, tag_id: @tag.id)
+    if @follow_tag.destroy
+      flash[:notice] = "Follow Tagから「#{@tag.name}」を削除しました"
+      redirect_to request.referer
+    else
+      flash[:alert] = "すでにFollow Tagから削除済みです"
+      redirect_to request.referer
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit()
