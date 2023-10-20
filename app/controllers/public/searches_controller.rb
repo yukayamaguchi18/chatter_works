@@ -22,10 +22,11 @@ class Public::SearchesController < ApplicationController
       end
       # chatter検索結果
       @words.each_with_index do |word, i|
-        #search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
-        @chatters = Chatter.search(word).search_range(current_user) if i == 0
+        @chatters = Chatter.search(word) if i == 0
         @chatters = @chatters.merge(@chatters.search(word))
       end
+      #search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
+      @chatters = @chatters.search_range(current_user)
       unless @chatters.blank?
         @chatters = @chatters.includes([:user, :reply_to_chatters]).order(created_at: :desc).page(params[:page]).per(20)
       end
