@@ -27,12 +27,16 @@
     <div class="chatters">
       <%= render 'public/chatters/index', chatters: @chatters %>
     </div>
-    <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+    <% unless @chatters.blank? %>
+      <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+    <% end %>
   </div>
   <div style="overflow: scroll; overflow-x: hidden; width: 100vw; height: 80vh">
     <div class="works">
       <%= render 'public/works/index', works: @works %>
     </div>
-    <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+    <% unless @works.blank? %>
+      <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+    <% end %>
   </div>
 </div>

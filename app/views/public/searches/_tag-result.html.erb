@@ -1,4 +1,6 @@
 <div class="works">
   <%= render 'public/works/index', works: @works %>
 </div>
-<%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+<% unless @works.blank? %>
+  <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+<% end %>

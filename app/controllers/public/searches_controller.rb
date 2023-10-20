@@ -17,20 +17,26 @@ class Public::SearchesController < ApplicationController
         #   結果を@usersに詰め込む
         @users = @users.merge(@users.search(word))
       end
-      @users = @users.with_attached_profile_image
+      unless @users.blank?
+        @users = @users.with_attached_profile_image
+      end
       # chatter検索結果
       @words.each_with_index do |word, i|
         #search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
         @chatters = Chatter.search(word).search_range(current_user) if i == 0
         @chatters = @chatters.merge(@chatters.search(word))
       end
-      @chatters = @chatters.includes([:user, :reply_to_chatters]).order(created_at: :desc).page(params[:page]).per(20)
+      unless @chatters.blank?
+        @chatters = @chatters.includes([:user, :reply_to_chatters]).order(created_at: :desc).page(params[:page]).per(20)
+      end
       # work検索結果
       @words.each_with_index do |word, i|
         @works = Work.search(word) if i == 0
         @works = @works.merge(@works.search(word))
       end
-      @works = @works.includes([:user]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+      unless @works.blank?
+        @works = @works.includes([:user]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+      end
       return unless request.xhr?
       case params[:type]
       when 'chatter', 'work'
@@ -44,7 +50,9 @@ class Public::SearchesController < ApplicationController
         @works = @tag.works if i == 0
         @works = @works.merge(@tag.works)
       end
-       @works = @works.includes([:user]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+      unless @works.blank?
+        @works = @works.includes([:user]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+      end
       return unless request.xhr?
       case params[:type]
       when 'chatter', 'work'

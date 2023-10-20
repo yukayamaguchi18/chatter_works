@@ -14,6 +14,9 @@ module ChatterWorks
     # 日本語の言語設定
     config.i18n.default_locale = :ja
 
+    # タイムゾーン設定
+    config.time_zone = 'Tokyo'
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

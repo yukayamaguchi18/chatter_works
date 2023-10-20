@@ -21,7 +21,7 @@
           <% if work.new_record? %>
             <div class="d-flex flex-column">
               <%= f.label "Work Image" %>
-              <%= f.file_field :work_image, accept: "image/*", class: "mb-3" %>
+              <%= f.file_field :work_image, accept: "image/*", class: "mb-3", required: true %>
             </div>
           <% end %>
           <div>
