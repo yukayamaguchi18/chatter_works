@@ -1,7 +1,7 @@
 $(".comments-count").html("<%= @work.comments_count %>");
-$(".comments").html("<%= escape_javascript(render 'public/comments/comment', work: @work) %>");
+$(".comments").html("<%= escape_javascript(render 'public/comments/comment', work: @work, comments: @comments) %>");
 $(".comment-body").val("");
 $("#comment-modal").modal("hide");
 $(".flash-message").html("<%= j(render 'layouts/flash') %>");
 $("#chatter-modal").modal("show");
-$(".chatter-body").val("コメントしました。\n「<%= @comment.body.slice(0, 50) %>...」\n<%= @work.title %> / by <%= @work.user.name %>\n<%= @host %>/works/<%= @work.id %>");
+$(".chatter-body").val("コメントしました。\n「<%= @comment.body.slice(0, 50) %><% if @comment.body.length > 50 %>...<% end %>」\n<%= @work.title %> / by <%= @work.user.name %>\n<%= @host %>/works/<%= @work.id %>");

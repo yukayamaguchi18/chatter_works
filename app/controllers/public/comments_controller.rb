@@ -9,6 +9,7 @@ class Public::CommentsController < ApplicationController
     unless @comment.save
       render 'error'  # error.js.erbを参照する
     end
+    @comments = @work.comments.includes([:user])
     @host = request.protocol + request.host # create.js.erbで投稿したWorkのURL生成に使用
     flash.now[:notice] = "Commentを投稿しました"
     # create.js.erbを参照する
@@ -18,6 +19,7 @@ class Public::CommentsController < ApplicationController
     @work = Work.find(params[:work_id])
     comment = Comment.find_by(id: params[:id], work_id: params[:work_id])
     comment.delete
+    @comments = @work.comments.includes([:user])
     flash.now[:notice] = "Commentを削除しました"
     # destroy.js.erbを参照する
   end

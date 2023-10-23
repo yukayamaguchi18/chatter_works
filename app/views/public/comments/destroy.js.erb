@@ -1,3 +1,3 @@
 $(".comments-count").html("<%= @work.comments_count %>");
-$(".comments").html("<%= escape_javascript(render 'public/comments/comment', work: @work) %>");
+$(".comments").html("<%= escape_javascript(render 'public/comments/comment', work: @work, comments: @comments) %>");
 $(".flash-message").html("<%= j(render 'layouts/flash') %>");

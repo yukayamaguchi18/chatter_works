@@ -1,8 +1,8 @@
-<% if work.comments.blank? %>
+<% if comments.blank? %>
   <p class="m-3">まだコメントはありません</p>
 <% else %>
   <table class="table table-borderless text-light">
-    <% work.comments.each do |comment| %>
+    <% comments.each do |comment| %>
       <tr>
         <td class="align-middle">
           <%= link_to user_path(comment.user) do %>

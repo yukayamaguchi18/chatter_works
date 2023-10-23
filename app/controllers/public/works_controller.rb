@@ -9,6 +9,8 @@ class Public::WorksController < ApplicationController
     # @workについているタグのnameをpluckで配列にし、','で区切る
     @tag_list = @work.tags.pluck(:name).join(',')
     @comment = Comment.new
+    @comments = @work.comments.includes([:user])
+    @chatter = Chatter.new
   end
 
   def create
