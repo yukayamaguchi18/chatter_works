@@ -26,7 +26,7 @@ users = [
     introduction: %Q{背景素材の使用時はリンク先の規約をご確認ください\nhttps://example.com},
     is_public: true,
     is_active: true,
-    password: "landscape"
+    password: ENV['TEST_USER_PASS']
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ users = [
     introduction: "三度のお絵描きよりごはんが好き",
     is_public: true,
     is_active: true,
-    password: "bistroart"
+    password: ENV['TEST_USER_PASS']
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ users = [
     introduction: "こいつ、描くぞ！",
     is_public: true,
     is_active: true,
-    password: "robotya"
+    password: ENV['TEST_USER_PASS']
   },
   {
     id: 5,
@@ -56,7 +56,7 @@ users = [
     introduction: "しがないドット打ち",
     is_public: true,
     is_active: true,
-    password: "dotworld"
+    password: ENV['TEST_USER_PASS']
   },
   {
     id: 6,
@@ -66,7 +66,7 @@ users = [
     introduction: "青春は人生にたった一度しか来ない",
     is_public: false,
     is_active: true,
-    password: "youthboard"
+    password: ENV['TEST_USER_PASS']
   }
 ]
 
