@@ -23,7 +23,7 @@ users = [
     email: "landscape@example.com",
     name: "ランド・スケープ",
     profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/icon2.png")),filename: 'profile_image.jpg'),
-    introduction: %Q{背景素材の使用時はリンク先の規約をご確認ください\nexample.com},
+    introduction: %Q{背景素材の使用時はリンク先の規約をご確認ください\nhttps://example.com},
     is_public: true,
     is_active: true,
     password: "landscape"
@@ -281,7 +281,7 @@ works = [
   {
     id: 70,
     user_id: 5,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/66.png")),filename: 'work_image.jpg'),
+    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/70.png")),filename: 'work_image.jpg'),
     title: "天空の島",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n開拓ゲーム的な。キミだけの最強の島を作ろう！}
   },
@@ -361,7 +361,7 @@ chatters = [
   {
     id: 55,
     user_id: 5,
-    body: "新作待ってた！example.com"
+    body: "新作待ってた！https://example.com"
   },
   {
     id: 56,
@@ -411,7 +411,7 @@ chatters = [
   {
     id: 65,
     user_id: 3,
-    body: "このレシピよかったexample.com"
+    body: "このレシピよかったhttps://example.com"
   },
   {
     id: 66,
@@ -436,52 +436,52 @@ chatters = [
   {
     id: 70,
     user_id: 2,
-    body: %Q{投稿しました。\n「青い花畑 / by ランド・スケープ」\nexample.com}
+    body: %Q{投稿しました。\n「青い花畑 / by ランド・スケープ」\nhttps://example.com}
   },
   {
     id: 71,
     user_id: 3,
-    body: %Q{投稿しました。\n「パスタ / by ビストロあーと」\nexample.com}
+    body: %Q{投稿しました。\n「パスタ / by ビストロあーと」\nhttps://example.com}
   },
   {
     id: 72,
     user_id: 4,
-    body: %Q{投稿しました。\n「発進！ / by ロボ屋」\nexample.com}
+    body: %Q{投稿しました。\n「発進！ / by ロボ屋」\nhttps://example.com}
   },
   {
     id: 73,
     user_id: 5,
-    body: %Q{投稿しました。\n「天空の島 / by 点描世界観」\nexample.com}
+    body: %Q{投稿しました。\n「天空の島 / by 点描世界観」\nhttps://example.com}
   },
   {
     id: 74,
     user_id: 6,
-    body: %Q{投稿しました。\n「店員さん / by 青少年委員会」\nexample.com}
+    body: %Q{投稿しました。\n「店員さん / by 青少年委員会」\nhttps://example.com}
   },
   {
     id: 75,
     user_id: 2,
-    body: %Q{コメントしました。\n「test」\ntest / by テスト\nexample.com}
+    body: %Q{コメントしました。\n「test」\ntest / by テスト\nhttps://example.com}
   },
   {
     id: 76,
     user_id: 3,
-    body: %Q{コメントしました。\n「test」\ntest / by テスト\nexample.com}
+    body: %Q{コメントしました。\n「test」\ntest / by テスト\nhttps://example.com}
   },
   {
     id: 77,
     user_id: 4,
-    body: %Q{コメントしました。\n「test」\ntest / by テスト\nexample.com}
+    body: %Q{コメントしました。\n「test」\ntest / by テスト\nhttps://example.com}
   },
   {
     id: 78,
     user_id: 5,
-    body: %Q{コメントしました。\n「test」\ntest / by テスト\nexample.com}
+    body: %Q{コメントしました。\n「test」\ntest / by テスト\nhttps://example.com}
   },
   {
     id: 79,
     user_id: 6,
-    body: %Q{コメントしました。\n「test」\ntest / by テスト\nexample.com}
+    body: %Q{コメントしました。\n「test」\ntest / by テスト\nhttps://example.com}
   }
 ]
 

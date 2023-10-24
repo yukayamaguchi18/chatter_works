@@ -11,7 +11,7 @@
       <tr>
         <td>
           <%= link_to user_path(user) do %>
-            <%= image_tag user.get_profile_image(50, 50) %>
+            <%= image_tag user.get_profile_image(50, 50), class: "rounded" %>
           <% end %>
         </td>
         <td><%= user.name %></td>

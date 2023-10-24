@@ -17,7 +17,7 @@
           <tr>
             <td><%= f.label :プロフィール画像 %></td>
             <td>
-              <%= image_tag @user.get_profile_image(150, 150) %>
+              <%= image_tag @user.get_profile_image(150, 150), class: "rounded" %>
               <%= f.file_field :profile_image, accept: "image/*" %>
             </td>
           </tr>

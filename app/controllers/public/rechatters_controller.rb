@@ -9,6 +9,7 @@ class Public::RechattersController < ApplicationController
       @rechatter = Rechatter.create(user_id: current_user.id, chatter_id: @chatter.id)
     end
     flash.now[:notice] = "Rechatterしました"
+    @chatter = Chatter.find(params[:chatter_id])
     # create.js.erbを参照する
   end
 
@@ -20,6 +21,7 @@ class Public::RechattersController < ApplicationController
       redirect_to request.referer, alert: '既にRechatterを取り消し済みです'
     end
     flash.now[:notice] = "Rechatterを取り消しました"
+    @chatter = Chatter.find(params[:chatter_id])
     # destroy.js.erbを参照する
   end
 

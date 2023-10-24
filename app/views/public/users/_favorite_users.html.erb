@@ -12,7 +12,7 @@
         <tr>
           <td class="align-middle">
             <%= link_to user_path(favorite.user) do %>
-              <%= image_tag favorite.user.get_profile_image(50, 50) %>
+              <%= image_tag favorite.user.get_profile_image(50, 50), class: "rounded" %>
             <% end %>
           </td>
           <td class="align-middle"><%= favorite.user.name %></td>

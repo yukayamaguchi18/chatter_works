@@ -1,9 +1,21 @@
 <div class="container p-3">
   <h2>Chatter Detail</h2>
+  <% if @chatter.replying.exists? %>
+    <div class="row ml-1 mb-1">
+      <span class="d-inline-block text-truncate text-muted">
+        <%= link_to chatter_path(@chatter.replied_chatter(@chatter)), class: "text-muted" do %>
+          <i class="fa-solid fa-reply text-muted"></i>
+          <span class="text-muted">
+            Reply to <%= @chatter.replied_chatter(@chatter).user.name %>
+          </span>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
   <div class="row m-3">
     <div class="col-2 mx-auto">
       <%= link_to user_path(@chatter.user) do %>
-        <%= image_tag @chatter.user.get_profile_image(100, 100), class: "m-1" %>
+        <%= image_tag @chatter.user.get_profile_image(100, 100), class: "rounded m-1" %>
       <% end %>
     </div>
     <div class="col-9 m-1">

@@ -6,6 +6,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @chatter = Chatter.new #reply用
     @chatters = @user.chatters_with_rechatters.page(params[:page]).per(20)
     @works = @user.works.with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
     @chatter_favorites = @user.chatter_favorites.includes([:chatter, :chatter_user, :chatter_reply_to_chatters]).order(created_at: :desc).page(params[:page]).per(20)

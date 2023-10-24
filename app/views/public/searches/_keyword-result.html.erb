@@ -6,7 +6,7 @@
       <div class="col-4 d-flex justify-content-around">
         <div>
           <%= link_to user_path(user) do %>
-            <%= image_tag user.get_profile_image(60, 60), style: "object-fit: cover; width: 60px; height: 60px;" %>
+            <%= image_tag user.get_profile_image(60, 60), class: "rounded", style: "object-fit: cover; width: 60px; height: 60px;" %>
           <% end %>
         </div>
         <div class="d-inline-block text-truncate mx-1">

@@ -18,7 +18,7 @@
           </h3>
           <div class="d-flex align-items-center mt-1">
             <%= link_to user_path(favorite.work_user), class: "text-decoration-none" do %>
-              <%= image_tag favorite.work_user.get_profile_image(50, 50) %>
+              <%= image_tag favorite.work_user.get_profile_image(50, 50), class: "rounded" %>
             <% end %>
             <p class="ml-2 mt-1 text-truncate">
               <%= link_to user_path(favorite.work_user), class: "text-light" do %>

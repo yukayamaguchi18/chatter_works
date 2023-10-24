@@ -26,10 +26,14 @@ class Public::ChattersController < ApplicationController
   def destroy
     @chatter = Chatter.find(params[:id])
     @chatter.delete
-    @user = User.find(current_user.id)
-    @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
-    flash.now[:notice] = "Chatterを削除しました"
-    # destroy.js.erbを参照する
+    if (controller_path == 'homes' && action_name == 'top')
+      @user = User.find(current_user.id)
+      @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
+      flash.now[:notice] = "Chatterを削除しました"
+      # destroy.js.erbを参照する
+    else
+      redirect_to request.referrer, notice: "Chatterを削除しました"
+    end
   end
 
   def reply
@@ -45,10 +49,14 @@ class Public::ChattersController < ApplicationController
         unless @reply.save
           render 'error'  # error.js.erbを参照する
         else
-          @user = User.find(current_user.id)
-          @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
-          flash.now[:notice] = "Replyを投稿しました"
-          # reply.js.erbを参照する
+          if (controller_path == 'homes' && action_name == 'top')
+            @user = User.find(current_user.id)
+            @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
+            flash.now[:notice] = "Replyを投稿しました"
+            # reply.js.erbを参照する
+          else
+            redirect_to request.referrer, notice: "Replyを投稿しました"
+          end
         end
       end
   end

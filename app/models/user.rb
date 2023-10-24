@@ -117,7 +117,7 @@ class User < ApplicationRecord
     relation.where(user_id: self.followings_with_userself.pluck(:id))
             .or(relation.where(id: Rechatter.where(user_id: self.followings_with_userself.pluck(:id)).distinct.pluck(:chatter_id)))
             .where("NOT EXISTS(SELECT 1 FROM rechatters sub WHERE rechatters.chatter_id = sub.chatter_id AND rechatters.created_at < sub.created_at)")
-            .includes(:user, :reply_to_chatters)
+            .includes([:user, :reply_to_chatters, user: { profile_image_attachment: :blob } ])
             .order(Arel.sql("CASE WHEN rechatters.created_at IS NULL THEN chatters.created_at ELSE rechatters.created_at END DESC"))
   end
 

@@ -14,7 +14,7 @@
         <tr>
           <td class="align-middle">
             <%= link_to user_path(request.sender) do %>
-              <%= image_tag request.sender.get_profile_image(50, 50) %>
+              <%= image_tag request.sender.get_profile_image(50, 50), class: "rounded" %>
             <% end %>
           </td>
           <td class="align-middle">

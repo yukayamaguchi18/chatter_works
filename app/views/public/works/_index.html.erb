@@ -5,8 +5,14 @@
     <div class="py-2 px-4">
       <div class="row">
         <div class="col-4 d-flex align-items-center">
-          <%= link_to work_path(work) do %>
-            <%= image_tag work.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+          <% unless work.user.is_public == true || current_user.following?(work.user) || work.user == current_user %>
+            <%= link_to work_path(work) do %>
+              <%= image_tag 'no_work_image.jpg', style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+            <% end %>
+          <% else %>
+            <%= link_to work_path(work) do %>
+              <%= image_tag work.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+            <% end %>
           <% end %>
         </div>
         <div class="col-8">
@@ -17,7 +23,7 @@
           </h3>
           <div class="d-flex align-items-center mt-1">
             <%= link_to user_path(work.user), class: "text-decoration-none" do %>
-              <%= image_tag work.user.get_profile_image(50, 50) %>
+              <%= image_tag work.user.get_profile_image(50, 50), class: "rounded" %>
             <% end %>
             <p class="ml-2 mt-1 text-truncate">
               <%= link_to user_path(work.user), class: "text-light" do %>

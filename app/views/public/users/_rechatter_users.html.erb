@@ -12,7 +12,7 @@
         <tr>
           <td class="align-middle">
             <%= link_to user_path(rechatter.user) do %>
-              <%= image_tag rechatter.user.get_profile_image(50, 50) %>
+              <%= image_tag rechatter.user.get_profile_image(50, 50), class: "rounded" %>
             <% end %>
           </td>
           <td class="align-middle"><%= rechatter.user.name %></td>
