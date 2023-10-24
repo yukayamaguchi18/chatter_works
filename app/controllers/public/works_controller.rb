@@ -77,7 +77,25 @@ class Public::WorksController < ApplicationController
   # end
 
   def tl_update
-    @works = Work.includes([:user]).with_attached_work_image.timeline(current_user).page(params[:page]).per(10)
+    # Work timeline用@works定義
+    tags = current_user.tags
+    tags.each_with_index do |tag, i|
+      work_tags = WorkTag.where(tag_id: tag.id)
+      if i == 0
+        work_tags.each_with_index do |work_tag, j|
+          @works = Work.where(id: work_tag.work_id) if j == 0
+          @works = @works.or(Work.where(id: work_tag.work_id))
+        end
+      else
+        work_tags.each do |work_tag|
+          @works = @works.or(Work.where(id: work_tag.work_id))
+        end
+      end
+    end
+    unless @works.blank?
+      @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+    end
+    # Work timeline用定義ここまで
   end
 
   def favorite_users
