@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "seedの実行を開始"
+
 guestpass = SecureRandom.urlsafe_base64
 
 users = [
@@ -614,3 +616,5 @@ replies = [
 replies.each do |reply|
   Reply.find_or_create_by!(reply)
 end
+
+puts "seedの実行が完了しました"
