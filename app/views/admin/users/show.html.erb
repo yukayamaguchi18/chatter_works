@@ -47,16 +47,24 @@
     <!-- タブ -->
     <ul class="nav nav-tabs nav-fill">
       <li class="nav-item">
-        <a href="#chatters" class="nav-link active" data-toggle="tab">Chatters</a>
+        <a href="#chatters" class="nav-link active" data-toggle="tab">
+          <%= @user.chatters_count %> Chatters
+        </a>
       </li>
       <li class="nav-item">
-        <a href="#works" class="nav-link" data-toggle="tab">Works</a>
+        <a href="#works" class="nav-link" data-toggle="tab">
+          <%= @user.works_count %> Works
+        </a>
       </li>
       <li class="nav-item">
-        <a href="#chatter-favorites" class="nav-link" data-toggle="tab">Chatter Favorites</a>
+        <a href="#chatter-favorites" class="nav-link" data-toggle="tab">
+          <%= @user.chatter_favorites_count %> Chatter Favorites
+        </a>
       </li>
       <li class="nav-item">
-        <a href="#work-favorites" class="nav-link" data-toggle="tab">Works Favorites</a>
+        <a href="#work-favorites" class="nav-link" data-toggle="tab">
+          <%= @user.work_favorites_count %> Works Favorites
+        </a>
       </li>
     </ul>
 

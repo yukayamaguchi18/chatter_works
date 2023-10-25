@@ -33,7 +33,11 @@
         </div>
       </div>
       <div class="modal-footer actions">
-        <%= f.submit "Post",class: "btn btn-outline-success"%>
+        <% if work.new_record? %>
+          <%= f.submit "Post",class: "btn btn-outline-success"%>
+        <% else %>
+          <%= f.submit "Edit",class: "btn btn-outline-success"%>
+        <% end %>
       </div>
 
       <% end %>

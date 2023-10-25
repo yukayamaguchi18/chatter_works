@@ -18,10 +18,10 @@
             <% end %>
           </div>
           <div class="col-9">
-            <p>
-              <%= reply_to.user.name %>
-              <%= reply_to.created_at.strftime('%Y/%m/%d %H:%M') %>
-            </p>
+            <div class="d-flex justify-content-between">
+              <p class="font-weight-bold"><%= reply_to.user.name %></p>
+              <p><%= reply_to.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+            </div>
             <p><%= raw Rinku.auto_link(h(safe_join(reply_to.body.split("\n"),tag(:br)))) %></p>
           </div>
         </div>

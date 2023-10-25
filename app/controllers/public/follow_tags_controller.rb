@@ -14,7 +14,7 @@ class Public::FollowTagsController < ApplicationController
       # user.rbのsave_tagメソッドで新たにタグを保存
       @user.save_tag(tag_list)
       @tags = @user.tags
-      @tag_list = @user.tags.pluck(:name).join(',') # タグ編集欄の初期値設定用に定義
+      @follow_tags = @user.tags.pluck(:name).join(',') # タグ編集欄の初期値設定用に定義
 
       # Work timeline用@works定義
       tags = current_user.tags

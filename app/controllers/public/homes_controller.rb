@@ -23,7 +23,7 @@ class Public::HomesController < ApplicationController
       @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
     end
     # Work timeline用定義ここまで
-    @tag_list = @user.tags.pluck(:name).join(',') # タグ編集欄の初期値設定用に定義
+    @follow_tags = @user.tags.pluck(:name).join(',') # タグ編集欄の初期値設定用に定義
     @chatter = Chatter.new
     @work = Work.new
     @reply = Reply.new

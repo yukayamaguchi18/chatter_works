@@ -11,7 +11,7 @@
       <%= link_to user_path(work.user) do %>
         <%= image_tag work.user.get_profile_image(50, 50), class: "rounded" %>
       <% end %>
-      <p class="ml-2 mt-1 text-truncate">
+      <p class="ml-2 mt-1 text-truncate font-weight-bold">
         <%= link_to user_path(work.user), class: "text-light" do %>
           <%= work.user.name %>
         <% end %>
