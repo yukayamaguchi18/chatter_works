@@ -1,6 +1,6 @@
 class Public::WorksController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:destroy]
+  before_action :ensure_correct_user, only: [:destroy, :update]
   before_action :ensure_deactivated_user, only: [:show, :favorite_users]
 
   def show
@@ -58,24 +58,24 @@ class Public::WorksController < ApplicationController
     end
   end
 
-  # タグのみ編集用action 使用保留 現行はworks#updateを流用
-  # def update_tags
-  #   @work = Work.find(params[:id])
-  #   tag_list = params[:work][:name].split(',')
-  #   if @work.update(work_params)
-  #     @old_relations = WorkTag.where(work_id: @work.id)
-  #     @old_relations.each do |relation|
-  #       relation.delete
-  #     end
-  #     @work.save_tag(tag_list)
-  #     @tags = @work.tags
-  #     @tag_list = @work.tags.pluck(:name).join(',')
-  #     flash.now[:notice] = 'Tagを編集しました'
-  #     # update_tags.js.erbを参照する
-  #   else
-  #     render 'error'  # error.js.erbを参照する
-  #   end
-  # end
+  # タグのみ編集用action 投稿者以外のユーザーも実行可
+  def update_tags
+    @work = Work.find(params[:id])
+    tag_list = params[:work][:tag_name].split(',')
+    if @work.update(work_tag_params)
+      @old_relations = WorkTag.where(work_id: @work.id)
+      @old_relations.each do |relation|
+        relation.delete
+      end
+      @work.save_tag(tag_list)
+      @tags = @work.tags
+      @tag_list = @work.tags.pluck(:name).join(',')
+      flash.now[:notice] = 'Tagを編集しました'
+      # update_tags.js.erbを参照する
+    else
+      render 'error'  # error.js.erbを参照する
+    end
+  end
 
   def tl_update
     # Work timeline用@works定義
@@ -121,6 +121,10 @@ class Public::WorksController < ApplicationController
 
     def work_params
       params.require(:work).permit(:title, :caption, :user_id, :work_image)
+    end
+
+    def work_tag_params
+      params.require(:work).permit()
     end
 
     def ensure_correct_user

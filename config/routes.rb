@@ -56,8 +56,7 @@ Rails.application.routes.draw do
       resource :work_favorites, only: [:create, :destroy, :index]
       member do
         get :favorite_users
-        # patch :update_tags
-        # タグのみ編集用route 使用保留 現行はworks#update流用
+        patch :update_tags # タグのみ編集用route 使用保留 現行はworks#update流用
       end
       collection do
         get :tl_update
