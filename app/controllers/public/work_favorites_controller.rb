@@ -8,12 +8,16 @@ class Public::WorkFavoritesController < ApplicationController
     @work = Work.find(params[:work_id])
     @favorite = current_user.work_favorites.new(work_id: @work.id)
     @favorite.save
+    @work = Work.find(params[:work_id])
+    # create.js.erbを参照する
   end
 
   def destroy
     @work = Work.find(params[:work_id])
     @favorite = current_user.work_favorites.find_by(work_id: @work.id)
     @favorite.destroy
+    @work = Work.find(params[:work_id])
+    # destroy.js.erbを参照する
   end
 
 end
