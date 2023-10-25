@@ -1,6 +1,7 @@
 class Public::ChattersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:destroy]
+  before_action :destroyed?, only: [:show, :destroy, :favorite_users, :rechatter_users]
   before_action :ensure_deactivated_user, only: [:show, :favorite_users, :rechatter_users]
 
   def show
@@ -102,6 +103,13 @@ class Public::ChattersController < ApplicationController
       @user = @chatter.user
       unless @user == current_user
         flash[:alert] = "アクセス権限がありません"
+        redirect_to error_path
+      end
+    end
+
+    def destroyed?
+      unless @chatter = Chatter.find_by(id: params[:id])
+        flash[:alert] = "存在しない・または削除された投稿です"
         redirect_to error_path
       end
     end

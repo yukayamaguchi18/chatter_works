@@ -1,6 +1,7 @@
 class Public::WorksController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:destroy, :update]
+  before_action :destroyed?, only: [:show, :update, :destroy, :update_tags, :favorite_users]
   before_action :ensure_deactivated_user, only: [:show, :favorite_users]
 
   def show
@@ -132,6 +133,13 @@ class Public::WorksController < ApplicationController
       @user = @work.user
       unless @user == current_user
         flash[:alert] = "アクセス権限がありません"
+        redirect_to error_path
+      end
+    end
+
+    def destroyed?
+      unless @work = Work.find_by(id: params[:id])
+        flash[:alert] = "存在しない・または削除された投稿です"
         redirect_to error_path
       end
     end
