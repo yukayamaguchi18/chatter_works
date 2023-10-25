@@ -34,6 +34,9 @@ class Public::HomesController < ApplicationController
     end
   end
 
+  def error
+  end
+
   private
 
   def before_login_redirect

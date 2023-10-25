@@ -35,8 +35,8 @@ class Public::RelationshipsController < ApplicationController
     def ensure_deactivated_user
       @user = User.find(params[:user_id])
       unless @user.is_active == true
-        flash[:alert] = "退会済みユーザーのページです"
-        redirect_to request.referer
+        flash[:alert] = "退会済みのユーザーです"
+        redirect_to error_path
       end
     end
 

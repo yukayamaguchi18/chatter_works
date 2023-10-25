@@ -58,7 +58,7 @@ class Public::FollowTagsController < ApplicationController
       redirect_to request.referer
     else
       flash[:alert] = "すでにFollow Tagに追加済みです"
-      redirect_to request.referer
+      redirect_to error_path
     end
   end
 
@@ -72,7 +72,7 @@ class Public::FollowTagsController < ApplicationController
       redirect_to request.referer
     else
       flash[:alert] = "すでにFollow Tagから削除済みです"
-      redirect_to request.referer
+      redirect_to error_path
     end
   end
 

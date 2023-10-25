@@ -51,13 +51,13 @@ class Public::UsersController < ApplicationController
       @user = User.find(params[:id])
       unless @user == current_user
         flash[:alert] = "アクセス権限がありません"
-        redirect_to request.referer
+        redirect_to error_path
       end
     end
 
     def ensure_guest_user
       if current_user.guest_user?
-        redirect_to request.referer, notice: "ゲストユーザーはユーザー情報を編集できません。"
+        redirect_to error_path, notice: "ゲストユーザーはユーザー情報を編集できません。"
       end
     end
 
@@ -69,7 +69,7 @@ class Public::UsersController < ApplicationController
       @user = User.find(params[:id])
       unless @user.is_active == true
         flash[:alert] = "退会済みユーザーのページです"
-        redirect_to request.referer
+        redirect_to error_path
       end
     end
 

@@ -55,7 +55,7 @@ class Public::FollowRequestsController < ApplicationController
       @user = User.find_by(id: @request.receiver_id)
       unless @user == current_user
         flash[:alert] = "アクセス権限がありません"
-        redirect_to request.referer
+        redirect_to error_path
       end
     end
 
@@ -63,7 +63,7 @@ class Public::FollowRequestsController < ApplicationController
       @user = User.find(params[:user_id])
       unless @user.is_active == true
         flash[:alert] = "退会済みユーザーのページです"
-        redirect_to request.referer
+        redirect_to error_path
       end
     end
 

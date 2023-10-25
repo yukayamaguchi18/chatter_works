@@ -1,5 +1,6 @@
 class Public::WorksController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:destroy]
   before_action :ensure_deactivated_user, only: [:show, :favorite_users]
 
   def show
@@ -122,12 +123,21 @@ class Public::WorksController < ApplicationController
       params.require(:work).permit(:title, :caption, :user_id, :work_image)
     end
 
+    def ensure_correct_user
+      @work = Work.find(params[:id])
+      @user = @work.user
+      unless @user == current_user
+        flash[:alert] = "アクセス権限がありません"
+        redirect_to error_path
+      end
+    end
+
     def ensure_deactivated_user
       @work = Work.find(params[:id])
       @user = @work.user
       unless @user.is_active == true
-        flash[:alert] = "退会済みユーザーのページです"
-        redirect_to request.referer
+        flash[:alert] = "退会済みユーザーの投稿です"
+        redirect_to error_path
       end
     end
 
