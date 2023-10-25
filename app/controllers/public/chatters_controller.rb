@@ -1,4 +1,6 @@
 class Public::ChattersController < ApplicationController
+  include ActionView::Helpers::UrlHelper
+
   before_action :authenticate_user!
   before_action :ensure_deactivated_user, only: [:show, :favorite_users, :rechatter_users]
 
@@ -26,9 +28,15 @@ class Public::ChattersController < ApplicationController
   def destroy
     @chatter = Chatter.find(params[:id])
     @chatter.delete
-    if (controller_path == 'homes' && action_name == 'top')
+    path = Rails.application.routes.recognize_path(request.referer) # 条件分岐用 遷移元パスを取得
+    if path[:controller] == "public/homes" && path[:action] == "top" # 遷移元コントローラ・アクションで分岐
       @user = User.find(current_user.id)
       @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
+      flash.now[:notice] = "Chatterを削除しました"
+      # destroy.js.erbを参照する
+    elsif path[:controller] == "public/users" && path[:action] == "show"
+      @user = User.find(path[:id]) # 遷移元URLのidを取得
+      @chatters = @user.chatters_with_rechatters.page(params[:page]).per(20)
       flash.now[:notice] = "Chatterを削除しました"
       # destroy.js.erbを参照する
     else
@@ -49,9 +57,15 @@ class Public::ChattersController < ApplicationController
         unless @reply.save
           render 'error'  # error.js.erbを参照する
         else
-          if (controller_path == 'homes' && action_name == 'top')
+          path = Rails.application.routes.recognize_path(request.referer) # 条件分岐用 遷移元パスを取得
+          if path[:controller] == "public/homes" && path[:action] == "top" # 遷移元コントローラ・アクションで分岐
             @user = User.find(current_user.id)
             @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
+            flash.now[:notice] = "Replyを投稿しました"
+            # reply.js.erbを参照する
+          elsif path[:controller] == "public/users" && path[:action] == "show"
+            @user = User.find(path[:id]) # 遷移元URLのidを取得
+            @chatters = @user.chatters_with_rechatters.page(params[:page]).per(20)
             flash.now[:notice] = "Replyを投稿しました"
             # reply.js.erbを参照する
           else

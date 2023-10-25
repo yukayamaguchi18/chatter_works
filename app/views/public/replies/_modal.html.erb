@@ -2,7 +2,7 @@
       role="dialog" aria-labelledby="label1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <%= form_with model: @chatter, url: reply_chatters_path, local: false do |f| %>
+      <%= form_with model: @chatter, url: reply_chatters_path, method: :post, local: false do |f| %>
       <div class="modal-header">
         <h5 class="modal-title">New Reply</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -42,7 +42,7 @@
       <div class="modal-header">
         <h5 class="modal-title">Other Replies</h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body overflow-scroll">
         <%= render 'public/chatters/index', chatters: reply_to.reply_to_chatters %>
       </div>
 
