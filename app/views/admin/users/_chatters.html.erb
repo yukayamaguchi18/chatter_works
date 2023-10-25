@@ -50,7 +50,7 @@
           </p>
           <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"),tag(:br)))) %></p>
           <div class="d-flex justify-content-around">
-            <div class="text-muted mr-1">
+            <div class="text-muted mr-1" style="cursor: pointer;" data-toggle="modal" data-target="#reply-modal_<%= chatter.id %>">
               <i class="fa-solid fa-reply"></i><%= chatter.reply_to_chatters_count %>
             </div>
             <div class="d-flex text-muted mr-1">
@@ -71,7 +71,7 @@
     <hr color="#6c757d">
     </div>
 
-      <!--reply modal-->
-      <%= render 'public/replies/modal', reply_to: chatter %>
+    <!--reply modal-->
+    <%= render 'admin/users/replies', reply_to: chatter %>
   <% end %>
 <% end %>

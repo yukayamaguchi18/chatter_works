@@ -84,7 +84,7 @@ for i in 7..11 do
       introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       is_public: true,
       is_active: true,
-      password: "000000"
+      password: ENV['TEST_USER_PASS']
   }
   User.create!(user) unless User.find_by(email: user[:email])
 end
@@ -92,7 +92,7 @@ end
 admin = {
   id: 1,
   email: 'admin@example.com',
-  password: 'admintest'
+  password: ENV['TEST_USER_PASS']
 }
 Admin.create!(admin) unless Admin.find_by(email: admin[:email])
 
