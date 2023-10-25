@@ -27,7 +27,7 @@ class Public::ChattersController < ApplicationController
 
   def destroy
     @chatter = Chatter.find(params[:id])
-    @chatter.delete
+    @chatter.destroy
     path = Rails.application.routes.recognize_path(request.referer) # 条件分岐用 遷移元パスを取得
     if path[:controller] == "public/homes" && path[:action] == "top" # 遷移元コントローラ・アクションで分岐
       @user = User.find(current_user.id)

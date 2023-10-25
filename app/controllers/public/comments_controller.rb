@@ -18,7 +18,7 @@ class Public::CommentsController < ApplicationController
   def destroy
     @work = Work.find(params[:work_id])
     comment = Comment.find_by(id: params[:id], work_id: params[:work_id])
-    comment.delete
+    comment.destroy
     @comments = @work.comments.includes([:user])
     flash.now[:notice] = "Commentを削除しました"
     # destroy.js.erbを参照する
