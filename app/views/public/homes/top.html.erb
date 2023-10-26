@@ -1,7 +1,7 @@
 <div class="container-fluid p-3">
   <div class="d-flex">
     <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 95vh">
-      <%= link_to tl_update_chatters_path, remote: true, class: "btn btn-outline-success btn-block" do %>
+      <%= link_to update_tl_chatters_path, remote: true, class: "btn btn-outline-success btn-block" do %>
         <i class="fa-solid fa-rotate-left"></i>
       <% end %>
       <div class="chatters">
@@ -13,7 +13,7 @@
     </div>
     <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 95vh">
       <div class="d-flex">
-        <%= link_to tl_update_works_path, remote: true, class: "btn btn-outline-success btn-block mx-1" do %>
+        <%= link_to update_tl_works_path, remote: true, class: "btn btn-outline-success btn-block mx-1" do %>
           <i class="fa-solid fa-rotate-left"></i>
         <% end %>
         <button type="button" class="btn btn-outline-success mr-1" data-toggle="modal" data-target="#follow-tags-modal">

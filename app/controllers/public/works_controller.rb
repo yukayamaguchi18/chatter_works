@@ -78,7 +78,7 @@ class Public::WorksController < ApplicationController
     end
   end
 
-  def tl_update
+  def update_tl
     # Work timeline用@works定義
     tags = current_user.tags
     tags.each_with_index do |tag, i|

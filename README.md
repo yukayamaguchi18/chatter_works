@@ -3,6 +3,9 @@
 ## サイト概要
 ### サイトテーマ
 クリエイターとそのファンのためのイラスト投稿×日常と思いのシェア
+
+### アプリケーション
+[Chatter+Works](http://35.78.54.19/)
 ​
 ### テーマを選んだ理由
 短い文章投稿をメインとしたサービスやイラスト投稿サービスといった個々の機能を持ったサービスはすでに存在しており、クリエイターやそのファンはそれらのサービスを複合的に利用して発信することが多い状況です。<br>
@@ -31,7 +34,11 @@
 - イラスト作品や短文投稿をきっかけにユーザー同士が交流する
 ​
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
+- [実装機能リスト](https://docs.google.com/spreadsheets/d/1e2o6q7AfDS03_uVFXlcJ__eVLTiCtA3U76arris03tc/edit?usp=sharing)
+- [ER図](https://drive.google.com/file/d/1rcMJ7NraZMxwXrS_z5iS9Apc0DW23Klv/view?usp=drive_link)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1K1Rf3sFQD0-NnejEu7dZ-qSYJ-nKOlRX/edit?usp=drive_link&ouid=113672341716295634510&rtpof=true&sd=true)
+- [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1OfLEKpP4P9lzzA23tTEaFP2WN7kvZKNO9vuXCl216eE/edit?usp=drive_link)
+- [UI-Flow](https://drive.google.com/file/d/1RIN426fEK0uoC51G6vQMxn3APvlsREMo/view?usp=drive_link)
 ​
 ## 開発環境
 - OS：Linux(CentOS)

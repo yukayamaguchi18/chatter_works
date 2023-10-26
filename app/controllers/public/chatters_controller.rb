@@ -8,11 +8,6 @@ class Public::ChattersController < ApplicationController
     @chatter = Chatter.includes([:user]).find(params[:id])
   end
 
-  def new
-    @chatter = Chatter.new
-    @chatter.user_id = current_user.id
-  end
-
   def create
     @chatter = Chatter.new(chatter_params)
     @chatter.user_id = current_user.id
@@ -75,7 +70,7 @@ class Public::ChattersController < ApplicationController
       end
   end
 
-  def tl_update
+  def update_tl
     @user = User.find(current_user.id)
     @chatters = @user.followings_chatters_with_rechatters.page(params[:page]).per(20)
   end

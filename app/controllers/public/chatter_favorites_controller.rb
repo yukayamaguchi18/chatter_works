@@ -1,9 +1,6 @@
 class Public::ChatterFavoritesController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-  end
-
   def create
     @chatter = Chatter.find(params[:chatter_id])
     @favorite = current_user.chatter_favorites.new(chatter_id: @chatter.id)
