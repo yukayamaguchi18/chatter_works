@@ -62,7 +62,10 @@
 
   <div class="col-12">
     <% unless @user.is_public == true || current_user.following?(@user) || @user == current_user %>
-      <p class="m-3">このユーザーの情報は非公開です</p>
+      <p class="alert alert-dark m-3">
+        このユーザーの情報は非公開です。</br>
+        閲覧する場合はフォローリクエストしてください。
+      </p>
     <% else %>
       <!-- タブ -->
       <ul class="nav nav-tabs nav-fill">

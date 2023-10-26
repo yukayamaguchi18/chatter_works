@@ -26,9 +26,9 @@ class Public::SearchesController < ApplicationController
         @chatters = Chatter.search(word) if i == 0
         @chatters = @chatters.merge(@chatters.search(word))
       end
-      #search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
-      @chatters = @chatters.search_range(current_user)
       unless @chatters.blank?
+        #search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
+        @chatters = @chatters.search_range(current_user)
         @chatters = @chatters.includes([:user, :reply_to_chatters, user: { profile_image_attachment: :blob }]).order(created_at: :desc).page(params[:page]).per(20)
       end
       # work検索結果

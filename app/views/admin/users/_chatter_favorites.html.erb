@@ -1,5 +1,5 @@
 <% if chatter_favorites.blank? %>
-  <p class="m-3">データはありません</p>
+  <p class="alert alert-dark m-3">お気に入りはありません</p>
 <% else %>
   <% chatter_favorites.each do |favorite| %>
     <div class="py-2 px-4">

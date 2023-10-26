@@ -1,8 +1,8 @@
 <table class="table text-light m-3">
   <thead>
     <tr>
-      <th>ユーザー</th>
-      <th>名前</th>
+      <th>User</th>
+      <th>Name</th>
       <th></th>
     </tr>
   </thead>
@@ -14,7 +14,10 @@
             <%= image_tag user.get_profile_image(50, 50), class: "rounded" %>
           <% end %>
         </td>
-        <td><%= user.name %></td>
+        <td>
+          <%= link_to user.name, user_path(user), class: "text-light" %>
+          <%= render 'public/users/lock', user: user %>
+        </td>
         <td>
           <% unless user == current_user %>
             <div class="follow-btn_<%= user.id %>">

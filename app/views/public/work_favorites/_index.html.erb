@@ -1,13 +1,19 @@
 <% if work_favorites.blank? %>
-  <p class="m-3">データはありません</p>
+  <p class="alert alert-dark m-3">お気に入りはありません</p>
 <% else %>
 
   <% work_favorites.each do |favorite| %>
     <div class="py-2 px-4">
       <div class="row">
         <div class="col-4 d-flex align-items-center">
-          <%= link_to work_path(favorite.work) do %>
-            <%= image_tag favorite.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+          <% unless favorite.work_user.is_public == true || current_user.following?(favorite.work_user) || favorite.work_user == current_user %>
+            <%= link_to work_path(favorite.work) do %>
+              <%= image_tag 'no_work_image.jpg', style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+            <% end %>
+          <% else %>
+            <%= link_to work_path(favorite.work) do %>
+              <%= image_tag favorite.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+            <% end %>
           <% end %>
         </div>
         <div class="col-8">
@@ -24,6 +30,7 @@
               <%= link_to user_path(favorite.work_user), class: "text-light" do %>
                 <%= favorite.work_user.name %>
               <% end %>
+              <%= render 'public/users/lock', user: favorite.work_user %>
             </p>
           </div>
           <p class="text-muted text-nowrap text-right mt-1">

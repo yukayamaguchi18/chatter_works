@@ -4,4 +4,4 @@ $(".comment-body").val("");
 $("#comment-modal").modal("hide");
 $(".flash-message").html("<%= j(render 'layouts/flash') %>");
 $("#chatter-modal").modal("show");
-$(".chatter-body").val("コメントしました。\n「<%= @comment.body.slice(0, 50) %><% if @comment.body.length > 50 %>...<% end %>」\n<%= @work.title %> / by <%= @work.user.name %>\n<%= @host %>/works/<%= @work.id %>");
+$(".chatter-body").val("コメントしました。\n「<%= raw Rinku.auto_link(h(safe_join(@comment.body.split("\n")," "))).slice(0, 50) %><% if @comment.body.length > 50 %>...<% end %>」\n<%= @work.title %> / by <%= @work.user.name %>\n<%= @host %>/works/<%= @work.id %>");

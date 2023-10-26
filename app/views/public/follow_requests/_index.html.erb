@@ -1,5 +1,5 @@
 <% unless current_user.receiving_requests.exists? %>
-  <p class="m-3">まだフォローリクエストはありません</p>
+  <p class="m-3 alert alert-dark">まだフォローリクエストはありません</p>
 <% else %>
   <table class="table text-light m-3">
     <thead>

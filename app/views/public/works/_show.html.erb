@@ -1,6 +1,6 @@
 <h1><%= work.title%></h1>
 <% unless work.user.is_public == true || current_user.following?(work.user) || work.user == current_user %>
-  <p>非公開ユーザーによる投稿です。<br>
+  <p class="alert alert-dark m-3">非公開ユーザーによる投稿です。<br>
   閲覧するには投稿ユーザーをフォローしてください。</p>
 <% else %>
   <%= image_tag work.work_image, style: "width: 100%;" %>
@@ -25,6 +25,7 @@
   </div>
 
   <div>
+  <% if work.user.is_public == true || current_user.following?(work.user) || work.user == current_user %>
     <div class="d-flex text-muted text-nowrap text-right mt-1">
       <div class="d-flex mx-2">
         <i class="fa-solid fa-comment mt-1"></i>
@@ -37,6 +38,7 @@
       </div>
       <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
     </div>
+  <% end %>
     <% if work.user == current_user %>
       <div class="d-flex justify-content-end">
         <%= link_to 'Destroy Work', work_path(work), method: :delete, class: "btn btn-sm btn-danger mx-1", data: { confirm: "削除しますか？" } %>
@@ -50,32 +52,38 @@
   </div>
 </div>
 
-<p class="text-break m-4">
+<p class="text-break my-4 mx-5">
   <%= raw Rinku.auto_link(h(safe_join(work.caption.split("\n"),tag(:br)))) %>
 </p>
 
-<div class="d-flex justify-content-start m-2">
-  <h4 class="mr-2">Tags</h4>
-  <div id="tag-btn">
-    <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#tag-modal">
-      <i class="fa-solid fa-tags"></i>
-    </button>
+<div class="my-5">
+  <div class="d-flex justify-content-start m-2">
+    <h4 class="mr-2">Tags</h4>
+    <div id="tag-btn">
+      <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#tag-modal">
+        <i class="fa-solid fa-tags"></i>
+      </button>
+    </div>
   </div>
-</div>
-<div class="m-2">
-  <p id="tags">
-    <%= render 'public/work_tags/tags', work: @work, tags: @tags %>
-  </p>
+  <div class="m-2">
+    <p id="tags">
+      <%= render 'public/work_tags/tags', work: @work, tags: @tags %>
+    </p>
+  </div>
 </div>
 
-<div class="d-flex justify-content-start m-2">
-  <h4>Comments</h4>
-  <div id="comment-btn" data-toggle="modal" data-target="#comment-modal">
-    <button type="button" class="btn btn-outline-success mx-2">
-      <i class="fa-solid fa-comment"></i>
-    </button>
+<% if work.user.is_public == true || current_user.following?(work.user) || work.user == current_user %>
+  <div class="my-5">
+    <div class="d-flex justify-content-start m-3">
+      <h4>Comments</h4>
+      <div id="comment-btn" data-toggle="modal" data-target="#comment-modal">
+        <button type="button" class="btn btn-outline-success mx-2">
+          <i class="fa-solid fa-comment"></i>
+        </button>
+      </div>
+    </div>
+    <div class="comments">
+      <%= render 'public/comments/comment', work: @work, comments: @comments %>
+    </div>
   </div>
-</div>
-<div class="comments">
-  <%= render 'public/comments/comment', work: @work, comments: @comments %>
-</div>
+<% end %>

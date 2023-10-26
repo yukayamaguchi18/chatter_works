@@ -1,5 +1,5 @@
 <% if works.blank? %>
-  <p class="m-3">データはありません</p>
+  <p class="m-3 alert alert-dark">まだWorkはありません</p>
 <% else %>
   <% works.each do |work| %>
     <div class="py-2 px-4">
@@ -29,6 +29,7 @@
               <%= link_to user_path(work.user), class: "text-light" do %>
                 <%= work.user.name %>
               <% end %>
+              <%= render 'public/users/lock', user: work.user %>
             </p>
           </div>
           <p class="text-muted text-nowrap text-right mt-1">

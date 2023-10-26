@@ -9,24 +9,26 @@
     </thead>
     <tbody>
       <% favorites.each do |favorite| %>
-        <tr>
-          <td class="align-middle">
-            <%= link_to user_path(favorite.user) do %>
-              <%= image_tag favorite.user.get_profile_image(50, 50), class: "rounded" %>
-            <% end %>
-          </td>
-          <td class="align-middle"><%= favorite.user.name %></td>
-          <td class="align-middle">
-            <% unless favorite.user == current_user %>
-              <div class="follow-btn_<%= favorite.user.id %>">
-                <%= render "public/relationships/follow", user: favorite.user %>
-              </div>
-            <% end %>
-          </td>
-        </tr>
+        <% if favorite.user.is_public == true || current_user.following?(favorite.user) || favorite.user == current_user %>
+          <tr>
+            <td class="align-middle">
+              <%= link_to user_path(favorite.user) do %>
+                <%= image_tag favorite.user.get_profile_image(50, 50), class: "rounded" %>
+              <% end %>
+            </td>
+            <td class="align-middle"><%= favorite.user.name %></td>
+            <td class="align-middle">
+              <% unless favorite.user == current_user %>
+                <div class="follow-btn_<%= favorite.user.id %>">
+                  <%= render "public/relationships/follow", user: favorite.user %>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>ユーザーはいません</p>
+  <p class="alert alert-dark">ユーザーはいません</p>
 <% end %>
