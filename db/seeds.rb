@@ -42,10 +42,10 @@ users = [
   },
   {
     id: 4,
-    email: "robotya@example.com",
-    name: "ロボ屋",
+    email: "miliya@example.com",
+    name: "ミリ屋",
     profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/icon4.png")),filename: 'profile_image.jpg'),
-    introduction: "こいつ、描くぞ！",
+    introduction: %Q{こんなこともあろうかと、関連リンク集を作っておいた\nhttps://example.com},
     is_public: true,
     is_active: true,
     password: ENV['TEST_USER_PASS']
@@ -221,36 +221,36 @@ works = [
     id: 61,
     user_id: 4,
     work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/61.png")),filename: 'work_image.jpg'),
-    title: "両雄並び立つ",
-    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n兄弟機ってサイコー！！}
+    title: "戦闘員",
+    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nアイコン用に描いてみた。}
   },
   {
     id: 62,
     user_id: 4,
     work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/62.png")),filename: 'work_image.jpg'),
-    title: "三倍速い",
-    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n赤いといえば。お約束。}
+    title: "大海を往く",
+    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n練習その１}
   },
   {
     id: 63,
     user_id: 4,
     work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/63.png")),filename: 'work_image.jpg'),
-    title: "必殺！",
-    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n今週ラスト激熱でしたね。}
+    title: "母なる地球",
+    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n練習その２}
   },
   {
     id: 64,
     user_id: 4,
     work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/64.png")),filename: 'work_image.jpg'),
-    title: "蒼穹の",
-    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n青空をバック。いいよね。}
+    title: "戦闘機っぽいの",
+    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n赤いと速そうな気がする}
   },
   {
     id: 65,
     user_id: 4,
     work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/65.png")),filename: 'work_image.jpg'),
-    title: "発進！",
-    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n復活記念}
+    title: "ドック入り",
+    caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n整備中。内部も描きたいな…}
   },
   {
     id: 66,
@@ -448,7 +448,7 @@ chatters = [
   {
     id: 72,
     user_id: 4,
-    body: %Q{投稿しました。\n「発進！ / by ロボ屋」\nhttps://example.com}
+    body: %Q{投稿しました。\n「大海を往く / by ミリ屋」\nhttps://example.com}
   },
   {
     id: 73,
