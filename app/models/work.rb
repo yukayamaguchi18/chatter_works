@@ -46,13 +46,6 @@ class Work < ApplicationRecord
     work_favorites.exists?(user_id: user.id)
   end
 
-  # homes#top TL用メソッド ログインユーザーとそのフォロワーの投稿のみに絞り込み
-  # model内ではcurrent_userメソッドが使えないため、
-  # controller内でcurrent_userを引数に渡してメソッドを使う
-  def self.timeline(user)
-    where(user_id: [user.id, *user.followings]).order(created_at: :desc)
-  end
-
   def self.search(word)
     # あいまい検索
     #   "?"に対してwordが順番に入る

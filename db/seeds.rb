@@ -438,27 +438,27 @@ chatters = [
   {
     id: 70,
     user_id: 2,
-    body: %Q{投稿しました。\n「青い花畑 / by ランド・スケープ」\nhttps://example.com}
+    body: %Q{投稿しました。\n「青い花畑 / by ランド・スケープ」\nhttp://35.78.54.19/works/55}
   },
   {
     id: 71,
     user_id: 3,
-    body: %Q{投稿しました。\n「パスタ / by ビストロあーと」\nhttps://example.com}
+    body: %Q{投稿しました。\n「パスタ / by ビストロあーと」\nhttp://35.78.54.19/works/60}
   },
   {
     id: 72,
     user_id: 4,
-    body: %Q{投稿しました。\n「大海を往く / by ミリ屋」\nhttps://example.com}
+    body: %Q{投稿しました。\n「大海を往く / by ミリ屋」\nhttp://35.78.54.19/works/63}
   },
   {
     id: 73,
     user_id: 5,
-    body: %Q{投稿しました。\n「天空の島 / by 点描世界観」\nhttps://example.com}
+    body: %Q{投稿しました。\n「天空の島 / by 点描世界観」\nhttp://35.78.54.19/works/70}
   },
   {
     id: 74,
     user_id: 6,
-    body: %Q{投稿しました。\n「店員さん / by 青少年委員会」\nhttps://example.com}
+    body: %Q{投稿しました。\n「店員さん / by 青少年委員会」\nhttp://35.78.54.19/works/75}
   },
   {
     id: 75,
@@ -502,7 +502,7 @@ tags = [
   },
   {
     id: 3,
-    name: "ロボット"
+    name: "SF"
   },
   {
     id: 4,
