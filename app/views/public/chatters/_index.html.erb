@@ -29,19 +29,19 @@
         </div>
       <% end %>
       <div class="row">
-        <div class="col-2 mx-auto">
+        <div class="col-2 text-right">
             <%= link_to user_path(chatter.user) do %>
-              <%= image_tag chatter.user.profile_image, class: "rounded m-1", style: "object-fit: contain; width: 100%; max-height: 80%;" %>
+              <%= image_tag chatter.user.get_profile_image(50, 50), class: "rounded m-1" %>
             <% end %>
           <% if chatter.user == current_user %>
-          <div class="position-absolute" style="bottom: 5px;">
+          <div class="text-right">
             <%= link_to chatter_path(chatter), method: :delete, remote: true, class: "btn btn-sm btn-danger m-1", data: { confirm: "削除しますか？" } do %>
               <i class="fa-solid fa-trash-can"></i>
             <% end %>
           </div>
           <% end %>
         </div>
-        <div class="col-9">
+        <div class="col-10">
           <p class="d-flex justify-content-between">
             <%= link_to chatter.user.name, user_path(chatter.user), class: "text-light text-truncate mr-1 font-weight-bold" %>
             <%= render 'public/users/lock', user: chatter.user %>

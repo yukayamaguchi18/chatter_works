@@ -29,19 +29,19 @@
         </div>
       <% end %>
       <div class="row">
-        <div class="col-2 mx-auto">
+        <div class="col-2 text-right">
           <%= link_to user_path(favorite.chatter_user) do %>
             <%= image_tag favorite.chatter_user.get_profile_image(50, 50), class: "rounded m-1" %>
           <% end %>
           <% if favorite.chatter_user == current_user %>
-          <div>
+          <div class="text-right">
             <%= link_to chatter_path(favorite.chatter), method: :delete, remote: true, class: "btn btn-sm btn-danger m-1", data: { confirm: "削除しますか？" } do %>
               <i class="fa-solid fa-trash-can"></i>
             <% end %>
           </div>
           <% end %>
         </div>
-        <div class="col-9">
+        <div class="col-10">
           <p class="d-flex justify-content-between">
             <%= link_to favorite.chatter_user.name, user_path(favorite.chatter_user), class: "text-light text-truncate mr-1 font-weight-bold" %>
             <%= render 'public/users/lock', user: favorite.chatter_user %>
