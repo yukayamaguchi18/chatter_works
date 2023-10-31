@@ -1,5 +1,5 @@
 <%= form_with url: search_path, method: :get do |f| %>
-  <div class="d-flex form-group">
+  <div class="d-flex form-inline">
     <%= f.select :model, options_for_select({ "選択してください": "", Keyword: "Keyword", WorkTag: "WorkTag" }, { selected: @model }), class: "form-control-sm input-group-prepend" %>
     <%= f.text_field :word, value: @word, placeholder: "空白区切りでAND検索", class: "form-control-sm input-group-prepend" %>
     <%= button_tag type: "submit", class: "btn btn-outline-success btn-sm" do %>

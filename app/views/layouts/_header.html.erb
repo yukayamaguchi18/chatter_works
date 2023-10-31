@@ -2,63 +2,65 @@
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <%= link_to root_path do %>
-        <%= image_tag 'Logo.png', class: "navbar-brand" %>
+        <%= image_tag 'Logo.png', class: "navbar-brand", style: "height:auto; width: 100%; max-width: 230px;" %>
       <% end %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto my-2 list-unstyled">
-          <li class="nav-item mx-2 mt-3">
+          <li class="nav-item mx-2 mt-1">
             <%= render 'public/searches/form' %>
           </li>
           <% if user_signed_in? %>
             <% if admin_signed_in? %>
-              <li class="nav-item mx-2 mt-3">
+              <li class="nav-item mx-2 mt-1">
                 <%= link_to user_path(current_user), class: "text-decoration-none text-white" do %>
                   <%= image_tag current_user.get_profile_image(30, 30), class: "rounded" %>
                   My Page
                 <% end %>
               </li>
-              <li class="nav-item mx-2 mt-3">
+              <li class="nav-item mx-2 mt-1">
                 <i class="fa-solid fa-users"></i>
                 <%= link_to "Users", admin_root_path, class: "text-decoration-none text-white" %>
               </li>
-              <li class="nav-item mx-2 mt-3">
+              <li class="nav-item mx-2 mt-1">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <%= link_to "User Log out", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
-              <li class="nav-item mx-2 mt-3">
+              <li class="nav-item mx-2 mt-1">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <%= link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
             <% else %>
-              <li class="nav-item mx-2 mt-3">
+              <li class="nav-item mx-2 mt-1">
                 <%= link_to user_path(current_user), class: "text-decoration-none text-white" do %>
                   <%= image_tag current_user.get_profile_image(30, 30), class: "rounded" %>
                   My Page
                 <% end %>
               </li>
-              <li class="nav-item mx-2 mt-3">
+              <li class="nav-item mx-2 mt-1">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
             <% end %>
           <% elsif admin_signed_in? %>
-            <li class="nav-item mx-2 mt-3">
+            <li class="nav-item mx-2 mt-1">
               <i class="fa-solid fa-users"></i>
               <%= link_to "Users", admin_root_path, class: "text-decoration-none text-white" %>
             </li>
-            <li class="nav-item mx-2 mt-3">
+            <li class="nav-item mx-2 mt-1">
               <i class="fa-solid fa-right-from-bracket"></i>
               <%= link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
             </li>
           <% else %>
-            <li class="nav-item mx-2 mt-3">
+            <li class="nav-item mx-2 mt-1">
               <i class="fa-solid fa-right-to-bracket"></i>
               <%= link_to "Log in", new_user_session_path, class: "text-decoration-none text-white" %>
             </li>
-            <li class="nav-item mx-2 mt-3">
+            <li class="nav-item mx-2 mt-1">
               <i class="fa-solid fa-user-pen"></i>
               <%= link_to "Sign up", new_user_registration_path, class: "text-decoration-none text-white" %>
             </li>
