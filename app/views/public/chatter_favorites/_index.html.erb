@@ -41,7 +41,7 @@
           </div>
           <% end %>
         </div>
-        <div class="col-10">
+        <div class="col-9">
           <p class="d-flex justify-content-between">
             <%= link_to favorite.chatter_user.name, user_path(favorite.chatter_user), class: "text-light text-truncate mr-1 font-weight-bold" %>
             <%= render 'public/users/lock', user: favorite.chatter_user %>
