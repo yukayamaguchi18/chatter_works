@@ -30,9 +30,9 @@
       <% end %>
       <div class="row">
         <div class="col-2 mx-auto">
-            <%= link_to user_path(chatter.user) do %>
-              <%= image_tag chatter.user.get_profile_image(40, 40), class: "rounded m-1" %>
-            <% end %>
+          <%= link_to user_path(chatter.user) do %>
+            <%= image_tag chatter.user.get_profile_image(40, 40), class: "rounded m-1" %>
+          <% end %>
           <% if chatter.user == current_user %>
           <div>
             <%= link_to chatter_path(chatter), method: :delete, remote: true, class: "btn btn-sm btn-danger m-1", data: { confirm: "削除しますか？" } do %>

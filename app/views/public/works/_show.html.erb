@@ -26,14 +26,14 @@
 
   <div>
   <% if work.user.is_public == true || current_user.following?(work.user) || work.user == current_user %>
-    <div class="d-flex text-muted text-nowrap text-right mt-1">
-      <div class="d-flex mx-2">
+    <div class="d-flex text-muted text-right mt-1">
+      <div class="d-flex text-nowrap mx-2">
         <i class="fa-solid fa-comment mt-1"></i>
         <div class="comments-count">
           <%= @work.comments_count %>
         </div>
       </div>
-      <div class="work-favorite-btn_<%= work.id %> mx-2">
+      <div class="work-favorite-btn_<%= work.id %> text-nowrap mx-2">
         <%= render 'public/work_favorites/favorite-btn', work: work %>
       </div>
       <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
