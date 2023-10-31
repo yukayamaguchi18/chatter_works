@@ -1,7 +1,7 @@
 <div class="container p-3">
-  <div class="row d-flex justify-content-center">
+  <div class="row d-flex justify-content-center mx-1">
     <div class="col-3 d-flex justify-content-center align-items-end">
-      <%= image_tag @user.get_profile_image(150, 150), class: "rounded", style: "object-fit: contain; width: 150px; height: 150px;" %>
+      <%= image_tag @user.profile_image, class: "rounded", style: "object-fit: cover; width: 100%;" %>
       <button type="button" class="btn btn-outline-success btn-sm ml-1" data-toggle="modal" data-target="#user-image-modal">
         <i class="fa-solid fa-image"></i>
       </button>
@@ -67,8 +67,9 @@
         閲覧する場合はフォローリクエストしてください。
       </p>
     <% else %>
+
       <!-- タブ -->
-      <ul class="nav nav-tabs nav-fill">
+      <ul class="nav nav-tabs nav-fill d-none d-md-flex">
         <li class="nav-item">
           <a href="#chatters" class="nav-link active" data-toggle="tab">
             <%= @user.chatters_count %> Chatters
@@ -90,7 +91,22 @@
           </a>
         </li>
       </ul>
-      <!-- タブの中身 -->
+
+      <!-- セレクトボックス -->
+      <select class="form-control nav-select d-md-none">
+          <option value="#chatters">Chatters</option>
+          <option value="#works">Works</option>
+          <option value="#chatter-favorites">Chatter Favorites</option>
+          <option value="#work-favorites">Works Favorites</option>
+      </select>
+      <script>
+        $('.nav-select').on('change', function(e) {
+          var id = $(this).val();
+          $('a[href="' + id + '"]').tab('show');
+        });
+      </script>
+
+      <!-- タブ・セレクトボックスの中身 -->
       <div class="tab-content">
         <div id="chatters" class="tab-pane active">
           <div class="chatters">

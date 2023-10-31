@@ -1,6 +1,6 @@
 <div class="container p-3">
   <div class="col-12 text-center pb-5">
-    <%= image_tag 'Logo.png', class: "m-5", style: "height: 60px;" %><br>
+    <%= image_tag 'Logo.png', class: "m-5", style: "height: 60px; max-width: 90%;" %><br>
     <p class="alert alert-light d-inline-block w-50">
       クリエイターとそのファンのための<br>
       イラスト投稿×日常と思いのシェアSNS
@@ -15,12 +15,12 @@
           <td class="text-light"><%= f.label :email, "メールアドレス" %></td>
           <td><span class="text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</span></td>
           </td>
-          <td><%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", class:"form-control w-75" %></td>
+          <td><%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", class:"form-control w-90" %></td>
         </tr>
         <tr>
           <td class="text-light"><%= f.label :password, "パスワード" %></td>
           <td><span class="text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</span></td>
-          <td><%= f.password_field :password,  class:"form-control w-75" %></td>
+          <td><%= f.password_field :password,  class:"form-control w-90" %></td>
         </tr>
       </table>
       <div class="text-right">

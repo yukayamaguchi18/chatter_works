@@ -1,7 +1,7 @@
 <div class="container p-3">
-  <div class="row d-flex justify-content-center">
+  <div class="row d-flex justify-content-center mx-1">
     <div class="col-3 d-flex justify-content-center align-items-end">
-      <%= image_tag @user.get_profile_image(150, 150), class: "rounded", style: "object-fit: contain; width: 150px; height: 150px;" %>
+      <%= image_tag @user.profile_image, class: "rounded", style: "object-fit: cover; width: 100%;" %>
     </div>
     <div class="col-9">
       <h3><%= @user.name %></h3>
@@ -45,7 +45,7 @@
 
   <div class="col-12">
     <!-- タブ -->
-    <ul class="nav nav-tabs nav-fill">
+    <ul class="nav nav-tabs nav-fill d-none d-md-flex">
       <li class="nav-item">
         <a href="#chatters" class="nav-link active" data-toggle="tab">
           <%= @user.chatters_count %> Chatters
@@ -67,6 +67,20 @@
         </a>
       </li>
     </ul>
+
+    <!-- セレクトボックス -->
+    <select class="form-control nav-select d-md-none">
+        <option value="#chatters">Chatters</option>
+        <option value="#works">Works</option>
+        <option value="#chatter-favorites">Chatter Favorites</option>
+        <option value="#work-favorites">Works Favorites</option>
+    </select>
+    <script>
+      $('.nav-select').on('change', function(e) {
+        var id = $(this).val();
+        $('a[href="' + id + '"]').tab('show');
+      });
+    </script>
 
     <!-- タブの中身 -->
     <div class="tab-content">
