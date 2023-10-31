@@ -1,6 +1,6 @@
 <div class="container-fluid p-3">
-  <div class="d-flex">
-    <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 85vh">
+  <div class="d-flex tab-content">
+    <div class="col-12 col-md-6 tab-pane active" id="chatter-tl tab-pane" style="overflow-y: scroll; overflow-x: hidden; height: 85vh">
       <%= link_to update_tl_chatters_path, remote: true, class: "btn btn-outline-success btn-block" do %>
         <i class="fa-solid fa-rotate-left"></i>
       <% end %>
@@ -11,7 +11,7 @@
         <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
       <% end %>
     </div>
-    <div style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 85vh">
+    <div class="col-12 col-md-6 tab-pane" id="work-tl tab-pane" style="overflow-y: scroll; overflow-x: hidden; height: 85vh">
       <div class="d-flex">
         <%= link_to update_tl_works_path, remote: true, class: "btn btn-outline-success btn-block mx-1" do %>
           <i class="fa-solid fa-rotate-left"></i>
@@ -27,18 +27,55 @@
         <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
       <% end %>
     </div>
+
   </div>
-      <div style="position: absolute; bottom: 0; left: 46%;" id="chatter-btn">
+
+  <!--レスポンシブタブ-->
+  <ul class="fixed-bottom nav nav-tabs nav-fill d-md-none d-flex">
+    <li class="nav-item">
+      <a href="#chatter-tl" class="nav-link active" data-toggle="tab">
+        <i class="fa-regular fa-comment-dots"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#work-tl" class="nav-link" data-toggle="tab">
+        <i class="fa-solid fa-pen-fancy"></i>
+      </a>
+    </li>
+  </ul>
+
+      <div style="position: absolute; bottom: 3%; left: 1%;" id="chatter-btn">
         <button type="button" class="btn btn-outline-success rounded-circle mb-4 btn-lg" data-toggle="modal" data-target="#chatter-modal">
           <i class="fa-regular fa-comment-dots"></i>
         </button>
       </div>
-      <div style="position: absolute; bottom: 0; right: 0;" id="work-btn">
+      <div style="position: absolute; bottom: 3%; right: 0;" id="work-btn">
         <button type="button" class="btn btn-outline-success rounded-circle mb-4 mr-4 btn-lg" data-toggle="modal" data-target="#work-modal">
           <i class="fa-solid fa-pen-fancy"></i>
         </button>
       </div>
 </div>
+
+<!--レスポンシブタブ用スクリプト-->
+<script type="text/javascript">
+  const CHANGE_WIDTH = 768; // 変更を検知する横幅
+  const ADD_CLASS = "tab-pane" // 追加するクラス
+
+  $(window).on('load resize', function(){
+    var i_width = $(window).outerWidth(true);
+    if(i_width > CHANGE_WIDTH){
+      if($('#tab-pane').hasClass(ADD_CLASS)){
+      } else {
+        $('#tab-pane').removeClass(ADD_CLASS);
+      }
+    } else {
+      if(!$('#tab-pane').hasClass(ADD_CLASS)){
+      } else {
+        $('#tab-pane').addClass(ADD_CLASS);
+      }
+    }
+  });
+</script>
 
 <!--chatter modal-->
 <%= render 'public/chatters/modal', chatter: @chatter %>
