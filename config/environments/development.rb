@@ -40,7 +40,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
   # config.active_storage.service = :amazon #S3でリサイズする場合はこちらを使用
 
   # Don't care if the mailer can't send.
