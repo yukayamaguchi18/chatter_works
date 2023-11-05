@@ -6,6 +6,7 @@ class Public::WorksController < ApplicationController
 
   def show
     @work = Work.find(params[:id])
+    @work_image_url = "https://image-resize20231103.s3-ap-northeast-1.amazonaws.com/#{@work.work_image.key}-thumbnail.#{@work.work_image.content_type.split('/').pop}"
     @tags = @work.tags
     # タグ編集欄の初期値設定用に定義
     # @workについているタグのnameをpluckで配列にし、','で区切る
