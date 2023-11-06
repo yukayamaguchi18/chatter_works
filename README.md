@@ -39,6 +39,8 @@
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1K1Rf3sFQD0-NnejEu7dZ-qSYJ-nKOlRX/edit?usp=drive_link&ouid=113672341716295634510&rtpof=true&sd=true)
 - [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1OfLEKpP4P9lzzA23tTEaFP2WN7kvZKNO9vuXCl216eE/edit?usp=drive_link)
 - [UI-Flow](https://drive.google.com/file/d/1RIN426fEK0uoC51G6vQMxn3APvlsREMo/view?usp=drive_link)
+- [AWS構成図](https://drive.google.com/file/d/1BKNpXda6eCvztZIN7YISwjCbgjoI6SB0/view?usp=sharing)
+- [AWSインフラ設計図](https://docs.google.com/spreadsheets/d/1sTsffmo5Kq6yqgmLuu6eI_YMDKenJVpqy4vsnVe08C0/edit?usp=sharing)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
