@@ -75,4 +75,4 @@ gem "net-imap"
 
 gem 'counter_culture'
 
-gem "aws-sdk-s3", require: false
+# gem "aws-sdk-s3", require: false
