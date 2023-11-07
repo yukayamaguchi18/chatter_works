@@ -1,6 +1,6 @@
 <div class="container-fluid p-3">
-  <div class="d-flex tab-content">
-    <div class="col-12 col-md-6 tab-pane active" id="chatter-tl tab-pane" style="overflow-y: scroll; overflow-x: hidden; height: 85vh">
+  <div class="d-flex tab-content" id="tab-content">
+    <div class="col-12 col-md-6 chatter-tl tab-pane active" id="tab-pane" style="overflow-y: scroll; overflow-x: hidden; height: 85vh">
       <%= link_to update_tl_chatters_path, remote: true, class: "btn btn-outline-success btn-block" do %>
         <i class="fa-solid fa-rotate-left"></i>
       <% end %>
@@ -11,7 +11,7 @@
         <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
       <% end %>
     </div>
-    <div class="col-12 col-md-6 tab-pane" id="work-tl tab-pane" style="overflow-y: scroll; overflow-x: hidden; height: 85vh">
+    <div class="col-12 col-md-6 work-tl tab-pane" id="tab-pane" style="overflow-y: scroll; overflow-x: hidden; height: 85vh">
       <div class="d-flex">
         <%= link_to update_tl_works_path, remote: true, class: "btn btn-outline-success btn-block mx-1" do %>
           <i class="fa-solid fa-rotate-left"></i>
@@ -33,12 +33,12 @@
   <!--レスポンシブタブ-->
   <ul class="fixed-bottom nav nav-tabs nav-fill d-md-none d-flex">
     <li class="nav-item">
-      <a href="#chatter-tl" class="nav-link active" data-toggle="tab">
+      <a href=".chatter-tl" class="nav-link active" data-toggle="tab">
         <i class="fa-regular fa-comment-dots"></i>
       </a>
     </li>
     <li class="nav-item">
-      <a href="#work-tl" class="nav-link" data-toggle="tab">
+      <a href=".work-tl" class="nav-link" data-toggle="tab">
         <i class="fa-solid fa-pen-fancy"></i>
       </a>
     </li>
@@ -59,19 +59,19 @@
 <!--レスポンシブタブ用スクリプト-->
 <script type="text/javascript">
   const CHANGE_WIDTH = 768; // 変更を検知する横幅
-  const ADD_CLASS = "tab-pane" // 追加するクラス
+  const ADD_CLASS = "tab-content" // 追加するクラス
 
   $(window).on('load resize', function(){
     var i_width = $(window).outerWidth(true);
-    if(i_width > CHANGE_WIDTH){
-      if($('#tab-pane').hasClass(ADD_CLASS)){
-      } else {
-        $('#tab-pane').removeClass(ADD_CLASS);
+    if(i_width < CHANGE_WIDTH){ //windowが768以下
+      if($('#tab-content').hasClass(ADD_CLASS)){
+      } else { //tab-contentクラスがない時
+        $('#tab-content').addClass(ADD_CLASS);
       }
-    } else {
-      if(!$('#tab-pane').hasClass(ADD_CLASS)){
-      } else {
-        $('#tab-pane').addClass(ADD_CLASS);
+    } else { //windowが768以上
+      if(!$('#tab-content').hasClass(ADD_CLASS)){
+      } else { //tab-contentクラスがある時
+        $('#tab-content').removeClass(ADD_CLASS);
       }
     }
   });
