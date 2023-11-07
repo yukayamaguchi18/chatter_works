@@ -1,42 +1,107 @@
-<div class="d-flex no-wrap", style="overflow-x: scroll; overflow-y: hidden; height: 10vh; min-height: 100px;">
-  <% if users.blank? %>
-    <p class="alert alert-dark m-3">ユーザー検索結果はありません</p>
-  <% else %>
-    <% users.each do |user| %>
-      <div class="col-2 d-flex justify-content-around" style="min-width: 250px;">
-        <div>
-          <%= link_to user_path(user) do %>
-            <%= image_tag user.get_profile_image(60, 60), class: "rounded", style: "object-fit: cover; width: 60px; height: 60px;" %>
+<div class="tab-content" id="tab-content">
+  <div class="col-12 d-md-flex no-md-wrap user-result tab-pane", style="overflow-x: scroll; overflow-y: hidden; height: 10vh; min-height: 100px;">
+    <% if users.blank? %>
+      <p class="alert alert-dark m-3">ユーザー検索結果はありません</p>
+    <% else %>
+      <table class="table table-borderless d-md-none">
+        <tbody>
+          <% users.each do |user| %>
+            <tr>
+              <td>
+                <%= link_to user_path(user) do %>
+                  <%= image_tag user.get_profile_image(60, 60), class: "rounded", style: "object-fit: cover; width: 60px; height: 60px;" %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to user.name, user_path(user), class: "text-light" %>
+              </td>
+              <td>
+                <% unless user == current_user %>
+                  <div class="follow-btn_<%= user.id %>">
+                    <%= render "public/relationships/follow", user: user %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
+        </tbody>
+      </table>
+          <% users.each do |user| %>
+        <div class="col-md-2 d-flex justify-content-around" style="min-width: 250px;">
+          <div>
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.get_profile_image(60, 60), class: "rounded", style: "object-fit: cover; width: 60px; height: 60px;" %>
+            <% end %>
+          </div>
+          <div class="d-inline-block text-truncate mx-1">
+            <%= link_to user.name, user_path(user), class: "text-light" %>
+            <% unless user == current_user %>
+              <div class="follow-btn_<%= user.id %>">
+                <%= render "public/relationships/follow", user: user %>
+              </div>
+            <% end %>
+          </div>
+          <div class="bg-secondary py-1 ml-2" style="width: 1px; height: 80%;"></div>
         </div>
-        <div class="d-inline-block text-truncate mx-1">
-          <%= link_to user.name, user_path(user), class: "text-light" %>
-          <% unless user == current_user %>
-            <div class="follow-btn_<%= user.id %>">
-              <%= render "public/relationships/follow", user: user %>
-            </div>
-          <% end %>
-        </div>
-        <div class="bg-secondary py-1 ml-2" style="width: 1px; height: 80%;"></div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="d-flex">
+    <div class="col-12 col-md-6 chatter-result tab-pane active" style="overflow: scroll; overflow-x: hidden; width: 100vw; height: 80vh">
+      <div class="chatters">
+        <%= render 'public/chatters/index', chatters: @chatters %>
       </div>
-    <% end %>
-  <% end %>
-</div>
-<div class="d-flex">
-  <div style="overflow: scroll; overflow-x: hidden; width: 100vw; height: 80vh">
-    <div class="chatters">
-      <%= render 'public/chatters/index', chatters: @chatters %>
+      <% unless @chatters.blank? %>
+        <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+      <% end %>
     </div>
-    <% unless @chatters.blank? %>
-      <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
-    <% end %>
-  </div>
-  <div style="overflow: scroll; overflow-x: hidden; width: 100vw; height: 80vh">
-    <div class="works">
-      <%= render 'public/works/index', works: @works %>
+    <div class="col-12 col-md-6 work-result tab-pane" style="overflow: scroll; overflow-x: hidden; width: 100vw; height: 80vh">
+      <div class="works">
+        <%= render 'public/works/index', works: @works %>
+      </div>
+      <% unless @works.blank? %>
+        <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+      <% end %>
     </div>
-    <% unless @works.blank? %>
-      <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
-    <% end %>
   </div>
 </div>
+
+<!--レスポンシブタブ-->
+<ul class="fixed-bottom nav nav-tabs nav-fill d-md-none d-flex">
+  <li class="nav-item">
+    <a href=".chatter-result" class="nav-link active" data-toggle="tab">
+      <i class="fa-regular fa-comment-dots"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a href=".user-result" class="nav-link active" data-toggle="tab">
+      <i class="fa-solid fa-users"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a href=".work-result" class="nav-link" data-toggle="tab">
+      <i class="fa-solid fa-pen-fancy"></i>
+    </a>
+  </li>
+</ul>
+
+<!--レスポンシブタブ用スクリプト-->
+<script type="text/javascript">
+  const CHANGE_WIDTH = 768; // 変更を検知する横幅
+  const ADD_CLASS = "tab-content" // 追加するクラス
+
+  $(window).on('load resize', function(){
+    var i_width = $(window).outerWidth(true);
+    if(i_width < CHANGE_WIDTH){ //windowが768以下
+      if($('#tab-content').hasClass(ADD_CLASS)){
+      } else { //tab-contentクラスがない時
+        $('#tab-content').addClass(ADD_CLASS);
+      }
+    } else { //windowが768以上
+      if(!$('#tab-content').hasClass(ADD_CLASS)){
+      } else { //tab-contentクラスがある時
+        $('#tab-content').removeClass(ADD_CLASS);
+      }
+    }
+  });
+</script>
