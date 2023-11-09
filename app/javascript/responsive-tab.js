@@ -1,7 +1,7 @@
 const CHANGE_WIDTH = 768; // 変更を検知する横幅
 const ADD_CLASS = "tab-content" // 追加するクラス
 
-$(window).on('load resize', function(){
+$(window).on('turbolinks:load resize', function(){
   var i_width = $(window).outerWidth(true);
   if(i_width < CHANGE_WIDTH){ //windowが768以下
     if($('#tab-content').hasClass(ADD_CLASS)){
