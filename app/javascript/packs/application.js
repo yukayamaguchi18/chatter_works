@@ -14,6 +14,7 @@ window.$ = window.JQuery = JQuery; //create.js.erb等で.modal functionを読み
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import "responsive-tab.js";
 
 Rails.start()
 Turbolinks.start()
