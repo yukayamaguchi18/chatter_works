@@ -11,9 +11,9 @@ import "channels"
 import "jquery";
 import JQuery from 'jquery'; //create.js.erb等で.modal functionを読み込むために追加
 window.$ = window.JQuery = JQuery; //create.js.erb等で.modal functionを読み込むために追加
+import "responsive-tab.js"; //homes#top,keyword searchページでのレスポンシブタブ表示用に追加
 import "popper.js";
 import "bootstrap";
-import "responsive-tab.js"; //homes#top,keyword searchページでのレスポンシブタブ表示用に追加
 import "../stylesheets/application";
 
 Rails.start()
