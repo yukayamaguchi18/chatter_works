@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     get 'tag_link_search' => 'works#tag_link_search'
     patch 'follow_tags' => 'follow_tags#follow_tags'
     get 'error' => 'homes#error'
+    get 'about' => 'homes#about'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

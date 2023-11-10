@@ -42,6 +42,10 @@
                 <% end %>
               </li>
               <li class="nav-item mx-2 mt-1">
+                <i class="fa-solid fa-lightbulb"></i>
+                <%= link_to "About", about_path, class: "text-decoration-none text-white" %>
+              </li>
+              <li class="nav-item mx-2 mt-1">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-decoration-none text-white" %>
               </li>
@@ -56,6 +60,10 @@
               <%= link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-white" %>
             </li>
           <% else %>
+            <li class="nav-item mx-2 mt-1">
+              <i class="fa-solid fa-lightbulb"></i>
+              <%= link_to "About", about_path, class: "text-decoration-none text-white" %>
+            </li>
             <li class="nav-item mx-2 mt-1">
               <i class="fa-solid fa-right-to-bracket"></i>
               <%= link_to "Log in", new_user_session_path, class: "text-decoration-none text-white" %>

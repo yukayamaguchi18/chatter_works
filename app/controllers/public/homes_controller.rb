@@ -1,5 +1,5 @@
 class Public::HomesController < ApplicationController
-  before_action :before_login_redirect
+  before_action :before_login_redirect, only: [:top, :error]
 
   def top
     @user = User.find(current_user.id)
@@ -36,6 +36,9 @@ class Public::HomesController < ApplicationController
   end
 
   def error
+  end
+
+  def about
   end
 
   private
