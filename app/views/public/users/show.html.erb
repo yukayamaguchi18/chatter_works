@@ -2,9 +2,13 @@
   <div class="row d-flex justify-content-center mx-1">
     <div class="col-3 d-flex justify-content-center align-items-end">
       <%= image_tag @user.profile_image, class: "rounded", style: "object-fit: cover; width: 100%;" %>
-      <button type="button" class="btn btn-outline-success btn-sm ml-1" data-toggle="modal" data-target="#user-image-modal">
-        <i class="fa-solid fa-image"></i>
-      </button>
+      <% if @user == current_user %>
+        <% unless @user.guest_user? %>
+          <button type="button" class="btn btn-outline-success btn-sm ml-1" data-toggle="modal" data-target="#user-image-modal">
+            <i class="fa-solid fa-image"></i>
+          </button>
+        <% end %>
+      <% end %>
     </div>
     <div class="col-9">
       <div class="d-flex justify-content-start">
@@ -28,12 +32,12 @@
       <% end %>
       <div class="d-flex justify-content-between">
         <div>
-          <%= link_to followings_user_relationships_path(@user) do %>
+          <%= link_to followings_user_relationships_path(@user), class: "text-decoration-none text-white" do %>
             <span class="followings-count_<%= @user.id %> m-1">
               <%= render "public/relationships/followings-count", user: @user %>
             </span>
           <% end %>
-          <%= link_to followers_user_relationships_path(@user) do %>
+          <%= link_to followers_user_relationships_path(@user), class: "text-decoration-none text-white" do %>
             <span class="followers-count_<%= @user.id %> m-1">
               <%= render "public/relationships/followers-count", user: @user %>
             </span>

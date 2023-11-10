@@ -21,12 +21,12 @@
       <% end %>
       <div class="d-flex justify-content-between">
         <div>
-          <%= link_to followings_user_relationships_path(@user) do %>
+          <%= link_to followings_user_relationships_path(@user), class: "text-decoration-none text-white" do %>
             <span class="m-1">
               <%= render "public/relationships/followings-count", user: @user %>
             </span>
           <% end %>
-          <%= link_to followers_user_relationships_path(@user) do %>
+          <%= link_to followers_user_relationships_path(@user), class: "text-decoration-none text-white" do %>
             <span class="m-1">
               <%= render "public/relationships/followers-count", user: @user %>
             </span>
