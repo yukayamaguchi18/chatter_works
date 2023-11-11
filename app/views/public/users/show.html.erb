@@ -21,15 +21,43 @@
             </div>
           <% end %>
         </div>
-        <% if @user.is_public == true %>
-          <p class="text-muted">
-            public <i class="fa-solid fa-lock-open"></i>
-          </p>
-        <% else %>
-          <p class="text-muted">
-            private <i class="fa-solid fa-lock"></i>
-          </p>
-        <% end %>
+
+        <div class="row">
+          <% if @user == current_user %>
+            <% unless @user.guest_user? %>
+
+              <%= form_with model: @user, local: false, method: :patch do |f| %>
+                <div class="form-group">
+                  <div class="custom-control custom-switch">
+                    <%= f.check_box :is_public, value: @user.is_public, class: "custom-control-input", id: :customSwitch %>
+                  </div>
+                </div>
+              <% end %>
+
+
+              <form action="/users/<%= @user.id %>" method="post">
+                <input type="hidden" name="_method" value="patch" autocomplete="off">
+                <div class="form-group">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" name="user[is_public]" value="<%= @user.is_public %>" class="custom-control-input" id="customSwitch">
+                  </div>
+                </div>
+              </form>
+            <% end %>
+          <% end %>
+          <div class="public">
+            <% if @user.is_public == true %>
+              <p class="text-muted">
+                public <i class="fa-solid fa-lock-open"></i>
+              </p>
+            <% else %>
+              <p class="text-muted">
+                private <i class="fa-solid fa-lock"></i>
+              </p>
+            <% end %>
+          </div>
+        </div>
+
       <div class="d-flex justify-content-between align-items-end mt-auto">
         <div class="pb-1">
           <%= link_to followings_user_relationships_path(@user), class: "text-decoration-none text-white" do %>
