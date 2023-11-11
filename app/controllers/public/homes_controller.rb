@@ -19,7 +19,11 @@ class Public::HomesController < ApplicationController
         end
       end
     end
-    @works = @works.or(Work.where(user_id: current_user.id))
+    if @works.blank?
+      @works = Work.where(user_id: current_user.id)
+    else
+      @works = @works.or(Work.where(user_id: current_user.id))
+    end
     unless @works.blank?
       @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
     end
