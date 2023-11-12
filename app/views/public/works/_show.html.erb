@@ -3,7 +3,9 @@
   <p class="alert alert-dark m-3">非公開ユーザーによる投稿です。<br>
   閲覧するには投稿ユーザーをフォローしてください。</p>
 <% else %>
-  <%= image_tag work.work_image, style: "width: 100%;" %>
+  <div class="text-center">
+    <%= image_tag work.work_image, class: "mw-100 vh-100" %>
+  </div>
 <% end %>
 <div class="d-flex justify-content-between m-2">
   <div>
