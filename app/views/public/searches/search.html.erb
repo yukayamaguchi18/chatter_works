@@ -4,6 +4,6 @@
   <% elsif @model == "WorkTag" %>
     <%= render 'public/searches/tag-result', works: @works %>
   <% else %>
-    <p>No results found. Please search again.</p>
+    <p class="alert alert-dark">No results found. Please search again.</p>
   <% end %>
 </div>
