@@ -5,7 +5,7 @@ class Public::WorksController < ApplicationController
   before_action :ensure_deactivated_user, only: [:show, :favorite_users]
 
   def show
-    @work = Work.find(params[:id])
+    @work = Work.includes([work_images_attachments: :blob ]).find(params[:id])
     @tags = @work.tags
     # タグ編集欄の初期値設定用に定義
     # @workについているタグのnameをpluckで配列にし、','で区切る
@@ -40,7 +40,7 @@ class Public::WorksController < ApplicationController
       end
       @works = @works.or(Work.where(user_id: current_user.id))
       unless @works.blank?
-        @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+        @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_images.order(created_at: :desc).page(params[:page]).per(10)
       end
       # Work timeline用定義ここまで
 
@@ -117,7 +117,7 @@ class Public::WorksController < ApplicationController
     end
     @works = @works.or(Work.where(user_id: current_user.id))
     unless @works.blank?
-      @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+      @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_images.order(created_at: :desc).page(params[:page]).per(10)
     end
     # Work timeline用定義ここまで
     return unless request.xhr?
@@ -135,7 +135,7 @@ class Public::WorksController < ApplicationController
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
     #検索されたタグに紐づく投稿を表示
-    @works = @tag.works.includes([:user]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+    @works = @tag.works.includes([:user]).order(created_at: :desc).page(params[:page]).per(10)
     @model = "WorkTag"
     @word = @tag.name
     return unless request.xhr?
@@ -148,7 +148,7 @@ class Public::WorksController < ApplicationController
   private
 
     def work_params
-      params.require(:work).permit(:title, :caption, :user_id, :work_image)
+      params.require(:work).permit(:title, :caption, :user_id, work_images: [])
     end
 
     def work_tag_params

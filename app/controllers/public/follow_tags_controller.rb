@@ -33,7 +33,7 @@ class Public::FollowTagsController < ApplicationController
       end
       @works = @works.or(Work.where(user_id: current_user.id))
       unless @works.blank?
-        @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+        @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_images.order(created_at: :desc).page(params[:page]).per(10)
       end
       # Work timeline用定義ここまで
       return unless request.xhr?

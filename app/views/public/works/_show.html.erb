@@ -4,7 +4,9 @@
   閲覧するには投稿ユーザーをフォローしてください。</p>
 <% else %>
   <div class="text-center">
-    <%= image_tag work.work_image, class: "mw-100 vh-100" %>
+    <% work.work_images.each do |image| %>
+      <%= image_tag image, class: "mw-100 mh-100 mb-1" %>
+    <% end %>
   </div>
 <% end %>
 <div class="d-flex justify-content-between m-2">

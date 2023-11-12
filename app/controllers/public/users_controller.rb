@@ -8,9 +8,9 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @chatter = Chatter.new #reply用
     @chatters = @user.chatters_with_rechatters.page(params[:page]).per(20)
-    @works = @user.works.with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+    @works = @user.works.with_attached_work_images.order(created_at: :desc).page(params[:page]).per(10)
     @chatter_favorites = @user.chatter_favorites.includes([:chatter, :chatter_user, :chatter_reply_to_chatters]).order(created_at: :desc).page(params[:page]).per(20)
-    @work_favorites = @user.work_favorites.includes([:work, :work_image, :work_user, work: { work_image_attachment: :blob }]).order(created_at: :desc).page(params[:page]).per(10)
+    @work_favorites = @user.work_favorites.includes([:work, :work_user]).order(created_at: :desc).page(params[:page]).per(10)
     return unless request.xhr?
     case params[:type]
     when 'chatter', 'work', 'chatter_favorite', 'work_favorite'

@@ -25,7 +25,7 @@ class Public::HomesController < ApplicationController
       @works = @works.or(Work.where(user_id: current_user.id))
     end
     unless @works.blank?
-      @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_image.order(created_at: :desc).page(params[:page]).per(10)
+      @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).order(created_at: :desc).page(params[:page]).per(10)
     end
     # Work timeline用定義ここまで
     @follow_tags = @user.tags.pluck(:name).join(',') # タグ編集欄の初期値設定用に定義

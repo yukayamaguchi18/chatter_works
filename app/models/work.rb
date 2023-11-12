@@ -3,7 +3,7 @@ class Work < ApplicationRecord
   validates :title, presence: true, length: {maximum: 50}
   validates :caption, presence: true, length: {maximum: 3000}
 
-  has_one_attached :work_image
+  has_many_attached :work_images
 
   def get_work_image(width, height)
     if self.user.is_public = false

@@ -138,7 +138,7 @@ for i in 2..6 do
     work = {
       id: (n + 1) + 10 * (i - 2),
       user_id: i,
-      work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/no_work_image.jpg")),filename: 'no_image.jpg'),
+      work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/no_work_image.jpg")),filename: 'no_image.jpg'),
       title: "test#{(n + 1) + 10 * (i - 2)}",
       caption: "test#{(n + 1) + 10 * (i - 2)}"
     }
@@ -150,175 +150,175 @@ works = [
   {
     id: 51,
     user_id: 2,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/51.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/51.png")),filename: 'work_image.jpg'),
     title: "サイバー",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nサイバー系の街並み。ギラギラの夜景。}
   },
   {
     id: 52,
     user_id: 2,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/52.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/52.png")),filename: 'work_image.jpg'),
     title: "海底王国",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n海の下の王国とおさかなさんたち。}
   },
   {
     id: 53,
     user_id: 2,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/53.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/53.png")),filename: 'work_image.jpg'),
     title: "大樹",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n大樹。ご神木とかかも。}
   },
   {
     id: 54,
     user_id: 2,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/54.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/54.png")),filename: 'work_image.jpg'),
     title: "カフェキッチン",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nカフェのキッチン。よく行くお店から着想。}
   },
   {
     id: 55,
     user_id: 2,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/55.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/55.png")),filename: 'work_image.jpg'),
     title: "青い花畑",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n街のはずれの花畑。}
   },
   {
     id: 56,
     user_id: 3,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/56.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/56.png")),filename: 'work_image.jpg'),
     title: "フルーツタルト",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n期間限定の食べに行きたい～}
   },
   {
     id: 57,
     user_id: 3,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/57.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/57.png")),filename: 'work_image.jpg'),
     title: "サンドイッチ",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nふらっと入ったお店のがおいしかったので模写}
   },
   {
     id: 58,
     user_id: 3,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/58.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/58.png")),filename: 'work_image.jpg'),
     title: "なんかのトマト煮",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n実家の食卓に出てくる名前のない料理（おいしい）}
   },
   {
     id: 59,
     user_id: 3,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/59.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/59.png")),filename: 'work_image.jpg'),
     title: "グラタン",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nグラタンのおいしい季節になってきましたね}
   },
   {
     id: 60,
     user_id: 3,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/60.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/60.png")),filename: 'work_image.jpg'),
     title: "パスタ",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nおうちで生パスタ初挑戦記念}
   },
   {
     id: 61,
     user_id: 4,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/61.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/61.png")),filename: 'work_image.jpg'),
     title: "戦闘員",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nアイコン用に描いてみた。}
   },
   {
     id: 62,
     user_id: 4,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/62.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/62.png")),filename: 'work_image.jpg'),
     title: "大海を往く",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n練習その１}
   },
   {
     id: 63,
     user_id: 4,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/63.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/63.png")),filename: 'work_image.jpg'),
     title: "母なる地球",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n練習その２}
   },
   {
     id: 64,
     user_id: 4,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/64.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/64.png")),filename: 'work_image.jpg'),
     title: "戦闘機っぽいの",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n赤いと速そうな気がする}
   },
   {
     id: 65,
     user_id: 4,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/65.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/65.png")),filename: 'work_image.jpg'),
     title: "ドック入り",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n整備中。内部も描きたいな…}
   },
   {
     id: 66,
     user_id: 5,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/66.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/66.png")),filename: 'work_image.jpg'),
     title: "街並み",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nお屋敷っぽいのもある}
   },
   {
     id: 67,
     user_id: 5,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/67.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/67.png")),filename: 'work_image.jpg'),
     title: "緑の遺跡",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n谷間にある遺跡}
   },
   {
     id: 68,
     user_id: 5,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/68.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/68.png")),filename: 'work_image.jpg'),
     title: "湖上の街",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nこういう景色ワクワクする}
   },
   {
     id: 69,
     user_id: 5,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/69.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/69.png")),filename: 'work_image.jpg'),
     title: "城からの眺め",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n前回上げたのの別視点ver}
   },
   {
     id: 70,
     user_id: 5,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/70.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/70.png")),filename: 'work_image.jpg'),
     title: "天空の島",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n開拓ゲーム的な。キミだけの最強の島を作ろう！}
   },
   {
     id: 71,
     user_id: 6,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/71.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/71.png")),filename: 'work_image.jpg'),
     title: "メイドさん",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nフリル練習したい}
   },
   {
     id: 72,
     user_id: 6,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/72.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/72.png")),filename: 'work_image.jpg'),
     title: "釣り女子",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n女の子がガジェットいっぱい装備してるの好き}
   },
   {
     id: 73,
     user_id: 6,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/73.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/73.png")),filename: 'work_image.jpg'),
     title: "ハッピーハロウィーン！",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nトリックオアトリート！}
   },
   {
     id: 74,
     user_id: 6,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/74.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/74.png")),filename: 'work_image.jpg'),
     title: "部活中",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n頑張る姿がまぶしい}
   },
   {
     id: 75,
     user_id: 6,
-    work_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/75.png")),filename: 'work_image.jpg'),
+    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/75.png")),filename: 'work_image.jpg'),
     title: "店員さん",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nよく行く本屋の店員さんがいつも親切でたすかる}
   }

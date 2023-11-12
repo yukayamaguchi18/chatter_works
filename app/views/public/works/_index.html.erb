@@ -11,7 +11,7 @@
             <% end %>
           <% else %>
             <%= link_to work_path(work) do %>
-              <%= image_tag work.work_image, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
+              <%= image_tag work.work_images.first, style: "object-fit: cover; width: 100%; min-height: 75%;" %>
             <% end %>
           <% end %>
         </div>
