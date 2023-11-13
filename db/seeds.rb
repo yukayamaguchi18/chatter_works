@@ -178,7 +178,11 @@ works = [
   {
     id: 55,
     user_id: 2,
-    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/55.png")),filename: 'work_image.jpg'),
+    work_images: [
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/55-1.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/55-2.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/55-3.png")),filename: 'work_image.jpg')
+      ],
     title: "青い花畑",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n街のはずれの花畑。}
   },
@@ -213,7 +217,11 @@ works = [
   {
     id: 60,
     user_id: 3,
-    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/60.png")),filename: 'work_image.jpg'),
+    work_images: [
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/60-1.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/60-2.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/60-3.png")),filename: 'work_image.jpg')
+      ],
     title: "パスタ",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nおうちで生パスタ初挑戦記念}
   },
@@ -227,7 +235,11 @@ works = [
   {
     id: 62,
     user_id: 4,
-    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/62.png")),filename: 'work_image.jpg'),
+    work_images: [
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/62-1.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/62-2.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/62-3.png")),filename: 'work_image.jpg')
+      ],
     title: "大海を往く",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\n練習その１}
   },
@@ -255,7 +267,11 @@ works = [
   {
     id: 66,
     user_id: 5,
-    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/66.png")),filename: 'work_image.jpg'),
+    work_images: [
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/66-1.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/66-2.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/66-3.png")),filename: 'work_image.jpg')
+      ],
     title: "街並み",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nお屋敷っぽいのもある}
   },
@@ -318,7 +334,11 @@ works = [
   {
     id: 75,
     user_id: 6,
-    work_images: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/75.png")),filename: 'work_image.jpg'),
+    work_images: [
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/75-1.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/75-2.png")),filename: 'work_image.jpg'),
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/75-3.png")),filename: 'work_image.jpg')
+      ],
     title: "店員さん",
     caption: %Q{※画像と文章はダミーです。画像の背景素材等への利用は固く禁じます。\nよく行く本屋の店員さんがいつも親切でたすかる}
   }
@@ -448,12 +468,12 @@ chatters = [
   {
     id: 72,
     user_id: 4,
-    body: %Q{投稿しました。\n「大海を往く / by ミリ屋」\nhttp://35.78.54.19/works/63}
+    body: %Q{投稿しました。\n「大海を往く / by ミリ屋」\nhttp://35.78.54.19/works/62}
   },
   {
     id: 73,
     user_id: 5,
-    body: %Q{投稿しました。\n「天空の島 / by 点描世界観」\nhttp://35.78.54.19/works/70}
+    body: %Q{投稿しました。\n「街並み / by 点描世界観」\nhttp://35.78.54.19/works/66}
   },
   {
     id: 74,
