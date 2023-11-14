@@ -46,6 +46,10 @@ class User < ApplicationRecord
   # 自分にフォローリクエストしている人
   has_many :receiving_requests, through: :reverse_of_requests, source: :sender
 
+  # 自分が通知を送る側の関係性
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
+  # 自分が通知を受け取る側の関係性
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
   # ゲストログイン用メールアドレス
   GUEST_USER_EMAIL = "guest@example.com"
@@ -143,6 +147,53 @@ class User < ApplicationRecord
      end
   end
 
+  # フォロー通知を作成するメソッド
+  def create_notification_follow!(current_user)
+    # すでにフォロー通知が存在するか検索
+
+    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: 'follow')
+
+    # フォロー通知が存在しない場合のみ、通知レコードを作成
+    if existing_notification.blank?
+      notification = current_user.active_notifications.build(
+        visited_id: self.id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
+  # フォローリクエスト受信通知を作成するメソッド
+  def create_notification_receive_follow_request!(current_user)
+    # すでにフォローリクエスト受信通知が存在するか検索
+
+    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: 'receive_follow_request')
+
+    # フォローリクエスト受信通知が存在しない場合のみ、通知レコードを作成
+    if existing_notification.blank?
+      notification = current_user.active_notifications.build(
+        visited_id: self.id,
+        action: 'receive_follow_request'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
+  # フォローリクエスト承認通知を作成するメソッド
+  def create_notification_allow_follow_request!(current_user)
+    # すでにフォローリクエスト承認通知が存在するか検索
+
+    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: 'allow_follow_request')
+
+    # フォローリクエスト承認通知が存在しない場合のみ、通知レコードを作成
+    if existing_notification.blank?
+      notification = current_user.active_notifications.build(
+        visited_id: self.id,
+        action: 'allow_follow_request'
+      )
+      notification.save if notification.valid?
+    end
+  end
 
   # ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないようにする
   # is_deletedがfalseならtrueを返すようにしている

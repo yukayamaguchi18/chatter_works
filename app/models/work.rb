@@ -21,6 +21,7 @@ class Work < ApplicationRecord
   has_many :work_tags, dependent: :destroy
   has_many :tags, through: :work_tags
   has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   def save_tag(sent_tags)
     # タグが存在していれば、タグの名前を配列として全て取得
@@ -53,5 +54,25 @@ class Work < ApplicationRecord
     #   "#{word}"は、Rubyの式展開
     where('title LIKE ? OR caption LIKE ?', "%#{word}%", "%#{word}%")
   end
+
+  # workへのお気に入り通知機能
+ def create_notification_favorite_work!(current_user)
+   # 同じユーザーが同じ投稿に既にお気に入りしていないかを確認
+   existing_notification = Notification.find_by(work_id: self.id, visitor_id: current_user.id, action: "favorite_work")
+
+   # すでにお気に入りされていない かつ お気に入りしたのが自分ではない場合のみ通知レコードを作成
+   if existing_notification.nil? && current_user != self.user
+     notification = Notification.new(
+       work_id: self.id,
+       visitor_id: current_user.id,
+       visited_id: self.user.id,
+       action: "favorite_work"
+     )
+
+     if notification.valid?
+       notification.save
+     end
+   end
+ end
 
 end

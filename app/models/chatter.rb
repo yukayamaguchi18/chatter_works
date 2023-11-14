@@ -7,6 +7,7 @@ class Chatter < ApplicationRecord
 
   has_many :chatter_favorites, dependent: :destroy
   has_many :rechatters, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   has_many :replying, class_name: 'Reply', foreign_key: 'reply_id', dependent: :destroy
   has_many :replying_to, class_name: 'Reply', foreign_key: 'reply_to_id', dependent: :destroy
@@ -43,5 +44,47 @@ class Chatter < ApplicationRecord
   def self.search_range(user)
     self.where(user_id: [user.id, *user.followings]).or(self.where(users: User.where(is_public: true)))
   end
+
+  # chatterへのお気に入り通知機能
+ def create_notification_favorite_chatter!(current_user)
+   # 同じユーザーが同じ投稿に既にお気に入りしていないかを確認
+   existing_notification = Notification.find_by(chatter_id: self.id, visitor_id: current_user.id, action: "favorite_chatter")
+
+   # すでにお気に入りされていない かつ お気に入りしたのが自分ではない場合のみ通知レコードを作成
+   if existing_notification.nil? && current_user != self.user
+     notification = Notification.new(
+       chatter_id: self.id,
+       visitor_id: current_user.id,
+       visited_id: self.user.id,
+       action: "favorite_chatter"
+     )
+
+     if notification.valid?
+       notification.save
+     end
+   end
+ end
+
+  # rechatter通知機能
+ def create_notification_rechatter!(current_user)
+   # 同じユーザーが同じ投稿に既にお気に入りしていないかを確認
+   existing_notification = Notification.find_by(chatter_id: self.id, visitor_id: current_user.id, action: "rechatter")
+
+   # すでにお気に入りされていない かつ お気に入りしたのが自分ではない場合のみ通知レコードを作成
+   if existing_notification.nil? && current_user != self.user
+     notification = Notification.new(
+       chatter_id: self.id,
+       visitor_id: current_user.id,
+       visited_id: self.user.id,
+       action: "rechatter"
+     )
+
+     if notification.valid?
+       notification.save
+     end
+   end
+ end
+
+
 
 end
