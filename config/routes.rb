@@ -63,6 +63,9 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
       resources :follow_tags, only: [:create, :destroy]
     end
+    resources :notifications, only: [:index] do
+      post :update_checked, on: :collection
+    end
     get 'search' => 'searches#search'
     get 'tag_link_search' => 'works#tag_link_search'
     patch 'follow_tags' => 'follow_tags#follow_tags'
