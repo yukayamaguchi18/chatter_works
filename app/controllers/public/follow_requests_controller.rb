@@ -8,6 +8,7 @@ class Public::FollowRequestsController < ApplicationController
     @user = User.find(params[:user_id])
     @request = FollowRequest.new(receiver_id: @user.id, sender_id: current_user.id)
     @request.save
+    @user.create_notification_receive_follow_request!(current_user)
     flash.now[:notice] = "フォローリクエストを送りました"
     # create.js.erbを参照する
   end
@@ -34,6 +35,7 @@ class Public::FollowRequestsController < ApplicationController
       #follow_requestsコントローラーですが、relationshipsのnewメソッドです。
     @follow.save # relationshipに保存。
     @request.destroy # follow_requestは削除
+    @user.create_notification_allow_follow_request!(current_user)
     @requests = FollowRequest.where(receiver_id: current_user.id)
     flash.now[:notice] = "フォローリクエストを承認しました"
     # allow.js.erbを参照する

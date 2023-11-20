@@ -67,10 +67,10 @@ class Chatter < ApplicationRecord
 
   # rechatter通知機能
  def create_notification_rechatter!(current_user)
-   # 同じユーザーが同じ投稿に既にお気に入りしていないかを確認
+   # 同じユーザーが同じ投稿に既にrechatterしていないかを確認
    existing_notification = Notification.find_by(chatter_id: self.id, visitor_id: current_user.id, action: "rechatter")
 
-   # すでにお気に入りされていない かつ お気に入りしたのが自分ではない場合のみ通知レコードを作成
+   # すでにrechatterされていない かつ お気に入りしたのが自分ではない場合のみ通知レコードを作成
    if existing_notification.nil? && current_user != self.user
      notification = Notification.new(
        chatter_id: self.id,
