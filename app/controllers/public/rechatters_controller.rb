@@ -8,6 +8,7 @@ class Public::RechattersController < ApplicationController
     else
       @rechatter = Rechatter.create(user_id: current_user.id, chatter_id: @chatter.id)
     end
+    @chatter.create_notification_rechatter!(current_user)
     flash.now[:notice] = "Rechatterしました"
     @chatter = Chatter.find(params[:chatter_id])
     # create.js.erbを参照する

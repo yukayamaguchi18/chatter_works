@@ -52,6 +52,7 @@ class Public::ChattersController < ApplicationController
         unless @reply.save
           render 'error'  # error.js.erbを参照する
         else
+          @reply.save_notification_reply!(current_user)
           path = Rails.application.routes.recognize_path(request.referer) # 条件分岐用 遷移元パスを取得
           if path[:controller] == "public/homes" && path[:action] == "top" # 遷移元コントローラ・アクションで分岐
             @user = User.find(current_user.id)

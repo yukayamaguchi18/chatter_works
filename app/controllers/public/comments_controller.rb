@@ -9,6 +9,7 @@ class Public::CommentsController < ApplicationController
     unless @comment.save
       render 'error'  # error.js.erbを参照する
     end
+    @comment.save_notification_comment!(current_user)
     @comments = @work.comments.includes([:user])
     @host = request.protocol + request.host # create.js.erbで投稿したWorkのURL生成に使用
     flash.now[:notice] = "Commentを投稿しました"

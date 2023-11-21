@@ -6,7 +6,7 @@ class Reply < ApplicationRecord
   counter_culture :reply_to, column_name: "reply_to_chatters_count"
 
  # リプライ通知を作成するメソッド
- def save_notification_comment!(current_user, reply_id, visited_id)
+ def save_notification_reply!(current_user)
    notification = current_user.active_notifications.build(
      chatter_id: self.reply_id,
      reply_id: self.id,

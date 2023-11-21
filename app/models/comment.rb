@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
   counter_culture :work
 
  # コメント通知を作成するメソッド
- def save_notification_comment!(current_user, comment_id, visited_id)
+ def save_notification_comment!(current_user)
    notification = current_user.active_notifications.build(
      work_id: self.work_id,
      comment_id: self.id,

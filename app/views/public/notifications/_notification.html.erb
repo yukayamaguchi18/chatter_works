@@ -12,44 +12,96 @@
       <!-- 通知の種類に応じて表示内容を切り替え -->
       <% case notification.action
       when 'follow' then %>
-        <strong><%= visitor.name %></strong>さんがあなたをフォローしました
+        <span>
+          <%= link_to user_path(notification.visitor), class: "text-light" do %>
+            <strong><%= visitor.name %></strong>
+          <% end %>
+          さんがあなたをフォローしました
+        </span>
+
+      <% when 'receive_follow_request' then %>
+        <span>
+          <%= link_to user_path(notification.visitor), class: "text-light" do %>
+            <strong><%= visitor.name %></strong>
+          <% end %>
+          さんからフォローリクエストが届きました
+        </span>
+
+      <% when 'allow_follow_request' then %>
+        <span>
+          <%= link_to user_path(notification.visitor), class: "text-light" do %>
+            <strong><%= visitor.name %></strong>
+          <% end %>
+          さんへのフォローリクエストが承認されました
+        </span>
+
+      <% when 'favorite_work' then %>
+        <span>
+          <%= link_to user_path(notification.visitor), class: "text-light" do %>
+            <strong><%= visitor.name %></strong>
+          <% end %>
+          さんが
+          <%= link_to work_path(notification.work), class: "text-light" do %>
+            <strong><%= truncate(notification.work.title, length: 10) %>...</strong>
+          <% end %>
+          のWorkにいいねしました
+        </span>
 
 
-      <% when 'favorite_post' then %>
-        <%= link_to post_path(notification.post) do %>
-          <strong><%= visitor.name %></strong>さんが<strong><%= truncate(notification.post.title, length: 10) %></strong>の投稿にいいねしました
-        <% end %>
+      <% when 'favorite_chatter' then %>
+        <div>
+          <span>
+            <%= link_to user_path(notification.visitor), class: "text-light" do %>
+              <strong><%= visitor.name %></strong>
+            <% end %>
+            さんがあなたのChatterにいいねしました
+          </span>
+          <p class="text-muted"><%= truncate(notification.chatter.body, length: 50) %></p>
+        </div>
+
+      <% when 'rechatter' then %>
+        <div>
+          <span>
+            <%= link_to user_path(notification.visitor), class: "text-light" do %>
+              <strong><%= visitor.name %></strong>
+            <% end %>
+            さんがあなたのChatterをRechatterしました
+          </span>
+          <p class="text-muted"><%= truncate(notification.chatter.body, length: 50) %></p>
+        </div>
 
 
-      <% when 'favorite_comment' then %>
-        <%= link_to post_path(notification.comment.post) do %>
-          <strong><%= visitor.name %></strong>さんが<strong>あなたのコメント</strong>にいいねしました
-        <% end %>
-
+      <% when 'reply' then %>
+        <div>
+          <span>
+            <%= link_to user_path(notification.visitor), class: "text-light" do %>
+              <strong><%= visitor.name %></strong>
+            <% end %>
+            さんがあなたにリプライしました
+          </span>
+          <p class="text-muted"><%= truncate(notification.chatter.body, length: 50) %></p>
+        </div>
 
       <% when 'comment' then %>
-
-        <% if notification.post.user_id == visited.id %>
-          <%= link_to post_path(notification.post) do %>
-            <strong><%= visitor.name %></strong>さんが<strong><%= truncate(notification.post.title, length: 10) %></strong>の投稿にコメントしました
-            <% comment = Comment.find_by(id: notification.comment_id) %>
-            <div class="notification-comment">
-              <%= truncate(comment&.comment, length: 30) %>
-            </div>
-          <% end %>
-
-
-        <% else %>
+        <div>
           <span>
-            <%= link_to post_path(notification.post) do %>
-              <strong><%= visitor.name %></strong>さんが<strong><%= notification.post.user.nickname + 'さんの投稿' %></strong>にコメントしました
-              <% comment = Comment.find_by(id: notification.comment_id) %>
-              <div class="notification-comment">
-                <%= truncate(comment&.comment, length: 30) %>
-              </div>
+            <%= link_to user_path(notification.visitor), class: "text-light" do %>
+              <strong><%= visitor.name %></strong>
             <% end %>
+            さんが
+            <%= link_to work_path(notification.work), class: "text-light" do %>
+              <strong><%= truncate(notification.work.title, length: 10) %>...</strong>
+            <% end %>
+            のWorkにコメントしました
           </span>
-        <% end %>
+          <p class="text-muted">
+            <%= truncate(notification.comment.body, length: 50) %>
+            <% if notification.comment.body.length > 50 %>...<% end %>
+          </p>
+        </div>
+
+
+
       <% end %>
 
     </div>
