@@ -24,7 +24,9 @@
           <%= link_to user_path(notification.visitor), class: "text-light" do %>
             <strong><%= visitor.name %></strong>
           <% end %>
-          さんからフォローリクエストが届きました
+          さんから
+          <%= link_to "フォローリクエスト", user_follow_requests_path(user_id: current_user.id), class: "text-light" %>
+          が届きました
         </span>
 
       <% when 'allow_follow_request' then %>
@@ -42,7 +44,10 @@
           <% end %>
           さんが
           <%= link_to work_path(notification.work), class: "text-light" do %>
-            <strong><%= truncate(notification.work.title, length: 10) %>...</strong>
+            <strong>
+              <%= truncate(notification.work.title, length: 10) %>
+              <% if notification.work.title.length > 10 %>...<% end %>
+            </strong>
           <% end %>
           のWorkにいいねしました
         </span>
@@ -56,7 +61,10 @@
             <% end %>
             さんがあなたのChatterにいいねしました
           </span>
-          <p class="text-muted"><%= truncate(notification.chatter.body, length: 50) %></p>
+          <p class="text-muted">
+            <%= truncate(notification.chatter.body, length: 50) %>
+            <% if notification.chatter.body.length > 50 %>...<% end %>
+          </p>
         </div>
 
       <% when 'rechatter' then %>
@@ -67,7 +75,10 @@
             <% end %>
             さんがあなたのChatterをRechatterしました
           </span>
-          <p class="text-muted"><%= truncate(notification.chatter.body, length: 50) %></p>
+          <p class="text-muted">
+            <%= truncate(notification.chatter.body, length: 50) %>
+            <% if notification.chatter.body.length > 50 %>...<% end %>
+          </p>
         </div>
 
 
@@ -79,7 +90,10 @@
             <% end %>
             さんがあなたにリプライしました
           </span>
-          <p class="text-muted"><%= truncate(notification.chatter.body, length: 50) %></p>
+          <p class="text-muted">
+            <%= truncate(notification.chatter.body, length: 50) %>
+            <% if notification.chatter.body.length > 50 %>...<% end %>
+          </p>
         </div>
 
       <% when 'comment' then %>
@@ -90,7 +104,10 @@
             <% end %>
             さんが
             <%= link_to work_path(notification.work), class: "text-light" do %>
-              <strong><%= truncate(notification.work.title, length: 10) %>...</strong>
+              <strong>
+                <%= truncate(notification.work.title, length: 10) %>
+                <% if notification.comment.work.title.length > 10 %>...<% end %>
+              </strong>
             <% end %>
             のWorkにコメントしました
           </span>
@@ -108,5 +125,7 @@
     <div class="small text-muted text-right">
       <%= time_ago_in_words(notification.created_at).upcase %>前
     </div>
+    <hr color="#6c757d">
   </div>
+
 <% end %>

@@ -3,7 +3,7 @@ class Public::NotificationsController < ApplicationController
 
   def index
     @user = current_user
-    @notices = current_user.passive_notifications.order(created_at: :desc)
+    @notices = current_user.passive_notifications.includes(:visitor, :visited, :chatter, :work, :comment, visitor: { profile_image_attachment: :blob }).order(created_at: :desc)
     @unchecked_notifications = @notices.where(is_checked: false)
 
     # 確認済みの通知を取得
