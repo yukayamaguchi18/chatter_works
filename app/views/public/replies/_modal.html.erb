@@ -29,7 +29,7 @@
               <p class="alert alert-dark">非公開ユーザーによる投稿です。<br>
               閲覧するには投稿ユーザーをフォローしてください。</p>
             <% else %>
-              <p><%= raw Rinku.auto_link(h(safe_join(reply_to.body.split("\n"),tag(:br)))) %></p>
+              <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(reply_to.body.split("\n"),tag(:br)))) %></p>
             <% end %>
           </div>
         </div>
