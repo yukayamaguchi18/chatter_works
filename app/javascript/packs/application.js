@@ -16,6 +16,7 @@ import "bootstrap";
 import "../stylesheets/application";
 import "responsive-tab.js"; //homes#top,keyword searchページでのレスポンシブタブ表示用に追加
 import "select-box.js" //users#showページでのレスポンシブタブ表示用に追加
+import "notification-icon.js" //headerのnotification icon表示切替用に追加
 
 Rails.start()
 Turbolinks.start()
