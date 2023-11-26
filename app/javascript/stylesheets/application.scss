@@ -67,6 +67,11 @@ body {
   color: #7ED957
 }
 
+// ポインタを指カーソルに変更する replyアイコンに利用
+.cursor-pointer{
+  cursor: pointer;
+}
+
 /* モーダルの背景 */
 .modal-not-bs {
   display: none;
