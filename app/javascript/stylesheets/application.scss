@@ -78,6 +78,11 @@ body {
   min-height: 75%;
 }
 
+.user-show-profile_image {
+  object-fit: cover;
+  width: 100%;
+}
+
 /* モーダルの背景 */
 .modal-not-bs {
   display: none;
