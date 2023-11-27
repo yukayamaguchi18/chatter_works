@@ -72,6 +72,12 @@ body {
   cursor: pointer;
 }
 
+.work-index-image {
+  object-fit: cover;
+  width: 100%;
+  min-height: 75%;
+}
+
 /* モーダルの背景 */
 .modal-not-bs {
   display: none;
