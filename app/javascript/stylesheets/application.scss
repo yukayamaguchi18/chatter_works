@@ -82,6 +82,21 @@ body {
   max-width: 230px;
 }
 
+.notification-bell-location {
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+}
+
+.notification-bell-size {
+  font-size: 1.5em;
+}
+
+.notification-light-location {
+  top: -0.5em;
+  left: 1em;
+}
+
 .work-index-image {
   object-fit: cover;
   width: 100%;
