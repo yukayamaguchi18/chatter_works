@@ -1,6 +1,6 @@
 <div class="container-fluid p-3">
   <div class="d-flex tab-content" id="tab-content">
-    <div class="col-12 col-md-6 chatter-tl tab-pane active" style="overflow-y: scroll; overflow-x: hidden; height: 85vh">
+    <div class="col-12 col-md-6 chatter-tl tab-pane active overflow-y-scroll overflow-x-hidden" style="height: 85vh">
       <%= link_to update_tl_chatters_path, remote: true, class: "btn btn-outline-success btn-block" do %>
         <i class="fa-solid fa-rotate-left"></i>
       <% end %>
@@ -11,7 +11,7 @@
         <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
       <% end %>
     </div>
-    <div class="col-12 col-md-6 work-tl tab-pane" style="overflow-y: scroll; overflow-x: hidden; height: 85vh">
+    <div class="col-12 col-md-6 work-tl tab-pane overflow-y-scroll overflow-x-hidden" style="height: 85vh">
       <div class="d-flex">
         <%= link_to update_tl_works_path, remote: true, class: "btn btn-outline-success btn-block mx-1" do %>
           <i class="fa-solid fa-rotate-left"></i>
