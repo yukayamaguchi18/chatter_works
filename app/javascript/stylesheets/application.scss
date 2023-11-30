@@ -126,6 +126,18 @@ body {
   background-color: #7ED957
 }
 
+.chatter-post-button {
+  position: absolute;
+  bottom: 3%;
+  left: 1%;
+}
+
+.work-post-button {
+  position: absolute;
+  bottom: 3%;
+  right: 0;
+}
+
 .work-index-image {
   object-fit: cover;
   width: 100%;
