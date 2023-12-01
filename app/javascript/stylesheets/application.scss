@@ -96,6 +96,10 @@ body {
   max-width: 150px;
 }
 
+.min-width-250 {
+  min-width: 250px;
+}
+
 .height-85vh {
   height: 85vh;
 }
@@ -147,6 +151,12 @@ body {
 .user-show-profile_image {
   object-fit: cover;
   width: 100%;
+}
+
+.user-search-profile-image {
+  object-fit: cover;
+  width: 60px;
+  height: 60px;
 }
 
 /* モーダルの背景 */

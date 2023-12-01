@@ -12,7 +12,7 @@
             <tr>
               <td>
                 <%= link_to user_path(user) do %>
-                  <%= image_tag user.get_profile_image(60, 60), class: "rounded", style: "object-fit: cover; width: 60px; height: 60px;" %>
+                  <%= image_tag user.get_profile_image(60, 60), class: "rounded user-search-profile-image" %>
                 <% end %>
               </td>
               <td>
@@ -32,10 +32,10 @@
 
       <div class="col-12 d-md-flex no-md-wrap overflow-auto vw-100 pb-3">
         <% users.each do |user| %>
-          <div class="d-none col-md-2 d-md-flex justify-content-around" style="min-width: 250px;">
+          <div class="d-none col-md-2 d-md-flex justify-content-around min-width-250">
             <div>
               <%= link_to user_path(user) do %>
-                <%= image_tag user.get_profile_image(60, 60), class: "rounded", style: "object-fit: cover; width: 60px; height: 60px;" %>
+                <%= image_tag user.get_profile_image(60, 60), class: "rounded user-search-profile-image" %>
               <% end %>
             </div>
             <div class="d-inline-block text-truncate mx-1">
