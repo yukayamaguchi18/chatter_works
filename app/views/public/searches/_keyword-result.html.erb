@@ -46,7 +46,7 @@
                 </div>
               <% end %>
             </div>
-            <div class="bg-secondary py-1 ml-2" style="width: 1px;"></div>
+            <div class="bg-secondary width-1 py-1 ml-2"></div>
           </div>
         <% end %>
       </div>
@@ -54,7 +54,7 @@
     <% end %>
   </div>
 
-  <div class="col-12 col-md-6 tab-pane active" id="chatter-result" style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 80vh">
+  <div class="col-12 col-md-6 overflow-y-scroll overflow-x-hidden keyword-search-index tab-pane active" id="chatter-result">
     <div class="chatters">
       <%= render 'public/chatters/index', chatters: @chatters %>
     </div>
@@ -63,7 +63,7 @@
     <% end %>
   </div>
 
-  <div class="col-12 col-md-6 tab-pane" id="work-result" style="overflow-y: scroll; overflow-x: hidden; width: 100vw; height: 80vh">
+  <div class="col-12 col-md-6 overflow-y-scroll overflow-x-hidden keyword-search-index tab-pane" id="work-result">
     <div class="works">
       <%= render 'public/works/index', works: @works %>
     </div>

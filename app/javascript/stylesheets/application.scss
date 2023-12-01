@@ -84,6 +84,10 @@ body {
   overflow-x: hidden;
 }
 
+.width-1 {
+  width: 1px;
+}
+
 .width-80 {
   width: 80%;
 }
@@ -157,6 +161,11 @@ body {
   object-fit: cover;
   width: 60px;
   height: 60px;
+}
+
+.keyword-search-index {
+  width: 100vw;
+  height: 80vh
 }
 
 /* モーダルの背景 */
