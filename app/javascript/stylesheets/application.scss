@@ -108,7 +108,7 @@ body {
   height: 85vh;
 }
 
-.logo-location {
+.header-logo-location {
   height: auto;
   width: 100%;
   max-width: 230px;
@@ -132,6 +132,12 @@ body {
 .header-under-line {
   height: 2px;
   background-color: #7ED957
+}
+
+.log-in-logo {
+  object-fit: contain;
+  height: 60px;
+  max-width: 90%;
 }
 
 .chatter-post-button {

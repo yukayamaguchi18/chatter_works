@@ -1,7 +1,7 @@
   <% users.each do |user| %>
     <div class="col-3 d-flex">
       <%= link_to user_path(user) do %>
-        <%= image_tag user.get_profile_image(60, 60), class: "rounded", style: "object-fit: cover; width: 60px; height: 60px;" %>
+        <%= image_tag user.get_profile_image(60, 60), class: "rounded user-search-profile-image" %>
       <% end %>
       <div class="d-inline-block text-truncate mx-1">
         <%= link_to user.name, user_path(user), class: "text-light" %>
@@ -11,6 +11,6 @@
           </div>
         <% end %>
       </div>
-      <div class="bg-secondary py-1 ml-2" style="width: 1px; height: 80%;"></div>
+      <div class="bg-secondary width-1 py-1 ml-2"></div>
     </div>
   <% end %>
