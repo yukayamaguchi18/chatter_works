@@ -2,7 +2,9 @@
 
   <div class="tab-pane" id="user-result">
     <% if users.blank? %>
-      <p class="alert alert-dark m-3">ユーザー検索結果はありません</p>
+      <div class="col-12 d-md-flex no-md-wrap overflow-auto vw-100 pb-3">
+        <p class="m-3 alert alert-dark">ユーザー検索結果はありません</p>
+      </div>
 
     <% else %>
 
