@@ -61,14 +61,14 @@ Rails.application.routes.draw do
         get :update_tl
       end
       resources :comments, only: [:create, :destroy]
-      resources :follow_tags, only: [:create, :destroy]
+      resources :follow_tags, only: [:create, :destroy] # work#showでの個別タグフォロー/解除
     end
     resources :notifications, only: [:index] do
       post :update_checked, on: :collection
     end
     get 'search' => 'searches#search'
-    get 'tag_link_search' => 'works#tag_link_search'
-    patch 'follow_tags' => 'follow_tags#follow_tags'
+    get 'tag_link_search' => 'works#tag_link_search' # work#showのタグリンクからのWorkTag検索
+    patch 'follow_tags' => 'follow_tags#follow_tags' # homes#topでのフォロータグ設定
     get 'error' => 'homes#error'
     get 'about' => 'homes#about'
   end
