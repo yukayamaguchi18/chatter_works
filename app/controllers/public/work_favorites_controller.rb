@@ -17,5 +17,4 @@ class Public::WorkFavoritesController < ApplicationController
     @work = Work.find(params[:work_id])
     # destroy.js.erbを参照する
   end
-
 end

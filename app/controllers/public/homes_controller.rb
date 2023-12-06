@@ -28,13 +28,13 @@ class Public::HomesController < ApplicationController
       @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).order(created_at: :desc).page(params[:page]).per(10)
     end
     # Work timeline用定義ここまで
-    @follow_tags = @user.tags.pluck(:name).join(',') # タグ編集欄の初期値設定用に定義
+    @follow_tags = @user.tags.pluck(:name).join(",") # タグ編集欄の初期値設定用に定義
     @chatter = Chatter.new
     @work = Work.new
     @reply = Reply.new
     return unless request.xhr?
     case params[:type]
-    when 'chatter', 'work'
+    when "chatter", "work"
       render "public/#{params[:type]}s/page"
     end
   end
@@ -46,11 +46,9 @@ class Public::HomesController < ApplicationController
   end
 
   private
-
-  def before_login_redirect
-    unless user_signed_in?
-      redirect_to new_user_session_path, notice: "アクセス権限がありません。ログインしてください。"
+    def before_login_redirect
+      unless user_signed_in?
+        redirect_to new_user_session_path, notice: "アクセス権限がありません。ログインしてください。"
+      end
     end
-  end
-
 end

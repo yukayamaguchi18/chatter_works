@@ -4,7 +4,7 @@ class Public::FollowTagsController < ApplicationController
   def follow_tags
     @user = User.find(current_user.id)
     # タグの入力欄（userのtag_name,本来userテーブルには存在しないカラム）の内容を','で区切ってタグのparamsとして取得
-    tag_list = params[:user][:tag_name].split(',')
+    tag_list = params[:user][:tag_name].split(",")
     if @user.update(user_params)
       # もともとついていたタグを一度すべて削除
       @old_relations = FollowTag.where(user_id: @user.id)
@@ -14,7 +14,7 @@ class Public::FollowTagsController < ApplicationController
       # user.rbのsave_tagメソッドで新たにタグを保存
       @user.save_tag(tag_list)
       @tags = @user.tags
-      @follow_tags = @user.tags.pluck(:name).join(',') # タグ編集欄の初期値設定用に定義
+      @follow_tags = @user.tags.pluck(:name).join(",") # タグ編集欄の初期値設定用に定義
 
       # Work timeline用@works定義
       tags = current_user.tags
@@ -38,19 +38,19 @@ class Public::FollowTagsController < ApplicationController
       # Work timeline用定義ここまで
       return unless request.xhr?
       case params[:type]
-      when 'chatter', 'work'
+      when "chatter", "work"
         render "public/#{params[:type]}s/page"
       end
 
-      flash.now[:notice] = 'Follow Tagsを編集しました'
+      flash.now[:notice] = "Follow Tagsを編集しました"
       # follow_tags.js.erbを参照する
     else
-      render 'error'  # error.js.erbを参照する
+      render "error"  # error.js.erbを参照する
     end
   end
 
   def create
-    #追加するタグを受け取る
+    # 追加するタグを受け取る
     @tag = Tag.find(params[:tag_id])
     @user = User.find(current_user.id)
     @follow_tag = FollowTag.new(user_id: @user.id, tag_id: @tag.id)
@@ -64,7 +64,7 @@ class Public::FollowTagsController < ApplicationController
   end
 
   def destroy
-    #削除するタグを受け取る
+    # 削除するタグを受け取る
     @tag = Tag.find(params[:tag_id])
     @user = User.find(current_user.id)
     @follow_tag = FollowTag.find_by(user_id: @user.id, tag_id: @tag.id)
@@ -81,6 +81,4 @@ class Public::FollowTagsController < ApplicationController
     def user_params
       params.require(:user).permit()
     end
-
-
 end

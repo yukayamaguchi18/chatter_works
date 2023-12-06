@@ -18,5 +18,4 @@ class Public::NotificationsController < ApplicationController
     current_user.passive_notifications.update_all(is_checked: true)
     head :no_content # HTTPステータスコード204を返す（新しいページやデータが必要ない場合に使う）
   end
-
 end

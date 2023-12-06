@@ -13,7 +13,7 @@ class Admin::UsersController < ApplicationController
     @work_favorites = @user.work_favorites.includes([:work, :work_user]).order(created_at: :desc).page(params[:page]).per(10)
     return unless request.xhr?
     case params[:type]
-    when 'chatter', 'work', 'chatter_favorite', 'work_favorite'
+    when "chatter", "work", "chatter_favorite", "work_favorite"
       render "admin/users/#{params[:type]}_page"
     end
   end
@@ -35,5 +35,4 @@ class Admin::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :introduction, :profile_image, :is_public, :is_active)
     end
-
 end

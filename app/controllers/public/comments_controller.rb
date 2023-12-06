@@ -7,7 +7,7 @@ class Public::CommentsController < ApplicationController
     @comment.work_id = @work.id
     @comment.user_id = current_user.id
     unless @comment.save
-      render 'error'  # error.js.erbを参照する
+      render "error"  # error.js.erbを参照する
     end
     @comment.save_notification_comment!(current_user)
     @comments = @work.comments.includes([:user])
@@ -26,9 +26,7 @@ class Public::CommentsController < ApplicationController
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:body, :work_id, :user_id)
-  end
-
+    def comment_params
+      params.require(:comment).permit(:body, :work_id, :user_id)
+    end
 end

@@ -32,7 +32,6 @@ class Public::RelationshipsController < ApplicationController
   end
 
   private
-
     def ensure_deactivated_user
       @user = User.find(params[:user_id])
       unless @user.is_active == true
@@ -40,5 +39,4 @@ class Public::RelationshipsController < ApplicationController
         redirect_to error_path
       end
     end
-
 end

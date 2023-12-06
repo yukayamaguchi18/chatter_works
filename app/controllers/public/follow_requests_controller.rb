@@ -24,7 +24,7 @@ class Public::FollowRequestsController < ApplicationController
 
   def index
     @requests = FollowRequest.where(receiver_id: current_user.id)
-    #ログイン中のユーザーが受け取ったフォローリクエストを全て取得
+    # ログイン中のユーザーが受け取ったフォローリクエストを全て取得
   end
 
   # フォローリクエストを承認する
@@ -32,7 +32,7 @@ class Public::FollowRequestsController < ApplicationController
     @request = FollowRequest.find(params[:id])
     @user = User.find_by(id: @request.sender_id)
     @follow = Relationship.new(followed_id: current_user.id, follower_id: @request.sender_id)
-      #follow_requestsコントローラーですが、relationshipsのnewメソッドです。
+    # follow_requestsコントローラーですが、relationshipsのnewメソッドです。
     @follow.save # relationshipに保存。
     @request.destroy # follow_requestは削除
     @user.create_notification_allow_follow_request!(current_user)
@@ -51,7 +51,6 @@ class Public::FollowRequestsController < ApplicationController
   end
 
   private
-
     def ensure_correct_receiver
       @request = FollowRequest.find(params[:id])
       @user = User.find_by(id: @request.receiver_id)
@@ -68,5 +67,4 @@ class Public::FollowRequestsController < ApplicationController
         redirect_to error_path
       end
     end
-
 end
