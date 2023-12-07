@@ -4,16 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, length: {maximum: 50}
-  validates :introduction, presence: true, length: {maximum: 500}
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :introduction, presence: true, length: { maximum: 500 }
 
   has_one_attached :profile_image
 
   def get_profile_image(width, height)
     unless profile_image.attached?
       # プロフィール画像がない場合はimages/no_profile_image.jpgを参照
-      file_path = Rails.root.join('app/assets/images/no_profile_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join("app/assets/images/no_profile_image.jpg")
+      profile_image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/jpeg")
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
@@ -85,7 +85,7 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-    # フォローされているか判定
+  # フォローされているか判定
   def followed?(user)
     followers.include?(user)
   end
@@ -96,7 +96,7 @@ class User < ApplicationRecord
   end
 
   def rechattered?(chatter_id)
-      self.rechatters.where(chatter_id: chatter_id).exists?
+    self.rechatters.where(chatter_id: chatter_id).exists?
   end
 
   # users#show ユーザーのchatterとrechatter取得メソッド
@@ -129,35 +129,35 @@ class User < ApplicationRecord
   # selfにcurrent_userを指定
   def save_tag(sent_tags)
     # タグが存在していれば、タグの名前を配列として全て取得
-      current_tags = self.tags.pluck(:name) unless self.tags.nil?
-      # 現在取得したタグから送られてきたタグを除いてoldtagとする
-      old_tags = current_tags - sent_tags
-      # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
-      new_tags = sent_tags - current_tags
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # 現在取得したタグから送られてきたタグを除いてoldtagとする
+    old_tags = current_tags - sent_tags
+    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
+    new_tags = sent_tags - current_tags
 
-      # 古いタグを消す
-      old_tags.each do |old|
-        self.tags.destroy　Tag.find_by(name: old)
-      end
+    # 古いタグを消す
+    old_tags.each do |old|
+      self.tags.destroy　Tag.find_by(name: old)
+    end
 
-      # 新しいタグを保存
-      new_tags.each do |new|
-        new_work_tag = Tag.find_or_create_by(name: new.strip) # stripで空白削除
-        self.tags << new_work_tag # タグの配列に新たなタグを追加
-     end
+    # 新しいタグを保存
+    new_tags.each do |new|
+     new_work_tag = Tag.find_or_create_by(name: new.strip) # stripで空白削除
+     self.tags << new_work_tag # タグの配列に新たなタグを追加
+   end
   end
 
   # フォロー通知を作成するメソッド
   def create_notification_follow!(current_user)
     # すでにフォロー通知が存在するか検索
 
-    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: 'follow')
+    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: "follow")
 
     # フォロー通知が存在しない場合のみ、通知レコードを作成
     if existing_notification.blank?
       notification = current_user.active_notifications.build(
         visited_id: self.id,
-        action: 'follow'
+        action: "follow"
       )
       notification.save if notification.valid?
     end
@@ -167,13 +167,13 @@ class User < ApplicationRecord
   def create_notification_receive_follow_request!(current_user)
     # すでにフォローリクエスト受信通知が存在するか検索
 
-    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: 'receive_follow_request')
+    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: "receive_follow_request")
 
     # フォローリクエスト受信通知が存在しない場合のみ、通知レコードを作成
     if existing_notification.blank?
       notification = current_user.active_notifications.build(
         visited_id: self.id,
-        action: 'receive_follow_request'
+        action: "receive_follow_request"
       )
       notification.save if notification.valid?
     end
@@ -183,13 +183,13 @@ class User < ApplicationRecord
   def create_notification_allow_follow_request!(current_user)
     # すでにフォローリクエスト承認通知が存在するか検索
 
-    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: 'allow_follow_request')
+    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: "allow_follow_request")
 
     # フォローリクエスト承認通知が存在しない場合のみ、通知レコードを作成
     if existing_notification.blank?
       notification = current_user.active_notifications.build(
         visited_id: self.id,
-        action: 'allow_follow_request'
+        action: "allow_follow_request"
       )
       notification.save if notification.valid?
     end
@@ -206,7 +206,6 @@ class User < ApplicationRecord
     #   "?"に対してwordが順番に入る
     #   LIKEは、あいまい検索の意味で、"%"は、前後のあいまいという意味
     #   "#{word}"は、Rubyの式展開
-    where('name LIKE ? OR introduction LIKE ?', "%#{word}%", "%#{word}%")
+    where("name LIKE ? OR introduction LIKE ?", "%#{word}%", "%#{word}%")
   end
-
 end
