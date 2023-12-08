@@ -7,7 +7,7 @@
         <div class="col-4 d-flex align-items-center">
           <% unless work.user.is_public == true || current_user.following?(work.user) || work.user == current_user %>
             <%= link_to work_path(work) do %>
-              <%= image_tag 'no_work_image.jpg', class: "work-index-image" %>
+              <%= image_tag "no_work_image.jpg", class: "work-index-image" %>
             <% end %>
           <% else %>
             <%= link_to work_path(work) do %>
@@ -29,18 +29,18 @@
               <%= link_to user_path(work.user), class: "text-light" do %>
                 <%= work.user.name %>
               <% end %>
-              <%= render 'public/users/lock', user: work.user %>
+              <%= render "public/users/lock", user: work.user %>
             </p>
           </div>
           <p class="text-muted text-nowrap text-right mt-1">
-            <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
+            <%= work.created_at.strftime("%Y/%m/%d %H:%M") %>
           </p>
           <div class="d-flex justify-content-around text-muted">
             <div>
               <i class="fa-solid fa-comment"></i><%= work.comments_count %>
             </div>
             <div class="work-favorite-btn_<%= work.id %>">
-              <%= render 'public/work_favorites/favorite-btn', work: work %>
+              <%= render "public/work_favorites/favorite-btn", work: work %>
             </div>
           </div>
         </div>

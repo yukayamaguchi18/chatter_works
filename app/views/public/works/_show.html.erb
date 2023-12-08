@@ -1,4 +1,4 @@
-<h1><%= work.title%></h1>
+<h1><%= work.title %></h1>
 <% unless work.user.is_public == true || current_user.following?(work.user) || work.user == current_user %>
   <p class="alert alert-dark m-3">非公開ユーザーによる投稿です。<br>
   閲覧するには投稿ユーザーをフォローしてください。</p>
@@ -38,14 +38,14 @@
         </div>
       </div>
       <div class="work-favorite-btn_<%= work.id %> text-nowrap mx-2">
-        <%= render 'public/work_favorites/favorite-btn', work: work %>
+        <%= render "public/work_favorites/favorite-btn", work: work %>
       </div>
-      <%= work.created_at.strftime('%Y/%m/%d %H:%M') %>
+      <%= work.created_at.strftime("%Y/%m/%d %H:%M") %>
     </div>
   <% end %>
     <% if work.user == current_user %>
       <div class="d-flex justify-content-end">
-        <%= link_to 'Destroy Work', work_path(work), method: :delete, class: "btn btn-sm btn-danger mx-1", data: { confirm: "削除しますか？" } %>
+        <%= link_to "Destroy Work", work_path(work), method: :delete, class: "btn btn-sm btn-danger mx-1", data: { confirm: "削除しますか？" } %>
         <div id="work-btn">
           <button type="button" class="btn btn-outline-success btn-sm mx-2" data-toggle="modal" data-target="#work-modal">
             Edit
@@ -57,7 +57,7 @@
 </div>
 
 <p class="text-break my-4 mx-5">
-  <%= raw Rinku.auto_link(h(safe_join(work.caption.split("\n"),tag(:br)))) %>
+  <%= raw Rinku.auto_link(h(safe_join(work.caption.split("\n"), tag(:br)))) %>
 </p>
 
 <div class="my-5">
@@ -71,7 +71,7 @@
   </div>
   <div class="m-2">
     <p id="tags">
-      <%= render 'public/work_tags/tags', work: @work, tags: @tags %>
+      <%= render "public/work_tags/tags", work: @work, tags: @tags %>
     </p>
   </div>
 </div>
@@ -87,7 +87,7 @@
       </div>
     </div>
     <div class="comments">
-      <%= render 'public/comments/comment', work: @work, comments: @comments %>
+      <%= render "public/comments/comment", work: @work, comments: @comments %>
     </div>
   </div>
 <% end %>
