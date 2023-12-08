@@ -64,6 +64,13 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     bcrypt (3.1.19)
+    better_html (2.0.2)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -97,6 +104,13 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    erb_lint (0.5.0)
+      activesupport
+      better_html (>= 2.0.1)
+      parser (>= 2.7.1.4)
+      rainbow
+      rubocop
+      smart_properties
     erubi (1.12.0)
     ffi (1.16.2)
     globalid (1.2.1)
@@ -263,6 +277,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    smart_properties (1.17.0)
     spring (4.1.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -317,6 +332,7 @@ DEPENDENCIES
   counter_culture
   devise
   dotenv-rails
+  erb_lint
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   kaminari (~> 1.2.1)

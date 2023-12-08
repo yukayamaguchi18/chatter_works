@@ -49,6 +49,7 @@ group :development do
   gem 'rubocop-minitest', require: false
   gem 'rubocop-packaging', require: false
   gem 'rubocop-rspec'
+  gem 'erb_lint', require: false
 end
 
 group :test do
