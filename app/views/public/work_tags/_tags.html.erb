@@ -5,7 +5,7 @@
     <span class="mx-1">
       <i class="fa-solid fa-tag"></i>
       <%= link_to tag.name, tag_link_search_path(tag_id: tag.id), class: "text-light" %>
-      <%="(#{tag.work_tags_count})" %>
+      <%= "(#{tag.work_tags_count})" %>
       <% if current_user.tags.include?(tag) %>
         <%= link_to work_follow_tag_path(tag_id: tag.id, work_id: work.id), method: :delete, class: "text-light" do %>
           <i class="fa-solid fa-square-minus"></i>

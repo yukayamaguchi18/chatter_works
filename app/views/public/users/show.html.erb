@@ -65,13 +65,13 @@
   </div>
 
   <div class="col-12 mx-auto my-3">
-    <p><%= raw Rinku.auto_link(h(safe_join(@user.introduction.split("\n"),tag(:br)))) %></p>
+    <p><%= raw Rinku.auto_link(h(safe_join(@user.introduction.split("\n"), tag(:br)))) %></p>
   </div>
 
   <div class="col-12">
     <% unless @user.is_public == true || current_user.following?(@user) || @user == current_user %>
       <p class="alert alert-dark m-3">
-        このユーザーの情報は非公開です。</br>
+        このユーザーの情報は非公開です。<br>
         閲覧する場合はフォローリクエストしてください。
       </p>
     <% else %>
@@ -112,27 +112,27 @@
       <div class="tab-content">
         <div id="chatters" class="tab-pane active">
           <div class="chatters">
-            <%= render 'public/chatters/index', chatters: @chatters %>
+            <%= render "public/chatters/index", chatters: @chatters %>
           </div>
-          <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+          <%= link_to_next_page @chatters, "もっと見る", params: { type: :chatter }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-chatter" %>
         </div>
         <div id="works" class="tab-pane">
           <div class="works">
-            <%= render 'public/works/index', works: @works %>
+            <%= render "public/works/index", works: @works %>
           </div>
-          <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+          <%= link_to_next_page @works, "もっと見る", params: { type: :work }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-work" %>
         </div>
         <div id="chatter-favorites" class="tab-pane">
           <div id="chatter-favorites-paginate">
-            <%= render 'public/chatter_favorites/index', chatter_favorites: @chatter_favorites %>
+            <%= render "public/chatter_favorites/index", chatter_favorites: @chatter_favorites %>
           </div>
-          <%= link_to_next_page @chatter_favorites, 'もっと見る', params: { type: :chatter_favorite }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter_favorite' %>
+          <%= link_to_next_page @chatter_favorites, "もっと見る", params: { type: :chatter_favorite }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-chatter_favorite" %>
         </div>
         <div id="work-favorites" class="tab-pane">
           <div id="work-favorites-paginate">
-            <%= render 'public/work_favorites/index', work_favorites: @work_favorites %>
+            <%= render "public/work_favorites/index", work_favorites: @work_favorites %>
           </div>
-          <%= link_to_next_page @work_favorites, 'もっと見る', params: { type: :work_favorite }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work_favorite' %>
+          <%= link_to_next_page @work_favorites, "もっと見る", params: { type: :work_favorite }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-work_favorite" %>
         </div>
       </div>
     <% end %>
@@ -141,4 +141,4 @@
 </div>
 
 <!--user image modal-->
-<%= render 'public/users/image_modal', user: @user %>
+<%= render "public/users/image_modal", user: @user %>

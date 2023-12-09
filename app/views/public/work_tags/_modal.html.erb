@@ -5,7 +5,7 @@
       <%= form_with model: @work, url: update_tags_work_path, local: false do |f| %>
       <div class="modal-header">
         <h5 class="modal-title">Edit Tag</h5>
-        <div id ="works-error"></div>
+        <div id="works-error"></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -14,11 +14,11 @@
 
         <div class="form-group field">
           <%= f.label "Tag（タグを複数つけるには' , 'で区切ってください）" %>
-          <%= f.text_field :tag_name, placeholder: "' , 'でタグを区切る", value: @tag_list, class: 'form-control tag-body' %>
+          <%= f.text_field :tag_name, placeholder: "' , 'でタグを区切る", value: @tag_list, class: "form-control tag-body" %>
         </div>
       </div>
       <div class="modal-footer actions">
-        <%= f.submit "Edit", class: "btn btn-outline-success"%>
+        <%= f.submit "Edit", class: "btn btn-outline-success" %>
       </div>
 
       <% end %>

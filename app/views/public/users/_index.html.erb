@@ -16,7 +16,7 @@
         </td>
         <td>
           <%= link_to user.name, user_path(user), class: "text-light" %>
-          <%= render 'public/users/lock', user: user %>
+          <%= render "public/users/lock", user: user %>
         </td>
         <td>
           <% unless user == current_user %>

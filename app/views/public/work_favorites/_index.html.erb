@@ -8,7 +8,7 @@
         <div class="col-4 d-flex align-items-center">
           <% unless favorite.work_user.is_public == true || current_user.following?(favorite.work_user) || favorite.work_user == current_user %>
             <%= link_to work_path(favorite.work) do %>
-              <%= image_tag 'no_work_image.jpg', class: "work-index-image" %>
+              <%= image_tag "no_work_image.jpg", class: "work-index-image" %>
             <% end %>
           <% else %>
             <%= link_to work_path(favorite.work) do %>
@@ -30,29 +30,24 @@
               <%= link_to user_path(favorite.work_user), class: "text-light" do %>
                 <%= favorite.work_user.name %>
               <% end %>
-              <%= render 'public/users/lock', user: favorite.work_user %>
+              <%= render "public/users/lock", user: favorite.work_user %>
             </p>
           </div>
           <p class="text-muted text-nowrap text-right mt-1">
-            <%= favorite.work.created_at.strftime('%Y/%m/%d %H:%M') %>
+            <%= favorite.work.created_at.strftime("%Y/%m/%d %H:%M") %>
           </p>
           <div class="d-flex justify-content-around text-muted">
             <div>
               <i class="fa-solid fa-comment"></i><%= favorite.work.comments_count %>
             </div>
             <div class="work-favorite-btn_<%= favorite.work.id %>">
-              <%= render 'public/work_favorites/favorite-btn', work: favorite.work %>
+              <%= render "public/work_favorites/favorite-btn", work: favorite.work %>
             </div>
           </div>
         </div>
       </div>
     <hr color="#6c757d">
     </div>
-
-
-
-
-
 
   <% end %>
 <% end %>
