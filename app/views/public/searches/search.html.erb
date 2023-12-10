@@ -1,8 +1,8 @@
 <div class="container-fluid p-3">
   <% if @model == "Keyword" %>
-    <%= render 'public/searches/keyword-result', users: @users, chatters: @chatters, works: @works %>
+    <%= render "public/searches/keyword-result", users: @users, chatters: @chatters, works: @works %>
   <% elsif @model == "WorkTag" %>
-    <%= render 'public/searches/tag-result', works: @works %>
+    <%= render "public/searches/tag-result", works: @works %>
   <% else %>
     <p class="alert alert-dark">No results found. Please search again.</p>
   <% end %>

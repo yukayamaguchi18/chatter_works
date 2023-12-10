@@ -58,19 +58,19 @@
 
   <div class="col-12 col-md-6 overflow-y-scroll overflow-x-hidden keyword-search-index tab-pane active" id="chatter-result">
     <div class="chatters">
-      <%= render 'public/chatters/index', chatters: @chatters %>
+      <%= render "public/chatters/index", chatters: @chatters %>
     </div>
     <% unless @chatters.blank? %>
-      <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+      <%= link_to_next_page @chatters, "もっと見る", params: { type: :chatter }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-chatter" %>
     <% end %>
   </div>
 
   <div class="col-12 col-md-6 overflow-y-scroll overflow-x-hidden keyword-search-index tab-pane" id="work-result">
     <div class="works">
-      <%= render 'public/works/index', works: @works %>
+      <%= render "public/works/index", works: @works %>
     </div>
     <% unless @works.blank? %>
-      <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+      <%= link_to_next_page @works, "もっと見る", params: { type: :work }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-work" %>
     <% end %>
   </div>
 
@@ -94,4 +94,3 @@
     </a>
   </li>
 </ul>
-

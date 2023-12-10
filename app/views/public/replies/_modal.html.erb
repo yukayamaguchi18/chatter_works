@@ -21,29 +21,29 @@
             <div class="d-flex justify-content-between">
               <p class="font-weight-bold">
                 <%= reply_to.user.name %>
-                <%= render 'public/users/lock', user: reply_to.user %>
+                <%= render "public/users/lock", user: reply_to.user %>
               </p>
-              <p><%= reply_to.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+              <p><%= reply_to.created_at.strftime("%Y/%m/%d %H:%M") %></p>
             </div>
             <% unless reply_to.user.is_public == true || current_user.following?(reply_to.user) || reply_to.user == current_user %>
               <p class="alert alert-dark">非公開ユーザーによる投稿です。<br>
               閲覧するには投稿ユーザーをフォローしてください。</p>
             <% else %>
-              <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(reply_to.body.split("\n"),tag(:br)))) %></p>
+              <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(reply_to.body.split("\n"), tag(:br)))) %></p>
             <% end %>
           </div>
         </div>
       </div>
       <div class="modal-body">
         <div class="form-group field">
-          <%= f.text_area :body, placeholder: "声をかけてみよう！", rows: '5', class: 'form-control reply-body' %>
+          <%= f.text_area :body, placeholder: "声をかけてみよう！", rows: "5", class: "form-control reply-body" %>
         </div>
         <%= f.fields_for :reply do |i| %>
           <% i.hidden_field :reply_to_id, value: reply_to.id %>
         <% end %>
       </div>
       <div class="modal-footer actions">
-        <%= f.submit "Reply",class: "btn btn-outline-success"%>
+        <%= f.submit "Reply", class: "btn btn-outline-success" %>
       </div>
       <% end %>
 
@@ -51,7 +51,7 @@
         <h5 class="modal-title">Other Replies</h5>
       </div>
       <div class="modal-body overflow-scroll">
-        <%= render 'public/chatters/index', chatters: reply_to.reply_to_chatters %>
+        <%= render "public/chatters/index", chatters: reply_to.reply_to_chatters %>
       </div>
 
     </div>

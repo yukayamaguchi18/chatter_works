@@ -3,18 +3,18 @@
 
     <h2>Sign up</h2>
 
-    <%= render 'layouts/error', obj: @user %>
+    <%= render "layouts/error", obj: @user %>
     <%= form_with model: @user, url: user_registration_path do |f| %>
       <table class="table table-borderless text-light">
         <tr>
           <td class="align-middle"><%= f.label :ユーザー名 %></td>
           <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td class="align-middle"><%= f.text_field :name, autofocus: true, placeholder:"山田太郎", class: "form-control w-90" %></td>
+          <td class="align-middle"><%= f.text_field :name, autofocus: true, placeholder: "山田太郎", class: "form-control w-90" %></td>
         </tr>
         <tr>
           <td class="align-middle"><%= f.label :メールアドレス %></td>
           <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td class="align-middle"><%= f.email_field :email, placeholder: "sample@example.com", class: 'form-control w-90' %></td>
+          <td class="align-middle"><%= f.email_field :email, placeholder: "sample@example.com", class: "form-control w-90" %></td>
         </tr>
         <tr>
           <td class="align-middle">
@@ -24,14 +24,14 @@
             <% end %>
           </td>
           <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td class="align-middle"><%= f.password_field :password, class: 'form-control w-90' %></td>
+          <td class="align-middle"><%= f.password_field :password, class: "form-control w-90" %></td>
         </tr>
         <tr>
           <td class="align-middle">
             <%= f.label :パスワード（確認用） %>
           </td>
           <td class="align-middle text-muted necessary-field p-1 px-2 ml-2 small rounded">必須</td>
-          <td class="align-middle"><%= f.password_field :password_confirmation, class: 'form-control w-90' %></td>
+          <td class="align-middle"><%= f.password_field :password_confirmation, class: "form-control w-90" %></td>
         </tr>
         <tr>
           <td class="align-middle"><%= f.label :プロフィール画像 %></td>
@@ -58,4 +58,3 @@
 
   </div>
 </div>
-

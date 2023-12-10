@@ -5,10 +5,10 @@
         <i class="fa-solid fa-rotate-left"></i>
       <% end %>
       <div class="chatters">
-        <%= render 'public/chatters/index', chatters: @chatters %>
+        <%= render "public/chatters/index", chatters: @chatters %>
       </div>
       <% unless @chatters.blank? %>
-        <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+        <%= link_to_next_page @chatters, "もっと見る", params: { type: :chatter }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-chatter" %>
       <% end %>
     </div>
     <div class="col-12 col-md-6 work-tl tab-pane overflow-y-scroll overflow-x-hidden height-85vh">
@@ -21,10 +21,10 @@
         </button>
       </div>
       <div class="works">
-        <%= render 'public/works/index', works: @works %>
+        <%= render "public/works/index", works: @works %>
       </div>
       <% unless @works.blank? %>
-        <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+        <%= link_to_next_page @works, "もっと見る", params: { type: :work }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-work" %>
       <% end %>
     </div>
 
@@ -57,11 +57,10 @@
 </div>
 
 <!--chatter modal-->
-<%= render 'public/chatters/modal', chatter: @chatter %>
+<%= render "public/chatters/modal", chatter: @chatter %>
 
 <!--work modal-->
-<%= render 'public/works/modal', work: @work %>
+<%= render "public/works/modal", work: @work %>
 
 <!--follow tags modal-->
-<%= render 'public/follow_tags/modal' %>
-
+<%= render "public/follow_tags/modal" %>

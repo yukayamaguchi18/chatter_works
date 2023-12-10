@@ -3,7 +3,7 @@
     <div class="col-12">
       <h1>Follower Users</h1>
       <% if @users.exists? %>
-        <%= render 'public/users/index', users: @users %>
+        <%= render "public/users/index", users: @users %>
       <% else %>
         <p class="alert alert-dark">フォロワーはいません</p>
       <% end %>
