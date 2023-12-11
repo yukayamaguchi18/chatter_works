@@ -45,26 +45,26 @@
           <p class="d-flex justify-content-between">
             <span>
               <%= link_to favorite.chatter_user.name, user_path(favorite.chatter_user), class: "text-light text-truncate mr-1 font-weight-bold" %>
-              <%= render 'public/users/lock', user: favorite.chatter_user %>
+              <%= render "public/users/lock", user: favorite.chatter_user %>
             </span>
             <span class="text-nowrap text-muted">
-              <%= favorite.chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <%= favorite.chatter.created_at.strftime("%Y/%m/%d %H:%M") %>
             </span>
           </p>
           <% unless favorite.chatter_user.is_public == true || current_user.following?(favorite.chatter_user) || favorite.chatter_user == current_user %>
             <p class="alert alert-dark">非公開ユーザーによる投稿です。<br>
             閲覧するには投稿ユーザーをフォローしてください。</p>
           <% else %>
-            <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(favorite.chatter.body.split("\n"),tag(:br)))) %></p>
+            <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(favorite.chatter.body.split("\n"), tag(:br)))) %></p>
             <div class="d-flex justify-content-around">
               <div class="text-muted cursor-pointer mr-1" data-toggle="modal" data-target="#fav-reply-modal_<%= favorite.chatter.id %>">
                 <i class="fa-solid fa-reply"></i><%= favorite.chatter.reply_to_chatters_count %>
               </div>
               <div class="rechatter-btn_<%= favorite.chatter.id %> mr-1">
-                <%= render 'public/rechatters/rechatter-btn', chatter: favorite.chatter %>
+                <%= render "public/rechatters/rechatter-btn", chatter: favorite.chatter %>
               </div>
               <div class="chatter-favorite-btn_<%= favorite.chatter.id %>">
-                <%= render 'public/chatter_favorites/favorite-btn', chatter: favorite.chatter %>
+                <%= render "public/chatter_favorites/favorite-btn", chatter: favorite.chatter %>
               </div>
             </div>
           <% end %>
@@ -74,7 +74,7 @@
     </div>
 
       <!--reply modal-->
-      <%= render 'public/replies/fav_modal', reply_to: favorite.chatter %>
+      <%= render "public/replies/fav_modal", reply_to: favorite.chatter %>
 
   <% end %>
 <% end %>

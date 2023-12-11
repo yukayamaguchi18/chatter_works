@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <%= link_to root_path do %>
-        <%= image_tag 'Logo.png', class: "navbar-brand header-logo-location" %>
+        <%= image_tag "Logo.png", class: "navbar-brand header-logo-location" %>
       <% end %>
       <div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto my-2 list-unstyled">
           <li class="nav-item mx-2 mt-1">
-            <%= render 'public/searches/form' %>
+            <%= render "public/searches/form" %>
           </li>
           <% if user_signed_in? %>
             <% if admin_signed_in? %>

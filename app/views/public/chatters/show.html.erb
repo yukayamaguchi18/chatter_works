@@ -22,10 +22,10 @@
       <p class="d-flex justify-content-between">
         <span>
           <%= link_to @chatter.user.name, user_path(@chatter.user), class: "text-light text-truncate mr-1 font-weight-bold" %>
-          <%= render 'public/users/lock', user: @chatter.user %>
+          <%= render "public/users/lock", user: @chatter.user %>
         </span>
         <span class="text-nowrap text-muted">
-          <%= @chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <%= @chatter.created_at.strftime("%Y/%m/%d %H:%M") %>
         </span>
       </p>
       <% unless @chatter.user.is_public == true || current_user.following?(@chatter.user) || @chatter.user == current_user %>
@@ -33,17 +33,17 @@
         閲覧するには投稿ユーザーをフォローしてください。</p>
       <% else %>
         <p class="text-break">
-          <%= raw Rinku.auto_link(h(safe_join(@chatter.body.split("\n"),tag(:br)))) %>
+          <%= raw Rinku.auto_link(h(safe_join(@chatter.body.split("\n"), tag(:br)))) %>
         </p>
         <div class="d-flex justify-content-around">
           <div class="text-muted cursor-pointer mr-1" data-toggle="modal" data-target="#reply-modal_<%= @chatter.id %>">
             <i class="fa-solid fa-reply"></i><%= @chatter.reply_to_chatters_count %>
           </div>
           <div class="rechatter-btn_<%= @chatter.id %> mr-1">
-            <%= render 'public/rechatters/rechatter-btn', chatter: @chatter %>
+            <%= render "public/rechatters/rechatter-btn", chatter: @chatter %>
           </div>
           <div class="chatter-favorite-btn_<%= @chatter.id %>">
-            <%= render 'public/chatter_favorites/favorite-btn', chatter: @chatter %>
+            <%= render "public/chatter_favorites/favorite-btn", chatter: @chatter %>
           </div>
         </div>
       <% end %>
@@ -51,8 +51,8 @@
   </div>
   <hr color="#6c757d">
   <h3>Replies</h3>
-  <%= render 'public/chatters/index', chatters: @chatter.reply_to_chatters %>
+  <%= render "public/chatters/index", chatters: @chatter.reply_to_chatters %>
 </div>
 
 <!--reply modal-->
-<%= render 'public/replies/modal', reply_to: @chatter %>
+<%= render "public/replies/modal", reply_to: @chatter %>

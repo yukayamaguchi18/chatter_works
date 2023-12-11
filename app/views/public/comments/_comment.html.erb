@@ -21,7 +21,7 @@
               閲覧するには投稿ユーザーをフォローしてください。</p>
             <% else %>
               <p class="bg-light text-dark rounded m-3 p-2">
-                <%= raw Rinku.auto_link(h(safe_join(comment.body.split("\n"),tag(:br)))) %>
+                <%= raw Rinku.auto_link(h(safe_join(comment.body.split("\n"), tag(:br)))) %>
               </p>
             <% end %>
           </td>

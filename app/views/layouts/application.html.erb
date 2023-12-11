@@ -7,15 +7,15 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/0fb1231c25.js" crossorigin="anonymous"></script>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
   </head>
 
   <body class="h-100 text-white overflow-x-hidden">
-    <%= render 'layouts/header' %>
+    <%= render "layouts/header" %>
     <main class="bg-default min-height-100">
       <div class="flash-message">
-        <%= render 'layouts/flash' %>
+        <%= render "layouts/flash" %>
       </div>
       <%= yield %>
     </main>

@@ -5,7 +5,7 @@
       <%= form_with model: [work, comment], local: false do |f| %>
       <div class="modal-header">
         <h5 class="modal-title">New Comment</h5>
-        <div id ="comments-error"></div>
+        <div id="comments-error"></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,11 +13,11 @@
       <div class="modal-body">
 
         <div class="form-group field">
-          <%= f.text_area :body, placeholder: "作者に思いを伝えよう！", rows: '5', class: 'form-control comment-body' %>
+          <%= f.text_area :body, placeholder: "作者に思いを伝えよう！", rows: "5", class: "form-control comment-body" %>
         </div>
       </div>
       <div class="modal-footer actions">
-        <%= f.submit "Comment",class: "btn btn-outline-success"%>
+        <%= f.submit "Comment", class: "btn btn-outline-success" %>
       </div>
 
       <% end %>

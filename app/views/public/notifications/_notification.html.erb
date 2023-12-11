@@ -5,7 +5,7 @@
     <div class="notification-box d-flex align-items-center">
       <div class="notification-icon">
         <%= link_to user_path(visitor), data: { turbolinks: false } do %>
-          <%= image_tag visitor.get_profile_image(40, 40), class: 'rounded mr-3' %>
+          <%= image_tag visitor.get_profile_image(40, 40), class: "rounded mr-3" %>
         <% end %>
       </div>
 
@@ -79,7 +79,6 @@
             <% if notification.chatter.body.length > 50 %>...<% end %>
           </p>
         </div>
-
 
       <% when 'reply' then %>
         <div>
