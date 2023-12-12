@@ -40,7 +40,7 @@
   </div>
 
   <div class="col-12 mx-auto m-3">
-    <p><%= raw Rinku.auto_link(h(safe_join(@user.introduction.split("\n"),tag(:br)))) %></p>
+    <p><%= raw Rinku.auto_link(h(safe_join(@user.introduction.split("\n"), tag(:br)))) %></p>
   </div>
 
   <div class="col-12">
@@ -81,27 +81,27 @@
     <div class="tab-content">
       <div id="chatters" class="tab-pane active">
         <div class="chatters">
-          <%= render 'admin/users/chatters', chatters: @chatters %>
+          <%= render "admin/users/chatters", chatters: @chatters %>
         </div>
-        <%= link_to_next_page @chatters, 'もっと見る', params: { type: :chatter }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter' %>
+        <%= link_to_next_page @chatters, "もっと見る", params: { type: :chatter }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-chatter" %>
       </div>
       <div id="works" class="tab-pane">
         <div class="works">
-          <%= render 'admin/users/works', works: @works %>
+          <%= render "admin/users/works", works: @works %>
         </div>
-        <%= link_to_next_page @works, 'もっと見る', params: { type: :work }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work' %>
+        <%= link_to_next_page @works, "もっと見る", params: { type: :work }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-work" %>
       </div>
       <div id="chatter-favorites" class="tab-pane">
         <div id="chatter-favorites-paginate">
-          <%= render 'admin/users/chatter_favorites', chatter_favorites: @chatter_favorites %>
+          <%= render "admin/users/chatter_favorites", chatter_favorites: @chatter_favorites %>
         </div>
-        <%= link_to_next_page @chatter_favorites, 'もっと見る', params: { type: :chatter_favorite }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-chatter_favorite' %>
+        <%= link_to_next_page @chatter_favorites, "もっと見る", params: { type: :chatter_favorite }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-chatter_favorite" %>
       </div>
       <div id="work-favorites" class="tab-pane">
         <div id="work-favorites-paginate">
-          <%= render 'admin/users/work_favorites', work_favorites: @work_favorites %>
+          <%= render "admin/users/work_favorites", work_favorites: @work_favorites %>
         </div>
-        <%= link_to_next_page @work_favorites, 'もっと見る', params: { type: :work_favorite }, remote: true, class: 'btn btn-outline-success btn-block more-link', id: 'more-work_favorite' %>
+        <%= link_to_next_page @work_favorites, "もっと見る", params: { type: :work_favorite }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-work_favorite" %>
       </div>
     </div>
 

@@ -55,7 +55,7 @@
             <p class="alert alert-dark">非公開ユーザーによる投稿です。<br>
             閲覧するには投稿ユーザーをフォローしてください。</p>
           <% else %>
-            <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"),tag(:br)))) %></p>
+            <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"), tag(:br)))) %></p>
             <div class="d-flex justify-content-around">
               <div class="text-muted cursor-pointer mr-1" data-toggle="modal" data-target="#reply-modal_<%= chatter.id %>">
                 <i class="fa-solid fa-reply"></i><%= chatter.reply_to_chatters_count %>

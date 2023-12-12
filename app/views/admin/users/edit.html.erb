@@ -3,7 +3,7 @@
     <div class="col-12">
 
       <h1>User Edit</h1>
-      <%= render 'layouts/error', obj: @user %>
+      <%= render "layouts/error", obj: @user %>
       <%= form_with model: [ :admin, @user ], method: :patch do |f| %>
         <table class="table table-borderless text-light">
           <tr>
@@ -12,7 +12,7 @@
           </tr>
           <tr>
             <td><%= f.label :メールアドレス %></td>
-            <td><%= f.email_field :email, class: 'form-control w-90' %></td>
+            <td><%= f.email_field :email, class: "form-control w-90" %></td>
           </tr>
           <tr>
             <td><%= f.label :プロフィール画像 %></td>
@@ -44,7 +44,7 @@
             </td>
           </tr>
         </table>
-        <%= f.submit "Update",class: "btn btn-outline-success" %>
+        <%= f.submit "Update", class: "btn btn-outline-success" %>
       <% end %>
 
     </div>
