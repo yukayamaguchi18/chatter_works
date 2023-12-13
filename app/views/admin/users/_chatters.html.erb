@@ -45,7 +45,7 @@
           <p class="d-flex justify-content-between">
             <%= link_to chatter.user.name, admin_user_path(chatter.user), class: "text-light text-truncate mr-1" %>
             <span class="text-nowrap text-muted">
-              <%= chatter.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <%= chatter.created_at.strftime("%Y/%m/%d %H:%M") %>
             </span>
           </p>
           <p class="text-break"><%= raw Rinku.auto_link(h(safe_join(chatter.body.split("\n"),tag(:br)))) %></p>
@@ -72,6 +72,6 @@
     </div>
 
     <!--reply modal-->
-    <%= render 'admin/users/replies', reply_to: chatter %>
+    <%= render "admin/users/replies", reply_to: chatter %>
   <% end %>
 <% end %>
