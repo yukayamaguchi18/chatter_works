@@ -12,7 +12,9 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto my-2 list-unstyled">
           <li class="nav-item mx-2 mt-1">
-            <%= render "public/searches/form" %>
+            <div class="text-white cursor-pointer" data-toggle="modal" data-target="#search-modal">
+              <i class="fas fa-search fa-lg"></i>
+            </div>
           </li>
           <% if user_signed_in? %>
             <% if admin_signed_in? %>
@@ -115,3 +117,6 @@
   </div>
 
 </header>
+
+  <!--search modal-->
+  <%= render "public/searches/form" %>
