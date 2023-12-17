@@ -4,6 +4,7 @@ class Public::SearchesController < ApplicationController
   def search
     @chatter = Chatter.new # reply用
     @model = params[:model]
+    @sort = params[:sort]
     @word = params[:word] # 検索後の検索ボックスの初期値用に変数定義
     # splitで正規表現を使ってキーワードを空白(全角・半角・連続)分割する
     #   連続した空白も除去するので、最後の“+”がポイント
@@ -29,7 +30,11 @@ class Public::SearchesController < ApplicationController
       unless @chatters.blank?
         # search_rangeメソッドで検索範囲を絞り込み（chatterモデル参照）
         @chatters = @chatters.search_range(current_user)
-        @chatters = @chatters.includes([:user, :reply_to_chatters, user: { profile_image_attachment: :blob }]).order(created_at: :desc).page(params[:page]).per(20)
+        if @sort == "Newest"
+          @chatters = @chatters.includes([:user, :reply_to_chatters, user: { profile_image_attachment: :blob }]).order(created_at: :desc).page(params[:page]).per(20)
+        elsif @sort == "Favorite"
+          @chatters = @chatters.includes([:user, :reply_to_chatters, user: { profile_image_attachment: :blob }]).order(chatter_favorites_count: :desc).page(params[:page]).per(20)
+        end
       end
       # work検索結果
       @words.each_with_index do |word, i|
@@ -37,7 +42,11 @@ class Public::SearchesController < ApplicationController
         @works = @works.merge(@works.search(word))
       end
       unless @works.blank?
-        @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_images.order(created_at: :desc).page(params[:page]).per(10)
+        if @sort == "Newest"
+          @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_images.order(created_at: :desc).page(params[:page]).per(10)
+        elsif @sort == "Favorite"
+          @works = @works.includes([:user, user: { profile_image_attachment: :blob }]).with_attached_work_images.order(work_favorites_count: :desc).page(params[:page]).per(10)
+        end
       end
       return unless request.xhr?
       case params[:type]
@@ -53,7 +62,11 @@ class Public::SearchesController < ApplicationController
         @works = @works.merge(@tag.works)
       end
       unless @works.blank?
-        @works = @works.includes([:user]).with_attached_work_images.order(created_at: :desc).page(params[:page]).per(10)
+        if @sort == "Newest"
+          @works = @works.includes([:user]).with_attached_work_images.order(created_at: :desc).page(params[:page]).per(10)
+        elsif @sort == "Favorite"
+          @works = @works.includes([:user]).with_attached_work_images.order(work_favorites_count: :desc).page(params[:page]).per(10)
+        end
       end
       return unless request.xhr?
       case params[:type]
