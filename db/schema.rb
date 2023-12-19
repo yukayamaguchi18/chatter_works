@@ -194,6 +194,7 @@ ActiveRecord::Schema.define(version: 2023_12_18_031459) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "work_favorites_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
+    t.integer "series_id"
     t.integer "public_status", default: 0, null: false
   end
 
