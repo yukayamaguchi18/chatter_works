@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'series/index'
+    get 'series/create'
+    get 'series/update'
+    get 'series/destroy'
+  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
   }
