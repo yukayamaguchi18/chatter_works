@@ -1,8 +1,8 @@
 class Public::SeriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:destroy]
-  before_action :destroyed?, only: [:show, :destroy, :favorite_users, :rechatter_users]
-  before_action :ensure_deactivated_user, only: [:show, :favorite_users, :rechatter_users]
+  before_action :ensure_correct_user, only: [:create, :update, :destroy]
+  before_action :destroyed?, only: [:update, :destroy, :show, :index]
+  before_action :ensure_deactivated_user, only: [:update, :destroy, :show, :index]
   
   def index
     @series = current_user.series.all
