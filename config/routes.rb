@@ -44,6 +44,7 @@ Rails.application.routes.draw do
           get :index
         end
       end
+      resources :series, only:[:create, :destroy, :index]
     end
     resources :chatters, only: [:show, :destroy, :create] do
       resource :chatter_favorites, only: [:create, :destroy]
