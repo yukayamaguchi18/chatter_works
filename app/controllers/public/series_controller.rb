@@ -9,7 +9,7 @@ class Public::SeriesController < ApplicationController
   end
   
   def show
-    
+    @series = Series.find(params[:id])
   end
 
   def create
