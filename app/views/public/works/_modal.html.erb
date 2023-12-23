@@ -20,7 +20,7 @@
           <%= f.label "Series（任意）" %>
           <%= f.collection_select :series_id, current_user.series.all, :id, :name, include_blank: "選択して下さい" %>
           <%= link_to user_series_index(user_id: current_user.id), class: "text-white", target: :_blank, rel: "noopener noreferrer" do %>
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>シリーズ一覧
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>シリーズ一覧・新規作成へ
           <% end %>
           <%= f.label "Title" %>
           <%= f.text_field :title, placeholder: "作品タイトル", class: "form-control work-body mb-3" %>

@@ -5,7 +5,8 @@ class Public::SeriesController < ApplicationController
   before_action :ensure_deactivated_user, only: [:update, :destroy, :show, :index]
   
   def index
-    @series = current_user.series.all
+    @user = User.find(params[:user_id])
+    @series = @user.series.all
   end
   
   def show
