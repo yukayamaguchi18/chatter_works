@@ -16,7 +16,9 @@
                 <%= image_tag favorite.user.get_profile_image(50, 50), class: "rounded" %>
               <% end %>
             </td>
-            <td class="align-middle"><%= favorite.user.name %></td>
+            <td class="align-middle">
+              <%= link_to favorite.user.name, user_path(favorite.user), class: "text-light" %>
+            </td>
             <td class="align-middle">
               <% unless favorite.user == current_user %>
                 <div class="follow-btn_<%= favorite.user.id %>">

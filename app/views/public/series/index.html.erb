@@ -1,2 +1,35 @@
-<h1>Public::Series#index</h1>
-<p>Find me in app/views/public/series/index.html.erb</p>
+<div class="container p-3">
+  <div class="row mx-auto">
+    <div class="col-12">
+      <h1>Series</h1>
+
+      <% if series.exists? %>
+        <table class="table text-light m-2">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% series.each do |series| %>
+              <tr>
+                <td class="align-middle">
+                  <%= link_to user_series_path(series) do %>
+                    <%= image_tag series.series_image, class: "work-index-image" %>
+                  <% end %>
+                </td>
+                <td class="align-middle">
+                  <%= link_to series.name, user_series_path(series), class: "text-light" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="alert alert-dark">シリーズはまだありません</p>
+      <% end %>
+
+    </div>
+  </div>
+</div>

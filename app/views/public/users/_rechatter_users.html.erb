@@ -16,7 +16,9 @@
                 <%= image_tag rechatter.user.get_profile_image(50, 50), class: "rounded" %>
               <% end %>
             </td>
-            <td class="align-middle"><%= rechatter.user.name %></td>
+            <td class="align-middle">
+              <%= link_to rechatter.user.name, user_path(rechatter.user), class: "text-light" %>
+            </td>
             <td class="align-middle">
               <% unless rechatter.user == current_user %>
                 <div class="follow-btn_<%= rechatter.user.id %>">
