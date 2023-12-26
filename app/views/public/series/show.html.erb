@@ -1,2 +1,52 @@
-<h1>Public::Series#destroy</h1>
-<p>Find me in app/views/public/series/destroy.html.erb</p>
+<div class="container p-3">
+  <div class="row mx-auto">
+    <div class="col-12">
+      <% unless @series.user.is_public == true || current_user.following?(@series.user) || @series.user == current_user %>
+        <p class="alert alert-dark m-3">非公開ユーザーによる投稿シリーズです。<br>
+        閲覧するには投稿ユーザーをフォローしてください。</p>
+        <div>
+          <div class="d-flex align-items-center m-1">
+            <%= link_to user_path(@series.user) do %>
+              <%= image_tag @series.user.get_profile_image(50, 50), class: "rounded" %>
+            <% end %>
+            <p class="ml-2 mt-1 text-truncate font-weight-bold">
+              <%= link_to user_path(@series.user), class: "text-light" do %>
+                <%= @series.user.name %>
+              <% end %>
+            </p>
+          </div>
+          <% unless series.user == current_user %>
+            <div class="follow-btn_<%= @series.user.id %> m-1">
+              <%= render "public/relationships/follow", user: @series.user %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <h1><%= @series.name %></h1>
+        <%= image_tag @series.series_image, class: "mw-100 mh-100 mb-1" %>
+        <div>
+          <div class="d-flex align-items-center m-1">
+            <%= link_to user_path(@series.user) do %>
+              <%= image_tag @series.user.get_profile_image(50, 50), class: "rounded" %>
+            <% end %>
+            <p class="ml-2 mt-1 text-truncate font-weight-bold">
+              <%= link_to user_path(@series.user), class: "text-light" do %>
+                <%= @series.user.name %>
+              <% end %>
+            </p>
+          </div>
+          <% unless @series.user == current_user %>
+            <div class="follow-btn_<%= @series.user.id %> m-1">
+              <%= render "public/relationships/follow", user: @series.user %>
+            </div>
+          <% end %>
+        </div>
+        <h3>Works</h3>
+        <div class="works">
+          <%= render "public/works/index", works: @works %>
+        </div>
+        <%= link_to_next_page @works, "もっと見る", params: { type: :work }, remote: true, class: "btn btn-outline-success btn-block more-link", id: "more-work" %>
+      <% end %>
+    </div>
+  </div>
+</div>
