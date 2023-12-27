@@ -3,7 +3,7 @@
     <div class="col-12">
       <h1>Series</h1>
 
-      <% if series.exists? %>
+      <% if @series.exists? %>
         <table class="table text-light m-2">
           <thead>
             <tr>
@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody>
-            <% series.each do |series| %>
+            <% @series.each do |series| %>
               <tr>
                 <td class="align-middle">
                   <%= link_to user_series_path(series) do %>
